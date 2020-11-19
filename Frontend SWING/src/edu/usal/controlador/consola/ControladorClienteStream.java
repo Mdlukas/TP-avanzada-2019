@@ -16,9 +16,7 @@ public class ControladorClienteStream {
 	{
 		this.vista = vista;
 		try {
-			
-			
-			this.cliente = FactoryCliente.GetImplementacion("serializable");
+			this.cliente = FactoryCliente.GetImplementacion("serializacion");
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

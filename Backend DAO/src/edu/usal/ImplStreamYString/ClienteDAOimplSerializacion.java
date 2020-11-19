@@ -49,7 +49,6 @@ public class ClienteDAOimplSerializacion implements ClienteDAO{
 		AltadeClienteSerializable.close();
 		
 			}else {
-				
 				archivo.createNewFile();
 			}
 			

@@ -27,17 +27,18 @@ public class VISTAGENERAL {
 	Scanner leer = new Scanner(System.in);
 	
 	do {
-	System.out.println("Eliga Una de las siguientes OPCIONES (1- para Dirigirse al Crud de Paises) "
-			+ "(2- para dirigirse al de Provincia)"
-			+ " (3- para el de Aeropuertos)"
-			+ " 4- para el de Clientes"
-			+ " 5- para el de Aerolineas"
-+ " 6- para el de Pasaporte"
-+ " 7- para el de Telefono"
-+ " 8- para el de Venta"
-+ " 9- para el de Vuelo"	
-+ " 10- para el de Direccion"	
-+ " 11- para el de Pasajero ");
+	System.out.println("Eliga Una de las siguientes OPCIONES"
+			+ "\n 1- para Dirigirse al Crud de Paises"
+			+ "\n 2- para dirigirse al de Provincia "
+			+ "\n 3- para el de Aeropuertos "
+			+ "\n 4- para el de Clientes"
+			+ "\n 5- para el de Aerolineas"
+			+ "\n 6- para el de Pasaporte"
+			+ "\n 7- para el de Telefono"
+			+ "\n 8- para el de Venta"
+			+ "\n 9- para el de Vuelo"
+			+ "\n 10- para el de Direccion"
+			+ "\n 11- para el de Pasajero ");
 	
 	n = leer.nextInt();
 	

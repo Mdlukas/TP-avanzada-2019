@@ -77,11 +77,13 @@ public class VistaClienteStream {
 	           System.out.println("DNI: "+cliente.getDni());
 	           System.out.println("Fecha Nacimiento: "+cliente.getFechaNacimiento());
 	           System.out.println("Mail: "+cliente.getMail());
+
+				System.out.println("\n"+"-----------------------------------------------------------------------------");
 	           
-	           
-	           System.out.println("Numero de Pasajero: "+cliente.getNrodepasajero().getIDnrodepasajero());
-	           System.out.println("Numero de Pasaporte: "+cliente.getPasaporte().getIDPasaporte());
-	           System.out.println("Numero de Telefono: "+cliente.getTelefono().getIDTelefono());
+	           //TODO Fix alex's implementation of the getters here.
+//	           System.out.println("Numero de Pasajero: "+cliente.getNrodepasajero().getIDnrodepasajero());
+//	           System.out.println("Numero de Pasaporte: "+cliente.getPasaporte().getIDPasaporte());
+//	           System.out.println("Numero de Telefono: "+cliente.getTelefono().getIDTelefono());
 		}
 		
 	}

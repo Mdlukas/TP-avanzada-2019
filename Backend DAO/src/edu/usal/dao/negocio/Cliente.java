@@ -21,7 +21,7 @@ public class Cliente implements Serializable {
 	
 	
 	private Pasaporte Pasaporte;         //estos objetos solo Cuentan en la implementacion de archivos
-    private Telefono Telefono;
+    private Telefono Telefono;			// No??? Que onda hermano, no sabes hacer FK's y referencias en DB??
 	private Pasajero nrodepasajero;
 
 	public Cliente() {}

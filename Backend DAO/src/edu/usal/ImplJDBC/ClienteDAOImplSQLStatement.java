@@ -35,7 +35,9 @@ public class ClienteDAOImplSQLStatement implements ClienteDAO {
 		        rs.getString(2),
 				rs.getString(3),
 				rs.getString(4),
-				rs.getString(5),rs.getString(6), rs.getString(7));
+				rs.getString(5),
+				rs.getString(6),
+				rs.getString(7));
 			
 			rs.close();
 			ps.close();
@@ -75,8 +77,9 @@ public class ClienteDAOImplSQLStatement implements ClienteDAO {
 			        rs.getString(2),
 					rs.getString(3),
 					rs.getString(4),
-					rs.getString(5),rs.getString(6), rs.getString(7)));
-	
+					rs.getString(5),
+				  	rs.getString(6),
+				  	rs.getString(7)));
 		 }
 		 rs.close();
 		 st.close();
@@ -102,12 +105,14 @@ public class ClienteDAOImplSQLStatement implements ClienteDAO {
 		  try {
 			Statement st = con.createStatement();
 
-		 String query= "INSERT INTO Cliente VALUES ('"	+alta.getIDCliente() +"','"
-		 
+		 String query= "INSERT INTO Cliente VALUES ('"
+				 +alta.getIDCliente() +"','"
 				 +alta.getNombreCliente()+"','"
 				 +alta.getApellidoCliente()+"','"
 				 +alta.getDni()+"','"
-				 +alta.getCuit()+ "','" +alta.getFechaNacimiento() + "','" + alta.getMail()+"')";
+				 +alta.getCuit()+ "','"
+				 +alta.getFechaNacimiento()+ "','"
+				 +alta.getMail()+"')";
 	
 	     st.execute(query);
 		 st.close();
