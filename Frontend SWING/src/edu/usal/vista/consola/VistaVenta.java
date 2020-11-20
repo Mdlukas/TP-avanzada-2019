@@ -42,7 +42,7 @@ public class VistaVenta {
 		venta.setFormadePago(TipoPago.getPago(IOGeneral.leerFrase("Ingrese tipo de Pago (Tarjeta de Credito , Tarjeta de Debito , Efectivo)")));
 
 		
-		venta.getCliente().setIDCliente(IOGeneral.leerFrase("Ingrese IDCliente: "));
+//		venta.getCliente().setIDCliente(IOGeneral.leerFrase("Ingrese IDCliente: "));
 		venta.getAerolinea().setIDAerolinea(IOGeneral.leerFrase("Ingrese IDAerolinea: "));
 		
 		return venta;
@@ -67,7 +67,7 @@ public class VistaVenta {
 		venta.setFormadePago(TipoPago.getPago(IOGeneral.leerFrase("Ingrese tipo de Pago (Tarjeta de Credito , Tarjeta de Debito , Efectivo)")));
 
 		
-		venta.getCliente().setIDCliente(IOGeneral.leerFrase("Ingrese IDCliente: "));
+//		venta.getCliente().setIDCliente(IOGeneral.leerFrase("Ingrese IDCliente: "));
 		venta.getAerolinea().setIDAerolinea(IOGeneral.leerFrase("Ingrese IDAerolinea: "));
 		
 		return venta;

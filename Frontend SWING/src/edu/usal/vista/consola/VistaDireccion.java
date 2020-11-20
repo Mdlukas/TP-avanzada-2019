@@ -45,7 +45,7 @@ public class VistaDireccion {
         
         direccion.getPais().setIDPais(IOGeneral.leerFrase("Ingrese IDPais: "));
         direccion.getProvincia().setIDProvincia(IOGeneral.leerFrase("Ingrese IDProvincia: "));
-        direccion.getCliente().setIDCliente(IOGeneral.leerFrase("Ingrese IDCliente: "));
+        direccion.getCliente().setIDCliente(IOGeneral.leerInt("Ingrese ID : ", "Eso no es un id valido!"));
         
 		return direccion;
 		
@@ -116,7 +116,7 @@ public class VistaDireccion {
         
         direccion.getPais().setIDPais(IOGeneral.leerFrase("Ingrese IDPais: "));
         direccion.getProvincia().setIDProvincia(IOGeneral.leerFrase("Ingrese IDProvincia: "));
-        direccion.getCliente().setIDCliente(IOGeneral.leerFrase("Ingrese IDCliente: "));
+        direccion.getCliente().setIDCliente(IOGeneral.leerInt("Ingrese ID : ", "Eso no es un id valido!"));
         
 		return direccion;
 		

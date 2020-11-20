@@ -31,7 +31,7 @@ public class VistaTelefono {
 		telefono.setCliente(cliente);
 		
 		telefono.setIDTelefono(IOGeneral.leerFrase("Ingrese IDTelefono: "));	
-		telefono.getCliente().setIDCliente(IOGeneral.leerFrase("Ingrese IDCliente: "));
+		telefono.getCliente().setIDCliente(IOGeneral.leerInt("Ingrese ID : ", "Eso no es un id valido!"));
         telefono.setNumeroPersonal(IOGeneral.leerFrase("Ingrese Numero Personal: "));
 		telefono.setNumeroLaboral(IOGeneral.leerFrase("Ingrese Numero Laboral: "));
 		telefono.setNumeroCelular(IOGeneral.leerFrase("Ingrese Numero Celular: "));
@@ -49,7 +49,7 @@ public class VistaTelefono {
         System.out.println("Ingrese datos a Modificar: ");
 		
 		telefono.setIDTelefono(IOGeneral.leerFrase("Ingrese IDTelefono: "));	
-		telefono.getCliente().setIDCliente(IOGeneral.leerFrase("Ingrese IDCliente: "));
+		telefono.getCliente().setIDCliente(IOGeneral.leerInt("Ingrese ID : ", "Eso no es un id valido!"));
         telefono.setNumeroPersonal(IOGeneral.leerFrase("Ingrese Numero Personal: "));
 		telefono.setNumeroLaboral(IOGeneral.leerFrase("Ingrese Numero Laboral: "));
 		telefono.setNumeroCelular(IOGeneral.leerFrase("Ingrese Numero Celular: "));

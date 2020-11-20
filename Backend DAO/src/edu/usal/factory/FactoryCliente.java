@@ -3,9 +3,9 @@ package edu.usal.factory;
 
 import java.io.IOException;
 
-import edu.usal.ImplJDBC.ClienteDAOImplSQLStatement;
-import edu.usal.ImplStreamYString.ClienteDAOimplSTRING;
-import edu.usal.ImplStreamYString.ClienteDAOimplSerializacion;
+import edu.usal.implementaciones.ImplJDBC.ClienteDAOImplSQL;
+//import edu.usal.implementaciones.ImplStreamYString.ClienteDAOimplSTRING;
+//import edu.usal.implementaciones.ImplStreamYString.ClienteDAOimplSerializacion;
 import edu.usal.dao.interfaces.ClienteDAO;
 
 
@@ -16,20 +16,22 @@ public class FactoryCliente {
 	public static ClienteDAO GetImplementacion(String dao) throws IOException
 	{	
 		
-		if (dao.equals("archivo"))
-		{		
-		return new ClienteDAOimplSTRING();
-		}		
-		
-		else if (dao.equals("serializacion"))
-		{			
-			return new ClienteDAOimplSerializacion();
-		}
-		else if (dao.equals("sql"))
+//		if (dao.equals("archivo"))
+//		{
+//		return new ClienteDAOimplSTRING();
+//		}
+//
+//		else if (dao.equals("serializacion"))
+//		{
+//			return new ClienteDAOimplSerializacion();
+//		}
+//		else
+//
+			if (dao.equals("sql"))
 		{
 			
 			
-			return new ClienteDAOImplSQLStatement();
+			return new ClienteDAOImplSQL();
 		}
 		
 		

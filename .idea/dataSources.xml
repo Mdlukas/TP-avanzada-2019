@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="TP_Aerolineas_2019@192.168.0.33" uuid="7b9bbbe5-70ed-401c-aba3-b3bfa69a65ba">
+      <driver-ref>sqlserver.jtds</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>net.sourceforge.jtds.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:jtds:sqlserver://192.168.0.33:1433/TP_Aerolineas_2019</jdbc-url>
+    </data-source>
+  </component>
+</project>

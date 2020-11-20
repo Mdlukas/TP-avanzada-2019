@@ -34,7 +34,7 @@ public class VistaPasaporte {
 		pasaporte.setFechadeVencimiento(IOGeneral.leerFrase("Ingrese Fecha de Vencimiento: "));
 		
 		pasaporte.getPais().setIDPais(IOGeneral.leerFrase("Ingrese IDPais: "));
-		pasaporte.getCliente().setIDCliente("Ingrese IDCliente: ");
+//		pasaporte.getCliente().setIDCliente("Ingrese IDCliente: ");
 		
 		return pasaporte;
 	    
@@ -53,7 +53,7 @@ public class VistaPasaporte {
 		pasaporte.setFechadeVencimiento(IOGeneral.leerFrase("Ingrese Fecha de Vencimiento: "));
 		
 		pasaporte.getPais().setIDPais(IOGeneral.leerFrase("Ingrese IDPais: "));
-		pasaporte.getCliente().setIDCliente("Ingrese IDCliente: ");
+//		pasaporte.getCliente().setIDCliente("Ingrese IDCliente: ");
         
 		return pasaporte;
 		 

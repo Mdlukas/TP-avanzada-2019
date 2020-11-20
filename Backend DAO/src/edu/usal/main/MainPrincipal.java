@@ -19,12 +19,12 @@ public class MainPrincipal {
 	
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 	
-		String IDCliente;
+		int IDCliente;
 		String NombreCliente = null;
 	    String ApellidoCliente = null;
 		int opc;
 		String dni = null;
-		String cuit = null;
+		String RS = null;
 		String mail = null;
 		String FechaNacimiento = null; 
 		
@@ -52,15 +52,15 @@ public class MainPrincipal {
 		
 
 		System.out.println("Ingrese IDCliente");
-		IDCliente = leer.next();
+		IDCliente = leer.nextInt();
 		System.out.println("ingrese nombre");
 	    NombreCliente = leer.next();      
 	    System.out.println("ingrese apellido"); 
 	    ApellidoCliente = leer.next();
 	    System.out.println("ingrese dni "); 
 	    dni = leer.next();
-	    System.out.println("ingrese cuit "); 
-	    cuit = leer.next();
+	    System.out.println("ingrese RS ");
+	    RS = leer.next();
 	    System.out.println("ingrese Fecha de Nacimiento ");
 	    FechaNacimiento = leer.next();
 	    System.out.println("ingrese mail "); 
@@ -75,7 +75,7 @@ public class MainPrincipal {
 	   //System.out.println("ingrese nro de pasajero ");
 	 //nrodepasajero = leer.next();
 		    
-		    Cliente cliente = new Cliente (IDCliente,NombreCliente,ApellidoCliente,dni,cuit,FechaNacimiento,mail,null,null,null);
+		    Cliente cliente = new Cliente (IDCliente,NombreCliente,ApellidoCliente,dni,RS,null,mail,null,null,null);
 		    
 		    clienteDAO.AltaCliente(cliente);
 		    
@@ -85,8 +85,8 @@ public class MainPrincipal {
 		case 2: System.out.println("BAJA \n");
 		
 		System.out.println("Ingrese IDCliente para darlo de baja");
-		IDCliente = leer.next();
-		 Cliente cliente1 = new Cliente (IDCliente,NombreCliente,ApellidoCliente,dni,cuit,FechaNacimiento,mail,null,null,null);
+		IDCliente = leer.nextInt();
+		 Cliente cliente1 = new Cliente (IDCliente,NombreCliente,ApellidoCliente,dni,RS,FechaNacimiento,mail,null,null,null);
 		    		
 		
 		clienteDAO.BajaCliente(cliente1);
@@ -99,15 +99,15 @@ public class MainPrincipal {
 		
 		
 		System.out.println("Ingrese IDCliente para realizar la modificacion");
-		IDCliente = leer.next();
+		IDCliente = leer.nextInt();
 		System.out.println("ingrese nombre A modificar ");
 	    NombreCliente = leer.next();      
 	    System.out.println("ingrese apellido A modificar "); 
 	    ApellidoCliente = leer.next();
 	    System.out.println("ingrese dni A modificar "); 
 	    dni = leer.next();
-	    System.out.println("ingrese cuit A modificar "); 
-	    cuit = leer.next();
+	    System.out.println("ingrese RS A modificar ");
+	    RS = leer.next();
 	    System.out.println("ingrese Fecha de Nacimiento a Modificar ");
 	    FechaNacimiento = leer.next();
 	    System.out.println("ingrese mail A modificar "); 
@@ -122,7 +122,7 @@ public class MainPrincipal {
 	   //System.out.println("ingrese nro de pasajero ");
 	 //nrodepasajero = leer.next();
 		
-	    Cliente cliente2 = new Cliente (IDCliente,NombreCliente,ApellidoCliente,dni,cuit,FechaNacimiento,mail,null,null,null);
+	    Cliente cliente2 = new Cliente (IDCliente,NombreCliente,ApellidoCliente,dni,RS,FechaNacimiento,mail,null,null,null);
 	    
 		clienteDAO.ModCliente(cliente2);
 			
@@ -137,7 +137,7 @@ public class MainPrincipal {
 		    for (Cliente clientes : listadoCliente)
 		    {
 		   System.out.println(clientes.getIDCliente() + "\n" + clientes.getNombreCliente() + "\n" + clientes.getApellidoCliente()
-		   + "\n" + clientes.getDni() + "\n" + clientes.getCuit()  + "\n" + clientes.getFechaNacimiento() + "\n" +  clientes.getMail());
+		   + "\n" + clientes.getDni() + "\n" + clientes.getRS()  + "\n" + clientes.getFechaNacimiento() + "\n" +  clientes.getMail());
 		    	
 		    	System.out.println("\n");
 		   

@@ -38,7 +38,7 @@ public class VistaPasajero {
 		pasajero.setCategoria(IOGeneral.leerFrase("Ingrese nombre de Categoria"));
 		
 		
-		pasajero.getCliente().setIDCliente(IOGeneral.leerFrase("Ingrese IDCliente: "));
+		pasajero.getCliente().setIDCliente(IOGeneral.leerInt("Ingrese ID : ", "Eso no es un id valido!"));
 		pasajero.getAerolinea().setIDAerolinea(IOGeneral.leerFrase("Ingrese el IDAerolinea: "));
 		
 		return pasajero;
@@ -56,7 +56,7 @@ public class VistaPasajero {
 		pasajero.setNumero(IOGeneral.leerFrase("Ingrese el Numero: "));
 		pasajero.setCategoria(IOGeneral.leerFrase("Ingrese nombre de Categoria"));
 		
-		pasajero.getCliente().setIDCliente(IOGeneral.leerFrase("Ingrese IDCliente: "));
+		pasajero.getCliente().setIDCliente(IOGeneral.leerInt("Ingrese ID : ", "Eso no es un id valido!"));
 		pasajero.getAerolinea().setIDAerolinea(IOGeneral.leerFrase("Ingrese el IDAerolinea: "));
 		
 		return pasajero;

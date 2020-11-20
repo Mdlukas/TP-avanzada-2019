@@ -1,8 +1,12 @@
 package edu.usal.dao.negocio;
 
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 //crear dao que falta y completar clases;
+@Entity
+@Table
 public class Cliente implements Serializable {
 	
 	/**
@@ -10,37 +14,64 @@ public class Cliente implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@Column(name="IDCliente")
+	private int IDCliente;
 
-	private String IDCliente;
+	@Basic
+	@Column(name = "NombreCliente")
 	private String NombreCliente;
+
+	@Basic
+	@Column(name = "ApellidoCliente")
 	private String ApellidoCliente;
+
+	@Basic
+	@Column(name = "dni")
 	private String dni;
-	private String cuit;
-	private String FechaNacimiento; 
+
+	@Basic
+	@Column(name = "RS")
+	private String RS;
+
+	@Basic
+	@Column(name = "FechaNacimiento")
+	private Date FechaNacimiento;
+
+	@Basic
+	@Column(name = "mail")
 	private String mail;
-	
-	
-	private Pasaporte Pasaporte;         //estos objetos solo Cuentan en la implementacion de archivos
-    private Telefono Telefono;			// No??? Que onda hermano, no sabes hacer FK's y referencias en DB??
+
+	@Transient
+	private Pasaporte Pasaporte;
+	@Transient
+    private Telefono Telefono;
+	@Transient
 	private Pasajero nrodepasajero;
 
+
+
+
 	public Cliente() {}
-	public Cliente(String idCliente) {
-		
+
+	public Cliente(Integer idCliente) {
+
 		IDCliente = idCliente;
 	}
-	public Cliente(String iDCliente, String nombreCliente, String apellidoCliente, String dni, String cuit,
-			String fechaNacimiento, String mail) {
+
+	public Cliente(int iDCliente, String nombreCliente, String apellidoCliente, String dni, String RS,
+			Date fechaNacimiento, String mail) {
 		super();
 		IDCliente = iDCliente;
 		NombreCliente = nombreCliente;
 		ApellidoCliente = apellidoCliente;
 		this.dni = dni;
-		this.cuit = cuit;
+		this.RS = RS;
 		FechaNacimiento = fechaNacimiento;
 		this.mail = mail;
 	}
-	public Cliente(String iDCliente, String nombreCliente, String apellidoCliente, String dni, String cuit,
+
+	public Cliente(int iDCliente, String nombreCliente, String apellidoCliente, String dni, String RS,
 			String fechaNacimiento, String mail, edu.usal.dao.negocio.Pasaporte pasaporte,
 			edu.usal.dao.negocio.Telefono telefono, Pasajero nrodepasajero) {
 		super();
@@ -48,26 +79,24 @@ public class Cliente implements Serializable {
 		NombreCliente = nombreCliente;
 		ApellidoCliente = apellidoCliente;
 		this.dni = dni;
-		this.cuit = cuit;
-		FechaNacimiento = fechaNacimiento;
+		this.RS = RS;
+		FechaNacimiento = null;
 		this.mail = mail;
 		Pasaporte = pasaporte;
 		Telefono = telefono;
 		this.nrodepasajero = nrodepasajero;
 	}
 
-
-
-
-	public String getIDCliente() {
+	public int getIDCliente() {
 		return IDCliente;
 	}
 
-	public void setIDCliente(String iDCliente) {
+	public void setIDCliente(int iDCliente) {
 		IDCliente = iDCliente;
 	}
 
-	public String getNombreCliente() {
+
+    public String getNombreCliente() {
 		return NombreCliente;
 	}
 
@@ -75,7 +104,8 @@ public class Cliente implements Serializable {
 		NombreCliente = nombreCliente;
 	}
 
-	public String getApellidoCliente() {
+
+    public String getApellidoCliente() {
 		return ApellidoCliente;
 	}
 
@@ -83,7 +113,8 @@ public class Cliente implements Serializable {
 		ApellidoCliente = apellidoCliente;
 	}
 
-	public String getDni() {
+
+    public String getDni() {
 		return dni;
 	}
 
@@ -91,23 +122,26 @@ public class Cliente implements Serializable {
 		this.dni = dni;
 	}
 
-	public String getCuit() {
-		return cuit;
+
+    public String getRS() {
+		return RS;
 	}
 
-	public void setCuit(String cuit) {
-		this.cuit = cuit;
+	public void setRS(String RS) {
+		this.RS = RS;
 	}
 
-	public String getFechaNacimiento() {
+
+    public Date getFechaNacimiento() {
 		return FechaNacimiento;
 	}
 
-	public void setFechaNacimiento(String fechaNacimiento) {
+	public void setFechaNacimiento(Date fechaNacimiento) {
 		FechaNacimiento = fechaNacimiento;
 	}
 
-	public String getMail() {
+
+    public String getMail() {
 		return mail;
 	}
 
@@ -140,5 +174,5 @@ public class Cliente implements Serializable {
 	}
 
 
-	
+
 }

@@ -40,12 +40,12 @@ public class VistaClienteStream {
 		
 		
 		
-		cliente.setIDCliente(IOGeneral.leerLinea("Ingrese ID : "));
+		cliente.setIDCliente(IOGeneral.leerInt("Ingrese ID : ", "Eso no es un id valido!"));
 		cliente.setNombreCliente(IOGeneral.leerLinea("Ingrese Nombre : "));
 		cliente.setApellidoCliente(IOGeneral.leerLinea("Ingrese Apellido : "));
-		cliente.setCuit(IOGeneral.leerFrase("Ingrese cuit: "));
+		cliente.setRS(IOGeneral.leerFrase("Ingrese RS: "));
 		cliente.setDni(IOGeneral.leerFrase("Ingrese DNI: "));
-		cliente.setFechaNacimiento(IOGeneral.leerFrase("Ingrese Fecha Nacimiento: "));
+//		cliente.setFechaNacimiento(IOGeneral.leerFrase("Ingrese Fecha Nacimiento: "));
 		cliente.setMail("Ingrese Mail: ");
 		
 		cliente.getTelefono().setIDTelefono(IOGeneral.leerFrase("Ingrese Numero de Telefono: "));
@@ -73,7 +73,7 @@ public class VistaClienteStream {
 			   System.out.println("IDCliente: "+cliente.getIDCliente());
 	           System.out.println("Nombre : "+cliente.getNombreCliente()); 
 	           System.out.println("Apellido: "+cliente.getApellidoCliente());
-	           System.out.println("Cuit:"+cliente.getCuit());
+	           System.out.println("RS:"+cliente.getRS());
 	           System.out.println("DNI: "+cliente.getDni());
 	           System.out.println("Fecha Nacimiento: "+cliente.getFechaNacimiento());
 	           System.out.println("Mail: "+cliente.getMail());
@@ -93,7 +93,7 @@ public class VistaClienteStream {
 	{
 		Cliente cliente = new Cliente();
 		
-		cliente.setIDCliente(IOGeneral.leerLinea("Ingrese ID para realizar la Baja"));
+		cliente.setIDCliente(IOGeneral.leerInt("Ingrese ID : ", "Eso no es un id valido!"));
 		
 		
 		return cliente;	
@@ -117,12 +117,12 @@ public class VistaClienteStream {
 		
 		System.out.println("Ingrese los nuevos datos a Modificar! ");
 		
-		cliente.setIDCliente(IOGeneral.leerLinea("Ingrese ID : "));
+		cliente.setIDCliente(IOGeneral.leerInt("Ingrese ID : ", "Eso no es un id valido!"));
 		cliente.setNombreCliente(IOGeneral.leerLinea("Ingrese Nombre : "));
 		cliente.setApellidoCliente(IOGeneral.leerLinea("Ingrese Apellido : "));
-		cliente.setCuit(IOGeneral.leerFrase("Ingrese cuit: "));
+		cliente.setRS(IOGeneral.leerFrase("Ingrese RS: "));
 		cliente.setDni(IOGeneral.leerFrase("Ingrese DNI: "));
-		cliente.setFechaNacimiento(IOGeneral.leerFrase("Ingrese Fecha Nacimiento: "));
+//		cliente.setFechaNacimiento(IOGeneral.leerFrase("Ingrese Fecha Nacimiento: "));
 		cliente.setMail("Ingrese Mail: ");
 		
 		cliente.getTelefono().setIDTelefono(IOGeneral.leerFrase("Ingrese Numero de Telefono: "));
@@ -141,7 +141,7 @@ public class VistaClienteStream {
 		System.out.println("Cliente por ID: "+"\n"); 
 		
 		Cliente cliente = new Cliente();
-		cliente.setIDCliente(IOGeneral.leerLinea("Ingrese ID : "));
+		cliente.setIDCliente(IOGeneral.leerInt("Ingrese ID : ", "Eso no es un id valido!"));
 		   
 		return cliente;
 
@@ -154,7 +154,7 @@ public class VistaClienteStream {
 		   System.out.println("IDCliente: "+cliente.getIDCliente());
            System.out.println("Nombre : "+cliente.getNombreCliente()); 
            System.out.println("Apellido: "+cliente.getApellidoCliente());
-           System.out.println("Cuit:"+cliente.getCuit());
+           System.out.println("RS:"+cliente.getRS());
            System.out.println("DNI: "+cliente.getDni());
            System.out.println("Fecha Nacimiento: "+cliente.getFechaNacimiento());
            System.out.println("Mail: "+cliente.getMail());
