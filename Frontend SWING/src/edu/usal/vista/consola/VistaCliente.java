@@ -19,7 +19,6 @@ public class VistaCliente {
         System.out.println("5- Listado de Cliente");
         System.out.println("6- salir");
         return IOGeneral.leerInt("ingrese una opcion ", "solo nros.");
-
     }
 
 
@@ -40,6 +39,7 @@ public class VistaCliente {
         cliente.setApellidoCliente(IOGeneral.leerLinea("Ingrese Apellido : "));
         cliente.setRS(IOGeneral.leerFrase("Ingrese RS: "));
         cliente.setDni(IOGeneral.leerFrase("Ingrese DNI: "));
+        System.out.println("No te preocupes, no asignamos fecha desde este CRUD!");
 //		cliente.setFechaNacimiento(IOGeneral.leerFrase("Ingrese Fecha Nacimiento: "));
         cliente.setMail("Ingrese Mail: ");
 
@@ -60,12 +60,8 @@ public class VistaCliente {
 
     public Cliente BajadeCliente() {
         Cliente cliente = new Cliente();
-
         cliente.setIDCliente(IOGeneral.leerInt("Ingrese ID para realizar la Baja", "Eso no es un int!"));
-
-
         return cliente;
-
     }
 
 
@@ -92,18 +88,14 @@ public class VistaCliente {
         cliente.setMail("Ingrese Mail: ");
 
         return cliente;
-
     }
 
 
     public Cliente ConsultadeCliente() {
         System.out.println("Cliente por ID: " + "\n");
-
         Cliente cliente = new Cliente();
         cliente.setIDCliente(IOGeneral.leerInt("Ingrese ID : ", "Eso no es un id valido!"));
-
         return cliente;
-
     }
 
     public void imprimirConsultadeClientes(Cliente cliente){

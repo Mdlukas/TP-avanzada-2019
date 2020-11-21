@@ -119,14 +119,16 @@ public class ClienteDAOImplSQL implements ClienteDAO {
         //Comienzo la transaccion.
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
+        Cliente ClienteEncontrado = entityManager.find(Cliente.class, baja.getIDCliente());
         //Borro el cliente!
-        entityManager.remove(baja);
+        entityManager.remove(ClienteEncontrado);
         //Realizo commit!
         try {
             entityManager.getTransaction().commit();
             entityManagerFactory.close();
             System.out.println("Borre el cliente: "+baja.getIDCliente()+" sin problemas!");
         } catch (Exception e) {
+            entityManager.getTransaction().rollback();
             System.out.println("No se pudo borr el cliente con el ID: " + baja.getIDCliente());
             entityManagerFactory.close();
         }
