@@ -13,7 +13,7 @@ public class PasaporteDAOImplSQLPreparedStatement implements PasaporteDAO {
 
 	@Override
 	public Pasaporte ObtenerPasaporte(Pasaporte obtener) {
-		
+
 //		Connection con = ConexionSQLServer.QuispeConexion();
 //	    PreparedStatement ps = null;
 //
@@ -42,14 +42,14 @@ public class PasaporteDAOImplSQLPreparedStatement implements PasaporteDAO {
 //			e.printStackTrace();
 //		}
 //
-		
+
 		return null;
 	}
 
 	@Override
 	public List<Pasaporte> listadodePasaportes() {
-	
-		
+
+
 
 //		Connection con = ConexionSQLServer.QuispeConexion();
 //	    PreparedStatement ps = null;
@@ -81,7 +81,7 @@ public class PasaporteDAOImplSQLPreparedStatement implements PasaporteDAO {
 //		}
 //
 //
-		
+
 		return null;
 	}
 
@@ -114,15 +114,15 @@ public class PasaporteDAOImplSQLPreparedStatement implements PasaporteDAO {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-		
-		
+
+
 
 	}
 
 	@Override
 	public void ModificaciondePasaporte(Pasaporte modificar) {
-	
-		
+
+
 //		Connection con = ConexionSQLServer.QuispeConexion();
 //	    PreparedStatement ps = null;
 //
@@ -148,41 +148,41 @@ public class PasaporteDAOImplSQLPreparedStatement implements PasaporteDAO {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-		
+
 	}
 
-	
-	
+
+
 	@Override
 	public void BajadePasaporte(Pasaporte baja) {
-	
-		Connection con = ConexionSQLServer.QuispeConexion();
-	    PreparedStatement ps = null;
-		
-	    try {
-	    	
-	    	
-			ps = con.prepareStatement("DELETE FROM Pasaporte WHERE IDPasaporte = ? ");
-			
-			ps.setString(1, baja.getIDPasaporte());
-			
-	
-			ps.execute();
-	        
-	        ps.close();
-	        con.close();
-	
-	    } catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	
-		
+
+//		Connection con = ConexionSQLServer.QuispeConexion();
+//	    PreparedStatement ps = null;
+//
+//	    try {
+//
+//
+//			ps = con.prepareStatement("DELETE FROM Pasaporte WHERE IDPasaporte = ? ");
+//
+//			ps.setString(1, baja.getIDPasaporte());
+//
+//
+//			ps.execute();
+//
+//	        ps.close();
+//	        con.close();
+//
+//	    } catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+
+
+
 
 	}
 
-	
-	
-	
+
+
+
 }

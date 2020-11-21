@@ -1,44 +1,52 @@
 package edu.usal.domain;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity
+@Table
 public class Telefono implements Serializable {
-	
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private String IDTelefono;
-	private Cliente Cliente;
 
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name="IDTelefono")
+	private int IDTelefono;
+
+	@Basic
+	@Column(name = "NUMcelular")
 	private String NumeroCelular;
+
+	@Basic
+	@Column(name = "NUMlaboral")
 	private String NumeroLaboral;
+
+	@Basic
+	@Column(name = "NUMpersonal")
 	private String NumeroPersonal;
 
 	
 
 	public Telefono() {}
 
-	public Telefono(String str) {
-		IDTelefono = str;
+	public Telefono(int id) {
+		IDTelefono = id;
 	}
 	
-	public Telefono(String iDTelefono, Cliente iDCliente, String numeroPersonal, String numeroCelular,
+	public Telefono(int iDTelefono,String numeroPersonal, String numeroCelular,
 			String numeroLaboral) {
 		super();
 		IDTelefono = iDTelefono;
-		Cliente = iDCliente;
 		NumeroPersonal = numeroPersonal;
 		NumeroCelular = numeroCelular;
 		NumeroLaboral = numeroLaboral;
 	}
 
-	public String getIDTelefono() {
+	public int getIDTelefono() {
 		return IDTelefono;
 	}
 
-	public void setIDTelefono(String iDTelefono) {
+	public void setIDTelefono(int iDTelefono) {
 		IDTelefono = iDTelefono;
 	}
 
@@ -65,13 +73,15 @@ public class Telefono implements Serializable {
 	public void setNumeroLaboral(String numeroLaboral) {
 		NumeroLaboral = numeroLaboral;
 	}
-	
-	public Cliente getCliente() {
-		return Cliente;
-	}
 
-	public void setCliente(Cliente cliente) {
-		Cliente = cliente;
-	}
 
+	@Override
+	public String toString() {
+		return "Telefono{" +
+				"IDTelefono=" + IDTelefono +
+				", NumeroCelular='" + NumeroCelular + '\'' +
+				", NumeroLaboral='" + NumeroLaboral + '\'' +
+				", NumeroPersonal='" + NumeroPersonal + '\'' +
+				'}';
+	}
 }

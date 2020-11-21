@@ -28,6 +28,7 @@ public class ClienteDAOImplSQL implements ClienteDAO {
             return ClienteEncontrado;
         } catch (Exception e) {
             System.out.println("No se pudo encontrar el cliente con el ID: " + IDCliente.getIDCliente());
+            e.printStackTrace();
             return null;
         }
     }
@@ -46,6 +47,7 @@ public class ClienteDAOImplSQL implements ClienteDAO {
         } catch (Exception e){
             System.out.println("No pude retornar los clientes!");
             this.entityManager.getTransaction().rollback();
+            e.printStackTrace();
             return null;
         }
     }
@@ -54,7 +56,7 @@ public class ClienteDAOImplSQL implements ClienteDAO {
     public void AltaCliente(Cliente alta) {
         //Genero cliente para guardar y le setteo todos los datos!
         Cliente save = new Cliente();
-        save.setIDCliente(alta.getIDCliente());
+//        save.setIDCliente(alta.getIDCliente());
         save.setApellidoCliente(alta.getApellidoCliente());
         save.setNombreCliente(alta.getNombreCliente());
         save.setDni(alta.getDni());
@@ -70,6 +72,7 @@ public class ClienteDAOImplSQL implements ClienteDAO {
             System.out.println("Se guardo el cliente de forma correcta!");
         } catch (Exception e) {
             this.entityManager.getTransaction().rollback();
+            e.printStackTrace();
             System.out.println("No pude guardar nada hermano!");
         }
     }
@@ -93,6 +96,7 @@ public class ClienteDAOImplSQL implements ClienteDAO {
             System.out.println("Se guardo actualizo el cliente " + modificar.getIDCliente() + "  de forma correcta!");
         } catch (Exception e) {
             this.entityManager.getTransaction().rollback();
+            e.printStackTrace();
             System.out.println("No pude guardar nada hermano!");
         }
     }
@@ -111,7 +115,8 @@ public class ClienteDAOImplSQL implements ClienteDAO {
         } catch (Exception e) {
             //Realizo un rollback si no se pudo borrar el cliente.
             this.entityManager.getTransaction().rollback();
-            System.out.println("No se pudo borr el cliente con el ID: " + baja.getIDCliente());
+            e.printStackTrace();
+            System.out.println("No se pudo borrar el cliente con el ID: " + baja.getIDCliente());
         }
     }
 

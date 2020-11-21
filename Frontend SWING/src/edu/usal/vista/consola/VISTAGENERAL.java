@@ -8,7 +8,7 @@ import edu.usal.controlador.consola.ControladorCliente;
 import edu.usal.controlador.consola.ControladorDireccion;
 import edu.usal.controlador.consola.ControladorPais;
 import edu.usal.controlador.consola.ControladorPasajero;
-import edu.usal.controlador.consola.ControladorPasaporte;
+//import edu.usal.controlador.consola.ControladorPasaporte;
 import edu.usal.controlador.consola.ControladorProvincia;
 import edu.usal.controlador.consola.ControladorTelefono;
 import edu.usal.controlador.consola.ControladorVenta;
@@ -84,12 +84,12 @@ public class VISTAGENERAL {
                 break;
 
 
-            case 6:
-                VistaPasaporte vistaPasaporte = new VistaPasaporte();
-                ControladorPasaporte controladorPasaporte = null;
-                controladorPasaporte = new ControladorPasaporte(vistaPasaporte);
-                controladorPasaporte.MostrarMenuPasaporte();
-                break;
+//            case 6:
+////                VistaPasaporte vistaPasaporte = new VistaPasaporte();
+//                ControladorPasaporte controladorPasaporte = null;
+//                controladorPasaporte = new ControladorPasaporte(vistaPasaporte);
+//                controladorPasaporte.MostrarMenuPasaporte();
+//                break;
 
             case 7:
                 VistaTelefono vistaTelefono = new VistaTelefono();

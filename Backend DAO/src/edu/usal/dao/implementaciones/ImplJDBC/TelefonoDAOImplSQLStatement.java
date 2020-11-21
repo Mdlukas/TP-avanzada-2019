@@ -89,52 +89,52 @@ public class TelefonoDAOImplSQLStatement implements TelefonoDAO {
 		@Override
 		public void AltadeTelefono(Telefono alta) {
 	     
-			Connection con = ConexionSQLServer.QuispeConexion();
-			//transacion atomica , coxion comit
-			  try {
-				Statement st = con.createStatement();
-
-			 String query= "INSERT INTO Telefono VALUES ('"	+alta.getIDTelefono() +"','"
-			 
-					 +alta.getCliente().getIDCliente()+"','"
-					 +alta.getNumeroCelular()+"','"
-					 +alta.getNumeroLaboral()+"','"
-					 +alta.getNumeroPersonal()+"')";
-			 
-		   
-		     st.execute(query);
-			 st.close();
-			 con.close();	
-			 
-			 
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+//			Connection con = ConexionSQLServer.QuispeConexion();
+//			//transacion atomica , coxion comit
+//			  try {
+//				Statement st = con.createStatement();
+//
+//			 String query= "INSERT INTO Telefono VALUES ('"	+alta.getIDTelefono() +"','"
+//
+//					 +alta.getCliente().getIDCliente()+"','"
+//					 +alta.getNumeroCelular()+"','"
+//					 +alta.getNumeroLaboral()+"','"
+//					 +alta.getNumeroPersonal()+"')";
+//
+//
+//		     st.execute(query);
+//			 st.close();
+//			 con.close();
+//
+//
+//				} catch (SQLException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
 
 		}
 
 		@Override
 		public void ModificaciondeTelefono(Telefono modificar) {
 		
-			Connection con = ConexionSQLServer.QuispeConexion();
-			Statement st = null;
-			try {
-				
-				st = con.createStatement();
-				
-				String query = "UPDATE Telefono SET IDTelefono = '"	+modificar.getIDTelefono()
-				+"',IDCliente = '"+modificar.getCliente().getIDCliente()+"',direccion = '"+modificar.getNumeroCelular()+"',telefono = '"
-						+modificar.getNumeroLaboral()+"',PaginaWeb = '"+modificar.getNumeroPersonal()+"'" + " WHERE Telefono.IDTelefono = '"+modificar.getIDTelefono()+"'" ;
-				
-				st.execute(query);
-				st.close();
-				con.close();
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//			Connection con = ConexionSQLServer.QuispeConexion();
+//			Statement st = null;
+//			try {
+//
+//				st = con.createStatement();
+//
+//				String query = "UPDATE Telefono SET IDTelefono = '"	+modificar.getIDTelefono()
+//				+"',IDCliente = '"+modificar.getCliente().getIDCliente()+"',direccion = '"+modificar.getNumeroCelular()+"',telefono = '"
+//						+modificar.getNumeroLaboral()+"',PaginaWeb = '"+modificar.getNumeroPersonal()+"'" + " WHERE Telefono.IDTelefono = '"+modificar.getIDTelefono()+"'" ;
+//
+//				st.execute(query);
+//				st.close();
+//				con.close();
+//
+//			} catch (SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 			
 		}
 

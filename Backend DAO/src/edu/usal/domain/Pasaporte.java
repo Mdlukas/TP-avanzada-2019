@@ -1,49 +1,63 @@
 package edu.usal.domain;
 
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
+@Entity
+@Table(name = "Pasaporte")
 public class Pasaporte implements Serializable {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private String IDPasaporte;
-	private String  NrodePasaporte;
+
+	@Id
+	@Column(name="IDPasaporte")
+	private int IDPasaporte;
+
+	@Basic
+	@Column(name = "NUMpasaporte")
+	private String NrodePasaporte;
+
+	@Basic
+	@Column(name = "AutoridadEmision")
 	private String AutoridadEmision;
-	private String fechadeEmision;
-    private String fechadeVencimiento;
-    
-	private Pais Pais;
-	private Cliente Cliente;
-	
+
+	@Basic
+	@Column(name = "FECHAemision")
+	private Date fechadeEmision;
+
+	@Basic
+	@Column(name = "FECHAVencimiento")
+    private Date fechadeVencimiento;
+
+	@Basic
+	@Column(name = "PaisEmision")
+	private String paisEmision;
+
 
 	public Pasaporte() { }
 
-	public Pasaporte(String idPasaporte) {
+	public Pasaporte(int idPasaporte) {
 		IDPasaporte = idPasaporte;  
 	}
 	
 
 
-	public Pasaporte(String iDPasaporte, String nrodePasaporte, String autoridadEmision, String fechadeEmision,
-                     String fechadeVencimiento, edu.usal.domain.Pais pais, edu.usal.domain.Cliente cliente) {
+	public Pasaporte(int iDPasaporte, String nrodePasaporte, String autoridadEmision, Date fechadeEmision,
+					 Date fechadeVencimiento, String pais) {
 		super();
 		IDPasaporte = iDPasaporte;
 		NrodePasaporte = nrodePasaporte;
 		AutoridadEmision = autoridadEmision;
 		this.fechadeEmision = fechadeEmision;
 		this.fechadeVencimiento = fechadeVencimiento;
-		Pais = pais;
-		Cliente = cliente;
+		paisEmision = pais;
 	}
 
-	public String getIDPasaporte() {
+	public int getIDPasaporte() {
 		return IDPasaporte;
 	}
 
 
-	public void setIDPasaporte(String iDPasaporte) {
+	public void setIDPasaporte(int iDPasaporte) {
 		IDPasaporte = iDPasaporte;
 	}
 
@@ -68,41 +82,42 @@ public class Pasaporte implements Serializable {
 	}
 
 
-	public String getFechadeEmision() {
+	public Date getFechadeEmision() {
 		return fechadeEmision;
 	}
 
 
-	public void setFechadeEmision(String fechadeEmision) {
+	public void setFechadeEmision(Date fechadeEmision) {
 		this.fechadeEmision = fechadeEmision;
 	}
 
 
-	public String getFechadeVencimiento() {
+	public Date getFechadeVencimiento() {
 		return fechadeVencimiento;
 	}
 
 
-	public void setFechadeVencimiento(String fechadeVencimiento) {
+	public void setFechadeVencimiento(Date fechadeVencimiento) {
 		this.fechadeVencimiento = fechadeVencimiento;
 	}
 
-	
-	public Pais getPais() {
-		return Pais;
+	public String getPaisEmision() {
+		return paisEmision;
 	}
 
-	public void setPais(Pais pais) {
-		Pais = pais;
+	public void setPaisEmision(String paisEmision) {
+		this.paisEmision = paisEmision;
 	}
 
-	public Cliente getCliente() {
-		return Cliente;
+	@Override
+	public String toString() {
+		return "Pasaporte{" +
+				"IDPasaporte=" + IDPasaporte +
+				", NrodePasaporte='" + NrodePasaporte + '\'' +
+				", AutoridadEmision='" + AutoridadEmision + '\'' +
+				", fechadeEmision=" + fechadeEmision +
+				", fechadeVencimiento=" + fechadeVencimiento +
+				", paisEmision='" + paisEmision + '\'' +
+				'}';
 	}
-
-	public void setCliente(Cliente cliente) {
-		Cliente = cliente;
-	}
-    
-
 }

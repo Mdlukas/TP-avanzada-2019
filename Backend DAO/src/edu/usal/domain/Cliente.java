@@ -1,21 +1,18 @@
 package edu.usal.domain;
 
+import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-//crear dao que falta y completar clases;
 @Entity
 @Table
 public class Cliente implements Serializable {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="IDCliente")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="IDCliente", unique = true)
 	private int IDCliente;
 
 	@Basic
@@ -39,17 +36,20 @@ public class Cliente implements Serializable {
 	private Date FechaNacimiento;
 
 	@Basic
-	@Column(name = "mail")
+	@Column(name = "EMAIL")
 	private String mail;
 
-	@Transient
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idPasaporte")
 	private Pasaporte Pasaporte;
-	@Transient
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idTelefono")
     private Telefono Telefono;
-	@Transient
-	private Pasajero nrodepasajero;
 
-
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idPasajero")
+	private Pasajero PasajeroFrecuente;
 
 
 	public Cliente() {}
@@ -62,7 +62,7 @@ public class Cliente implements Serializable {
 	public Cliente(int iDCliente, String nombreCliente, String apellidoCliente, String dni, String RS,
 			Date fechaNacimiento, String mail) {
 		super();
-		IDCliente = iDCliente;
+//		IDCliente = iDCliente;
 		NombreCliente = nombreCliente;
 		ApellidoCliente = apellidoCliente;
 		this.dni = dni;
@@ -71,9 +71,15 @@ public class Cliente implements Serializable {
 		this.mail = mail;
 	}
 
-	public Cliente(int iDCliente, String nombreCliente, String apellidoCliente, String dni, String RS,
-				   String fechaNacimiento, String mail, edu.usal.domain.Pasaporte pasaporte,
-				   edu.usal.domain.Telefono telefono, Pasajero nrodepasajero) {
+	public Cliente(int iDCliente,
+				   String nombreCliente,
+				   String apellidoCliente,
+				   String dni, String RS,
+				   String fechaNacimiento,
+				   String mail,
+				   Pasaporte pasaporte,
+				   Telefono telefono,
+				   Pasajero nrodepasajero) {
 		super();
 		IDCliente = iDCliente;
 		NombreCliente = nombreCliente;
@@ -84,7 +90,7 @@ public class Cliente implements Serializable {
 		this.mail = mail;
 		Pasaporte = pasaporte;
 		Telefono = telefono;
-		this.nrodepasajero = nrodepasajero;
+		this.PasajeroFrecuente = nrodepasajero;
 	}
 
 	public int getIDCliente() {
@@ -165,12 +171,12 @@ public class Cliente implements Serializable {
 		Telefono = telefono;
 	}
 
-	public Pasajero getNrodepasajero() {
-		return nrodepasajero;
+	public Pasajero getPasajeroFrecuente() {
+		return PasajeroFrecuente;
 	}
 
-	public void setNrodepasajero(Pasajero nrodepasajero) {
-		this.nrodepasajero = nrodepasajero;
+	public void setPasajeroFrecuente(Pasajero nrodepasajero) {
+		this.PasajeroFrecuente = nrodepasajero;
 	}
 
 

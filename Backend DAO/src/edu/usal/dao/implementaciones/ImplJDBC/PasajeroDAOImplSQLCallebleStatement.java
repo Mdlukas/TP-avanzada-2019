@@ -113,56 +113,56 @@ public class PasajeroDAOImplSQLCallebleStatement implements PasajeroDAO {
 
 	@Override
 	public void ModificaciondePasajero(Pasajero modificacion) {
-
-		Connection con = ConexionSQLServer.QuispeConexion();	
-		CallableStatement miModificacion = null;
-		
-	
-		try {
-			
-			miModificacion = con.prepareCall("{call SP_ModificaciondePasajero (?,?,?,?,?,?) }");
-			
-			miModificacion.setString(1, modificacion.getIDnrodepasajero());
-			miModificacion.setString(2, modificacion.getAlianza());
-			miModificacion.setString(3, modificacion.getNumero());
-			miModificacion.setString(4,modificacion.getCategoria());
-			miModificacion.setString(5, modificacion.getCategoria());
-			miModificacion.setString(6, modificacion.getAerolinea().getIDAerolinea());
-			
-		
-			miModificacion.executeUpdate();
-			miModificacion.close();
-			con.close();
-			
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//
+//		Connection con = ConexionSQLServer.QuispeConexion();
+//		CallableStatement miModificacion = null;
+//
+//
+//		try {
+//
+//			miModificacion = con.prepareCall("{call SP_ModificaciondePasajero (?,?,?,?,?,?) }");
+//
+//			miModificacion.setString(1, modificacion.getIDnrodepasajero());
+//			miModificacion.setString(2, modificacion.getAlianza());
+//			miModificacion.setString(3, modificacion.getNumero());
+//			miModificacion.setString(4,modificacion.getCategoria());
+//			miModificacion.setString(5, modificacion.getCategoria());
+//			miModificacion.setString(6, modificacion.getAerolinea().getIDAerolinea());
+//
+//
+//			miModificacion.executeUpdate();
+//			miModificacion.close();
+//			con.close();
+//
+//
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 	}
 
 	@Override
 	public void BajadePasajero(Pasajero baja) {
 		
-		Connection con = ConexionSQLServer.QuispeConexion();	
-		CallableStatement miBaja = null;
-		
-		
-		try {
-	
-			miBaja = con.prepareCall("{CALL SP_BajadePasajero (?)}");
-			miBaja.setString(1, baja.getIDnrodepasajero());
-            
-		    miBaja.executeUpdate();
-			miBaja.close();
-			con.close();
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+//		Connection con = ConexionSQLServer.QuispeConexion();
+//		CallableStatement miBaja = null;
+//
+//
+//		try {
+//
+//			miBaja = con.prepareCall("{CALL SP_BajadePasajero (?)}");
+//			miBaja.setString(1, baja.getIDnrodepasajero());
+//
+//		    miBaja.executeUpdate();
+//			miBaja.close();
+//			con.close();
+//
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//
 
 	}
 	

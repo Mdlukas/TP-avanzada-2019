@@ -1,63 +1,53 @@
 package edu.usal.domain;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity
+@Table(name = "PasajeroFrecuente")
 public class Pasajero implements Serializable{
-	
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private String IDnrodepasajero;
-    private String alianza;  
 
+	@Id
+	@Column(name="IDPasajeroFrecuente")
+	private int IDnrodepasajero;
+
+	@Basic
+	@Column(name = "Numero")
 	private String Numero;
+
+
+	@Basic
+	@Column(name = "Categoria")
 	private String Categoria;
-	private Cliente cliente;
+
+	//TODO implementar el lado de Aerolineas/Lineas Aereas Ya que el parametro de alianza se encuentra en este tambien!
+	@Transient
     private Aerolinea aerolinea;
 	
 	public Pasajero() {}
 	
-	public Pasajero(String idnrodepasajero) { 
+	public Pasajero(int idnrodepasajero) {
 		IDnrodepasajero = idnrodepasajero;
 	}
 
 
-	public Pasajero(String iDnrodepasajero, String alianza, String numero, String categoria, Cliente cliente,
-			Aerolinea aerolinea) {
+	public Pasajero(int iDnrodepasajero,
+					String numero,
+					String categoria,
+					Aerolinea aerolinea) {
 		super();
 		IDnrodepasajero = iDnrodepasajero;
-		this.alianza = alianza;
 		Numero = numero;
 		Categoria = categoria;
-		this.cliente = cliente;
 		this.aerolinea = aerolinea;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
-	public String getIDnrodepasajero() {
+	public int getIDnrodepasajero() {
 		return IDnrodepasajero;
 	}
 
-
-	public void setIDnrodepasajero(String iDnrodepasajero) {
+	public void setIDnrodepasajero(int iDnrodepasajero) {
 		IDnrodepasajero = iDnrodepasajero;
-	}
-
-	public String getAlianza() {
-		return alianza;
-	}
-
-	public void setAlianza(String alianza) {
-		this.alianza = alianza;
 	}
 
 	public Aerolinea getAerolinea() {
@@ -88,7 +78,14 @@ public class Pasajero implements Serializable{
 	public void setCategoria(String categoria) {
 		Categoria = categoria;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "Pasajero{" +
+				"IDnrodepasajero=" + IDnrodepasajero +
+				", Numero='" + Numero + '\'' +
+				", Categoria='" + Categoria + '\'' +
+				", aerolinea=" + aerolinea +
+				'}';
+	}
 }
