@@ -2,7 +2,7 @@ package edu.usal.dao.interfaces;
 
 import java.util.List;
 
-import edu.usal.dao.negocio.Vuelo;
+import edu.usal.domain.Vuelo;
 
 public interface VueloDAO {
 

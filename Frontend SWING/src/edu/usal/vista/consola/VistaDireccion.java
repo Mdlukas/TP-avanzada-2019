@@ -2,10 +2,10 @@ package edu.usal.vista.consola;
 
 import java.util.List;
 
-import edu.usal.dao.negocio.Cliente;
-import edu.usal.dao.negocio.Direccion;
-import edu.usal.dao.negocio.Pais;
-import edu.usal.dao.negocio.Provincia;
+import edu.usal.domain.Cliente;
+import edu.usal.domain.Direccion;
+import edu.usal.domain.Pais;
+import edu.usal.domain.Provincia;
 import edu.usal.util.IOGeneral;
 
 public class VistaDireccion {

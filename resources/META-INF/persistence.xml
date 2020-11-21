@@ -3,7 +3,7 @@
 
     <persistence-unit name="PersistenciaAerolineas">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <class>edu.usal.dao.negocio.Cliente</class>
+        <class>edu.usal.domain.Cliente</class>
         <properties>
             <property name="hibernate.connection.url" value="jdbc:sqlserver://192.168.0.33:1433;databaseName=TP_Aerolineas_2019"/>
             <property name="hibernate.connection.driver_class" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>

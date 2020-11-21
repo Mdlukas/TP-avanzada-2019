@@ -2,7 +2,7 @@ package edu.usal.dao.interfaces;
 
 import java.util.List;
 
-import edu.usal.dao.negocio.Pasaporte;
+import edu.usal.domain.Pasaporte;
 
 public interface PasaporteDAO {
 	

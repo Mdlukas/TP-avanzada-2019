@@ -2,8 +2,8 @@ package edu.usal.vista.consola;
 
 import java.util.List;
 
-import edu.usal.dao.negocio.Cliente;
-import edu.usal.dao.negocio.Telefono;
+import edu.usal.domain.Cliente;
+import edu.usal.domain.Telefono;
 import edu.usal.util.IOGeneral;
 
 public class VistaTelefono {

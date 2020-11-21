@@ -2,7 +2,7 @@ package edu.usal.dao.interfaces;
 
 import java.util.List;
 
-import edu.usal.dao.negocio.Aeropuerto;
+import edu.usal.domain.Aeropuerto;
 
 public interface AeropuertoDAO {
 	

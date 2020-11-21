@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.Scanner;
 
 import edu.usal.dao.interfaces.ClienteDAO;
-import edu.usal.dao.negocio.Cliente;
+import edu.usal.domain.Cliente;
 
-import edu.usal.dao.negocio.Pasajero;
-import edu.usal.dao.negocio.Pasaporte;
-import edu.usal.dao.negocio.Telefono;
-import edu.usal.factory.FactoryCliente;
+import edu.usal.domain.Pasajero;
+import edu.usal.domain.Pasaporte;
+import edu.usal.domain.Telefono;
+import edu.usal.dao.factory.FactoryCliente;
 
 
 
@@ -34,7 +34,7 @@ public class MainPrincipal {
 		
 		
 		Scanner leer = new Scanner(System.in);
-		ClienteDAO clienteDAO = FactoryCliente.GetImplementacion("serializacion");
+		ClienteDAO clienteDAO = FactoryCliente.GetImplementacion();
 		
 		
 		do {

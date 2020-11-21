@@ -3,7 +3,7 @@ package edu.usal.controlador.consola;
 import java.io.IOException;
 
 import edu.usal.dao.interfaces.VentaDAO;
-import edu.usal.factory.FactoryGeneralJDBC;
+import edu.usal.dao.factory.FactoryGeneralJDBC;
 import edu.usal.vista.consola.VistaVenta;
 
 public class ControladorVenta {

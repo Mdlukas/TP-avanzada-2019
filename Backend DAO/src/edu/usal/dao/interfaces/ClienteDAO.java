@@ -3,7 +3,7 @@ package edu.usal.dao.interfaces;
 import java.io.IOException;
 import java.util.List;
 
-import edu.usal.dao.negocio.Cliente;
+import edu.usal.domain.Cliente;
 
 
 public interface ClienteDAO {

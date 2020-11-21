@@ -2,7 +2,7 @@ package edu.usal.dao.interfaces;
 
 import java.util.List;
 
-import edu.usal.dao.negocio.Direccion;
+import edu.usal.domain.Direccion;
 
 public interface DireccionDAO {
 	

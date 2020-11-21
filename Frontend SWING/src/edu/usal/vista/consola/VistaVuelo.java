@@ -2,7 +2,7 @@ package edu.usal.vista.consola;
 
 import java.util.List;
 
-import edu.usal.dao.negocio.Vuelo;
+import edu.usal.domain.Vuelo;
 import edu.usal.util.IOGeneral;
 
 public class VistaVuelo {

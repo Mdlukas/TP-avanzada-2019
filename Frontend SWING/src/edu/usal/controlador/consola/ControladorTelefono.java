@@ -3,7 +3,7 @@ package edu.usal.controlador.consola;
 import java.io.IOException;
 
 import edu.usal.dao.interfaces.TelefonoDAO;
-import edu.usal.factory.FactoryGeneralJDBC;
+import edu.usal.dao.factory.FactoryGeneralJDBC;
 import edu.usal.vista.consola.VistaTelefono;
 
 public class ControladorTelefono {

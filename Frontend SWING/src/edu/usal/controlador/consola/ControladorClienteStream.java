@@ -3,7 +3,7 @@ package edu.usal.controlador.consola;
 import java.io.IOException;
 
 import edu.usal.dao.interfaces.ClienteDAO;
-import edu.usal.factory.FactoryCliente;
+import edu.usal.dao.factory.FactoryCliente;
 import edu.usal.vista.consola.VistaClienteStream;
 
 public class ControladorClienteStream {
@@ -16,7 +16,7 @@ public class ControladorClienteStream {
 	{
 		this.vista = vista;
 		try {
-			this.cliente = FactoryCliente.GetImplementacion("serializacion");
+			this.cliente = FactoryCliente.GetImplementacion();
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

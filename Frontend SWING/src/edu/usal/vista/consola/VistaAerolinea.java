@@ -2,7 +2,7 @@ package edu.usal.vista.consola;
 
 import java.util.List;
 
-import edu.usal.dao.negocio.Aerolinea;
+import edu.usal.domain.Aerolinea;
 import edu.usal.util.IOGeneral;
 
 public class VistaAerolinea {

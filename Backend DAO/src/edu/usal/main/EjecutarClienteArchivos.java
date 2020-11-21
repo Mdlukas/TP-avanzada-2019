@@ -7,8 +7,8 @@
 //import java.util.Properties;
 //
 //import edu.usal.dao.interfaces.ClienteDAO;
-//import edu.usal.dao.negocio.Cliente;
-//import edu.usal.factory.FactoryCliente;
+//import edu.usal.domain.Cliente;
+//import edu.usal.dao.factory.FactoryCliente;
 //
 ////Quispe alexander
 //

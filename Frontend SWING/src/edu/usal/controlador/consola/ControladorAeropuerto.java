@@ -3,7 +3,7 @@ package edu.usal.controlador.consola;
 import java.io.IOException;
 
 import edu.usal.dao.interfaces.AeropuertoDAO;
-import edu.usal.factory.FactoryGeneralJDBC;
+import edu.usal.dao.factory.FactoryGeneralJDBC;
 import edu.usal.vista.consola.VistaAeropuerto;
 
 public class ControladorAeropuerto {

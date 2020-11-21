@@ -2,7 +2,7 @@ package edu.usal.vista.consola;
 
 import java.util.List;
 
-import edu.usal.dao.negocio.Pais;
+import edu.usal.domain.Pais;
 import edu.usal.util.IOGeneral;
 
 public class VistaPais {

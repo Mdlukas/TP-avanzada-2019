@@ -2,7 +2,7 @@ package edu.usal.dao.interfaces;
 
 import java.util.List;
 
-import edu.usal.dao.negocio.Venta;
+import edu.usal.domain.Venta;
 
 public interface VentaDAO {
 	

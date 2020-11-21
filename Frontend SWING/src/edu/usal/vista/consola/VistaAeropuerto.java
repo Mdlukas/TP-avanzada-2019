@@ -2,9 +2,9 @@ package edu.usal.vista.consola;
 
 import java.util.List;
 
-import edu.usal.dao.negocio.Aeropuerto;
-import edu.usal.dao.negocio.Pais;
-import edu.usal.dao.negocio.Provincia;
+import edu.usal.domain.Aeropuerto;
+import edu.usal.domain.Pais;
+import edu.usal.domain.Provincia;
 import edu.usal.util.IOGeneral;
 
 public class VistaAeropuerto {
