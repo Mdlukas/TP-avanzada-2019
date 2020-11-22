@@ -1,39 +1,29 @@
 package edu.usal.domain;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+
+@Entity
+@Table(name = "Pais")
 public class Pais implements Serializable{
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private String IDPais;
+
+	@Id
+	@Column(name="IDPais")
+	private int IDPais;
+
+	@Basic
+	@Column(name = "Pais")
 	private String NombrePais;
 	
-	public Pais() {}
-	
-	
-	public Pais(String str) 
-	{
-		
-		IDPais = str;
-	}
-	
-	
-	public Pais(String iDPais, String nombrePais) {
-		super();
-		IDPais = iDPais;
-		NombrePais = nombrePais;
-	}
 
 
-	public String getIDPais() {
+	public int getIDPais() {
 		return IDPais;
 	}
 
 
-	public void setIDPais(String iDPais) {
+	public void setIDPais(int iDPais) {
 		IDPais = iDPais;
 	}
 
@@ -42,12 +32,16 @@ public class Pais implements Serializable{
 		return NombrePais;
 	}
 
-
 	public void setNombrePais(String nombrePais) {
 		NombrePais = nombrePais;
 	}
-	
-	
-	
 
+
+	@Override
+	public String toString() {
+		return "Pais{" +
+				"IDPais=" + IDPais +
+				", NombrePais='" + NombrePais + '\'' +
+				'}';
+	}
 }

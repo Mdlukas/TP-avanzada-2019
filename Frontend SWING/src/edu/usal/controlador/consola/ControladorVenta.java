@@ -2,8 +2,8 @@ package edu.usal.controlador.consola;
 
 import java.io.IOException;
 
+import edu.usal.dao.factory.FactoryVenta;
 import edu.usal.dao.interfaces.VentaDAO;
-import edu.usal.dao.factory.FactoryGeneralJDBC;
 import edu.usal.vista.consola.VistaVenta;
 
 public class ControladorVenta {
@@ -17,8 +17,8 @@ public class ControladorVenta {
 		
 		this.vistaVenta = vista;
 		try {
-			this.Venta = FactoryGeneralJDBC.GetVentaImplementacion("sql");
-		} catch (IOException e) {
+			this.Venta = FactoryVenta.GetVentaImplementacion("sql");
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

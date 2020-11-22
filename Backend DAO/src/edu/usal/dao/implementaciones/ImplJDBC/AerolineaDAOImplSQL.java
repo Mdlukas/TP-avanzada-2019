@@ -11,7 +11,7 @@ import edu.usal.dao.interfaces.AerolineaDAO;
 import edu.usal.domain.Aerolinea;
 import edu.usal.util.ConexionSQLServer;
 
-public class AerolineaDAOImplSQLCallebleStatement implements AerolineaDAO {
+public class AerolineaDAOImplSQL implements AerolineaDAO {
 
 	@Override
 	public Aerolinea ObtenerAerolinea(Aerolinea consulta) {

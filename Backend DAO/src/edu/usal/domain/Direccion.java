@@ -1,25 +1,54 @@
 package edu.usal.domain;
 
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "DireccionCompleta")
 public class Direccion {
-	
-	private String IDDireccion;
+
+	@Id
+	@Column(name="IDDireccion")
+	private int IDDireccion;
+
+	@Basic
+	@Column(name = "Calle")
 	private String calle;
+
+	@Basic
+	@Column(name = "Altura")
 	private String altura;
+
+	@Basic
+	@Column(name = "Ciudad")
 	private String ciudad;
+
+	@Basic
+	@Column(name = "CodPostal")
 	private String codigoPostal;
-	
-	
+
+
+	@OneToOne
+	@JoinColumn(name = "idPais")
 	private Pais Pais;
-	private Provincia Provincia;
-	private Cliente Cliente;
+
+	@Basic
+	@Column(name = "Provincia")
+	private String Provincia;
+
+
 	
 	public Direccion() {}
-	
-	
 
-	public Direccion(String iDDireccion, String calle, String altura, String ciudad, String codigoPostal,
-                     edu.usal.domain.Pais pais, edu.usal.domain.Provincia provincia,
-                     edu.usal.domain.Cliente cliente) {
+
+
+	public Direccion(int iDDireccion,
+					 String calle,
+					 String altura,
+					 String ciudad,
+					 String codigoPostal,
+                     Pais pais,
+					 String provincia) {
 		super();
 		IDDireccion = iDDireccion;
 		this.calle = calle;
@@ -28,15 +57,14 @@ public class Direccion {
 		this.codigoPostal = codigoPostal;
 		Pais = pais;
 		Provincia = provincia;
-		Cliente = cliente;
 	}
 
 
 
-	public String getIDDireccion() {
+	public int getIDDireccion() {
 		return IDDireccion;
 	}
-	public void setIDDireccion(String iDdireccion) {
+	public void setIDDireccion(int iDdireccion) {
 		IDDireccion = iDdireccion;
 	}
 	public String getCalle() {
@@ -75,25 +103,26 @@ public class Direccion {
 	}
 
 
-	public Provincia getProvincia() {
+	public String getProvincia() {
 		return Provincia;
 	}
 
 
-	public void setProvincia(Provincia provincia) {
+	public void setProvincia(String provincia) {
 		Provincia = provincia;
 	}
 
 
-	public Cliente getCliente() {
-		return Cliente;
+	@Override
+	public String toString() {
+		return "Direccion{" +
+				"IDDireccion=" + IDDireccion +
+				", calle='" + calle + '\'' +
+				", altura='" + altura + '\'' +
+				", ciudad='" + ciudad + '\'' +
+				", codigoPostal='" + codigoPostal + '\'' +
+				", Pais=" + Pais.toString() +
+				", Provincia='" + Provincia + '\'' +
+				'}';
 	}
-
-
-	public void setCliente(Cliente cliente) {
-		Cliente = cliente;
-	}
-
-	
-
 }

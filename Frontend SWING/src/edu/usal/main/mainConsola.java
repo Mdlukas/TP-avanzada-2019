@@ -2,7 +2,7 @@ package edu.usal.main;
 
 import edu.usal.vista.consola.VISTAGENERAL;
 
-public class mainJDBC {
+public class mainConsola {
 
 		
 	public static void main(String[] args) {

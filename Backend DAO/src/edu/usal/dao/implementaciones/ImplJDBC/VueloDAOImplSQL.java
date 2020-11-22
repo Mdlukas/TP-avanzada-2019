@@ -13,7 +13,7 @@ import edu.usal.domain.Aeropuerto;
 import edu.usal.domain.Vuelo;
 import edu.usal.util.ConexionSQLServer;
 
-public class VueloDAOImplSQLCallebleStatement implements VueloDAO {
+public class VueloDAOImplSQL implements VueloDAO {
 
 	@Override
 	public Vuelo ConsultadeVuelo(Vuelo obtener) {

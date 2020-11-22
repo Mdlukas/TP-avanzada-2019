@@ -1,10 +1,10 @@
 package edu.usal.controlador.consola;
 
-import java.io.IOException;
-
-import edu.usal.dao.interfaces.ClienteDAO;
 import edu.usal.dao.factory.FactoryCliente;
+import edu.usal.dao.interfaces.ClienteDAO;
 import edu.usal.vista.consola.VistaCliente;
+
+import java.io.IOException;
 
 
 public class ControladorCliente {
@@ -16,10 +16,8 @@ public class ControladorCliente {
     public ControladorCliente(VistaCliente vista) {
         this.vista = vista;
         try {
-
             this.cliente = FactoryCliente.GetImplementacion();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

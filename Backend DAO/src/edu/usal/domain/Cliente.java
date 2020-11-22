@@ -51,6 +51,10 @@ public class Cliente implements Serializable {
 	@JoinColumn(name = "idPasajero")
 	private Pasajero PasajeroFrecuente;
 
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idDireccionCompleta")
+	private Direccion direccion;
+
 
 	public Cliente() {}
 
@@ -179,6 +183,11 @@ public class Cliente implements Serializable {
 		this.PasajeroFrecuente = nrodepasajero;
 	}
 
+	public Direccion getDireccion() {
+		return direccion;
+	}
 
-
+	public void setDireccion(Direccion direccion) {
+		this.direccion = direccion;
+	}
 }

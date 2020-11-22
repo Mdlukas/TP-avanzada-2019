@@ -132,6 +132,13 @@ public class VistaCliente {
                 System.out.println("No tiene datos de Pasajero Frecuente!");
             }
             System.out.println("-------------------------------------------------------------------------------------");
+            System.out.println("---- Direccion! ----");
+            if (cliente.getDireccion() != null) {
+                System.out.println(cliente.getDireccion().toString());
+            } else {
+                System.out.println("No tiene datos de Direccion!");
+            }
+            System.out.println("-------------------------------------------------------------------------------------");
         } else {
             System.out.println("Ese cliente no existe!");
         }

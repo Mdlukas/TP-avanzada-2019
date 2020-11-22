@@ -10,7 +10,7 @@ import edu.usal.domain.Venta;
 
 import edu.usal.util.ConexionSQLServer;
 
-public class VentaDAOImplSQLCallebleStatement implements VentaDAO {
+public class VentaDAOImplSQL implements VentaDAO {
 
 	@Override
 	public Venta ObtenerVenta(Venta obtener) {
