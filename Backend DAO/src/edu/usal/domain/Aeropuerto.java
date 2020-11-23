@@ -1,24 +1,34 @@
 package edu.usal.domain;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Aeropuerto")
 public class Aeropuerto {
 
-	
-	private int IDAeropuerto;	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "IDAeropuerto", unique = true)
+	private int IDAeropuerto;
+
+	@Basic
+	@Column(name = "IdentificacionAeropuerto")
 	private String CodigodeAeropuerto;
+
+	@Basic
+	@Column(name = "Ciudad")
 	private String Ciudad;
-	
-	private Pais pais;
+
+	@Basic
+	@Column(name = "Provincia")
 	private Provincia provincia;
-	
+
+	@OneToOne
+	@JoinColumn(name = "idPais")
+	private Pais pais;
+
+
 	public Aeropuerto() {}
-	
-	public Aeropuerto(int str) {
-		
-		IDAeropuerto = str;
-	}
-	
-
-
 
 
 	public Aeropuerto(int iDAeropuerto, String codigodeAeropuerto, String ciudad, Pais pais, Provincia provincia) {
@@ -85,5 +95,14 @@ public class Aeropuerto {
 		this.provincia = provincia;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "Aeropuerto{" +
+				"IDAeropuerto=" + IDAeropuerto +
+				", CodigodeAeropuerto='" + CodigodeAeropuerto + '\'' +
+				", Ciudad='" + Ciudad + '\'' +
+				", provincia=" + provincia +
+				", pais=" + pais.getNombrePais() +
+				'}';
+	}
 }

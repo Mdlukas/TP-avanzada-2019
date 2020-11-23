@@ -1,18 +1,32 @@
 package edu.usal.domain;
 
-public class Aerolinea {
-	
-	private String IDAerolinea;
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Entity
+@Table(name = "LineasAereas")
+public class Aerolinea implements Serializable {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="IDLineaAerea", unique = true)
+	private int IDAerolinea;
+
+	@Basic
+	@Column(name = "NombreAerolinea")
 	private String NombreAereoLinea;
+
+	@Basic
+	@Column(name = "Alianza")
 	private String Alianza;
 	
 	public Aerolinea() {}
 	
-	public Aerolinea(String idAerolinea) {
+	public Aerolinea(int idAerolinea) {
 		IDAerolinea = idAerolinea;
 	}
 	
-	public Aerolinea(String iDAerolinea, String nombreAereoLinea, String alianza) {
+	public Aerolinea(int iDAerolinea, String nombreAereoLinea, String alianza) {
 		super();
 		IDAerolinea = iDAerolinea;
 		NombreAereoLinea = nombreAereoLinea;
@@ -20,12 +34,12 @@ public class Aerolinea {
 	}
 
 
-	public String getIDAerolinea() {
+	public int getIDAerolinea() {
 		return IDAerolinea;
 	}
 
 
-	public void setIDAerolinea(String iDAerolinea) {
+	public void setIDAerolinea(int iDAerolinea) {
 		IDAerolinea = iDAerolinea;
 	}
 

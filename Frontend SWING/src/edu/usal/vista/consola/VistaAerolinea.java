@@ -27,7 +27,7 @@ public class VistaAerolinea {
 		Aerolinea aerolinea = new Aerolinea();
         
 		
-		aerolinea.setIDAerolinea(IOGeneral.leerFrase("Ingrese IDAerolinea: "));	
+//		aerolinea.setIDAerolinea(IOGeneral.leerFrase("Ingrese IDAerolinea: "));
         aerolinea.setNombreAereoLinea(IOGeneral.leerFrase("Ingrese Nombre Aerolinea"));
 		aerolinea.setAlianza(IOGeneral.leerFrase("Ingrese el tipo de Alianza: "));
 		
@@ -39,9 +39,9 @@ public class VistaAerolinea {
 	{
 		Aerolinea aerolinea = new Aerolinea();
 
-		aerolinea.setIDAerolinea(IOGeneral.leerFrase("Ingrese IDAerolinea: "));	
+//		aerolinea.setIDAerolinea(IOGeneral.leerFrase("Ingrese IDAerolinea: "));
 
-		aerolinea.setIDAerolinea(IOGeneral.leerFrase("Ingrese IDAerolinea a Modificar: "));	
+		aerolinea.setIDAerolinea(IOGeneral.leerInt("Ingrese IDAerolinea a Modificar: ", "El id tiene que ser un numero!"));
         aerolinea.setNombreAereoLinea(IOGeneral.leerFrase("Ingrese Nombre Aerolinea a Modificar"));
     	aerolinea.setAlianza(IOGeneral.leerFrase("Ingrese el tipo de Alianza: "));
         
@@ -56,7 +56,7 @@ public class VistaAerolinea {
 		System.out.println("Baja de Aerolinea por ID: "+"\n"); 
 		Aerolinea aerolinea = new Aerolinea();
 		
-		aerolinea.setIDAerolinea(IOGeneral.leerLinea("Ingresa ID: para Realizar la Baja"));
+		aerolinea.setIDAerolinea(IOGeneral.leerInt("Ingresa ID: para Realizar la Baja.", "El id tiene que ser un numero!"));
 		   
 		return aerolinea;
 		 
@@ -83,7 +83,7 @@ public class VistaAerolinea {
 		System.out.println("Cliente por ID: "+"\n"); 
 		Aerolinea aerolinea = new Aerolinea();
 		
-		aerolinea.setIDAerolinea(IOGeneral.leerLinea("Ingresa IDAerolinea: "));
+		aerolinea.setIDAerolinea(IOGeneral.leerInt("Ingresa IDAerolinea: ", "El id tiene que ser un numero!"));
 		   
 		return aerolinea;
 

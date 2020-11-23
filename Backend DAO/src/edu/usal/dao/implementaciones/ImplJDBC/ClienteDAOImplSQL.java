@@ -4,6 +4,7 @@ import java.util.List;
 
 import edu.usal.dao.interfaces.ClienteDAO;
 import edu.usal.domain.Cliente;
+import edu.usal.domain.Telefono;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

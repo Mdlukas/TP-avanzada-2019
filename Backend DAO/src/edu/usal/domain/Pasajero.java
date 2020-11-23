@@ -20,8 +20,8 @@ public class Pasajero implements Serializable{
 	@Column(name = "Categoria")
 	private String Categoria;
 
-	//TODO implementar el lado de Aerolineas/Lineas Aereas Ya que el parametro de alianza se encuentra en este tambien!
-	@Transient
+	@OneToOne
+	@JoinColumn(name = "idAerolinea")
     private Aerolinea aerolinea;
 	
 	public Pasajero() {}
