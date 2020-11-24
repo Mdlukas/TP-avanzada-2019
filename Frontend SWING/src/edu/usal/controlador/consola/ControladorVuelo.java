@@ -12,10 +12,9 @@ public class ControladorVuelo {
 
 
     public ControladorVuelo(VistaVuelo vista) {
-
         this.vistaVuelo = vista;
         try {
-            this.Vuelo = FactoryVuelo.GetVueloImplementacion("sql");
+            this.Vuelo = FactoryVuelo.GetVueloImplementacion("SQL");
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

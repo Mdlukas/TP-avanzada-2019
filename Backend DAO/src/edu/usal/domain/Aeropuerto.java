@@ -1,10 +1,11 @@
 package edu.usal.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "Aeropuerto")
-public class Aeropuerto {
+public class Aeropuerto implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

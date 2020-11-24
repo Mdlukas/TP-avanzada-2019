@@ -51,7 +51,7 @@ public class IOGeneral {
 		IOGeneral.pritln(msjInicio);
 		@SuppressWarnings("resource")
 		Scanner scan = new Scanner (System.in);
-		return scan.next();
+		return scan.nextLine();
 	}
 
 }

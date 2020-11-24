@@ -57,7 +57,6 @@ public class ClienteDAOImplSQL implements ClienteDAO {
     public void AltaCliente(Cliente alta) {
         //Genero cliente para guardar y le setteo todos los datos!
         Cliente save = new Cliente();
-//        save.setIDCliente(alta.getIDCliente());
         save.setApellidoCliente(alta.getApellidoCliente());
         save.setNombreCliente(alta.getNombreCliente());
         save.setDni(alta.getDni());

@@ -10,7 +10,6 @@ public class VistaVuelo {
 
     public int menu() {
         System.out.println("CRUD DE Vuelo!");
-
         System.out.println("1- Alta");
         System.out.println("2- Baja");
         System.out.println("3- Modificacion");
@@ -22,37 +21,29 @@ public class VistaVuelo {
 
     public Vuelo AltadeVuelo() {
         Vuelo vuelo = new Vuelo();
-
-
         vuelo.setCantAsientos(IOGeneral.leerInt("Ingrese cantidad de Asientos: ", "El numero de asientos tiene que ser un.. numero."));
-		//TODO implementar date-picker cuando se realize la interfaz del swingo.
-//		vuelo.setFechaSalida(IOGeneral.leerFrase("Ingrese Fecha Salida: "));
-//		vuelo.setFechaLLegada(IOGeneral.leerFrase("Ingrese Fecha LLegada: "));
+        //TODO implementar date-picker cuando se realize la interfaz del swingo.
+        //vuelo.setFechaSalida(IOGeneral.leerFrase("Ingrese Fecha Salida: "));
+        //vuelo.setFechaLLegada(IOGeneral.leerFrase("Ingrese Fecha LLegada: "));
         vuelo.setTiempovuelo(IOGeneral.leerFrase("Ingrese Tiempo de Vuelo: "));
-
-        vuelo.getAeropuertodeSalida().setIDAeropuerto(IOGeneral.leerInt("Ingrese IDAeripuerto de Salida", "debe ser Int"));
-        vuelo.getAeropuertodeLLegada().setIDAeropuerto(IOGeneral.leerInt("Ingrese IDAeropuerto de LLegada", "debe ser INT"));
-//        vuelo.getAerolinea().setIDAerolinea(IOGeneral.leerFrase("Ingrese IDAerolinea: "));
-
+//        vuelo.getAeropuertodeSalida().setIDAeropuerto(IOGeneral.leerInt("Ingrese IDAeripuerto de Salida", "debe ser Int"));
+//        vuelo.getAeropuertodeLLegada().setIDAeropuerto(IOGeneral.leerInt("Ingrese IDAeropuerto de LLegada", "debe ser INT"));
+        //vuelo.getAerolinea().setIDAerolinea(IOGeneral.leerFrase("Ingrese IDAerolinea: "));
         return vuelo;
     }
 
     public Vuelo ModificaciondeVuelo() {
         Vuelo vuelo = new Vuelo();
-
         System.out.println("Ingrese Datos a modificar: ");
-
         vuelo.setIDVuelo(IOGeneral.leerInt("Ingrese IDVuelo: ", "Error tiene que ser un numero."));
-		vuelo.setCantAsientos(IOGeneral.leerInt("Ingrese cantidad de Asientos a modificar: ", "El numero de asientos tiene que ser un.. numero."));
-		//TODO implementar date-picker cuando se realize la interfaz del swingo.
-//		vuelo.setFechaSalida(IOGeneral.leerFrase("Ingrese Fecha Salida: "));
-//        vuelo.setFechaLLegada(IOGeneral.leerFrase("Ingrese Fecha LLegada: "));
+        vuelo.setCantAsientos(IOGeneral.leerInt("Ingrese cantidad de Asientos a modificar: ", "El numero de asientos tiene que ser un.. numero."));
+        //TODO implementar date-picker cuando se realize la interfaz del swingo.
+        //vuelo.setFechaSalida(IOGeneral.leerFrase("Ingrese Fecha Salida: "));
+        //vuelo.setFechaLLegada(IOGeneral.leerFrase("Ingrese Fecha LLegada: "));
         vuelo.setTiempovuelo(IOGeneral.leerFrase("Ingrese Tiempo de Vuelo: "));
-
-        vuelo.getAeropuertodeSalida().setIDAeropuerto(IOGeneral.leerInt("Ingrese IDAeripuerto de Salida", "debe ser Int"));
-        vuelo.getAeropuertodeLLegada().setIDAeropuerto(IOGeneral.leerInt("Ingrese IDAeropuerto de LLegada", "debe ser INT"));
+//        vuelo.getAeropuertodeSalida().setIDAeropuerto(IOGeneral.leerInt("Ingrese IDAeripuerto de Salida", "debe ser Int"));
+//        vuelo.getAeropuertodeLLegada().setIDAeropuerto(IOGeneral.leerInt("Ingrese IDAeropuerto de LLegada", "debe ser INT"));
 //        vuelo.getAerolinea().setIDAerolinea(IOGeneral.leerFrase("Ingrese IDAerolinea: "));
-
         return vuelo;
     }
 
@@ -68,40 +59,34 @@ public class VistaVuelo {
 
     public void ListadodeVuelo(List<Vuelo> listado) {
         System.out.println("Mostrando " + "\n");
-
         for (Vuelo vuelo : listado) {
-			this.imprimirVuelo(vuelo);
+            this.imprimirVuelo(vuelo);
         }
-
     }
 
 
     public Vuelo ConsultadeVuelo() {
         System.out.println("Cliente por ID: " + "\n");
         Vuelo Vuelo = new Vuelo();
-
         Vuelo.setIDVuelo(IOGeneral.leerInt("Ingresa IDVuelo: ", "Error tiene que ser un numero!"));
-
         return Vuelo;
-
     }
 
-    public void imprimirVuelo(Vuelo vuelo)  //extra
-			//????
-    {
-
+    public void imprimirVuelo(Vuelo vuelo) {
         System.out.println("IDVuelo: " + vuelo.getIDVuelo());
         System.out.println("Cantidad de Asientos: " + vuelo.getCantAsientos());
         System.out.println("Fecha de Salida: " + vuelo.getFechaSalida());
         System.out.println("Fecha de LLegada: " + vuelo.getFechaLLegada());
         System.out.println("Tiempo de Vuelo: " + vuelo.getTiempovuelo());
-
-        System.out.println("IDAeropuerto Salida: " + vuelo.getAeropuertodeSalida().getIDAeropuerto());
-        System.out.println("IDAeropuerto LLegada: " + vuelo.getAeropuertodeLLegada().getIDAeropuerto());
-        System.out.println("IDAerolinea:" + vuelo.getAerolinea().getIDAerolinea());
-
-        System.out.println("\n");
-
+        if (vuelo.getAeropuertodeLLegada() != null) {
+            System.out.println("IDAeropuerto Salida: " + vuelo.getAeropuertodeSalida().getCodigodeAeropuerto());
+        }
+        if (vuelo.getAeropuertodeSalida() != null) {
+            System.out.println("IDAeropuerto LLegada: " + vuelo.getAeropuertodeLLegada().getCodigodeAeropuerto());
+        } if (vuelo.getAerolinea() != null){
+            System.out.println("IDAerolinea:" + vuelo.getAerolinea().getIDAerolinea());
+        }
+        System.out.println("\n" + "----------------------------------------------------------------------------------");
     }
 
 

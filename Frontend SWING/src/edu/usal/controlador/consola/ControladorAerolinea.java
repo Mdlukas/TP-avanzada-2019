@@ -12,10 +12,9 @@ public class ControladorAerolinea {
 
 
     public ControladorAerolinea(VistaAerolinea vista) {
-
         this.vistaAerolinea = vista;
         try {
-            this.Aerolinea = FactoryAerolinea.GetAerolineaImplementacion("sql");
+            this.Aerolinea = FactoryAerolinea.GetAerolineaImplementacion("SQL");
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -37,7 +36,7 @@ public class ControladorAerolinea {
 
 
     public void ConsultadeAerolinea() {
-        vistaAerolinea.imprimirAerolinea(this.Aerolinea.ObtenerAerolinea(vistaAerolinea.ConsultadeAerolinea()));
+        vistaAerolinea.imprimirAerolinea(this.Aerolinea.ConsultarAerolinea(vistaAerolinea.ConsultadeAerolinea()));
 
     }
 

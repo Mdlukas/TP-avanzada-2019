@@ -19,7 +19,7 @@ public class Venta {
 
     @Basic
     @Column(name = "FormaDePago")
-    private TipoPago FormadePago;
+    private String FormadePago;
 
     @ManyToOne
     @JoinColumn(name = "idCliente")
@@ -36,7 +36,7 @@ public class Venta {
     public Venta() {
     }
 
-    public Venta(int iDVenta, Date fecha_HS_Venta, TipoPago formadePago, edu.usal.domain.Cliente cliente,
+    public Venta(int iDVenta, Date fecha_HS_Venta, String formadePago, edu.usal.domain.Cliente cliente,
                  Vuelo vuelo, edu.usal.domain.Aerolinea aerolinea) {
         super();
         IDVenta = iDVenta;
@@ -90,12 +90,12 @@ public class Venta {
     }
 
 
-    public TipoPago getFormadePago() {
+    public String getFormadePago() {
         return FormadePago;
     }
 
 
-    public void setFormadePago(TipoPago formadePago) {
+    public void setFormadePago(String formadePago) {
         FormadePago = formadePago;
     }
 
