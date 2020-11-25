@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class ControladorCliente {
 
-    private VistaCliente vista;
+    private final VistaCliente vista;
     private ClienteDAO cliente;
 
 

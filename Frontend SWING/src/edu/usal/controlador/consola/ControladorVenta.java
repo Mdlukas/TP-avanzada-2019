@@ -6,7 +6,7 @@ import edu.usal.vista.consola.VistaVenta;
 
 public class ControladorVenta {
 
-    private VistaVenta vistaVenta;
+    private final VistaVenta vistaVenta;
     private VentaDAO Venta;
 
 
@@ -15,7 +15,6 @@ public class ControladorVenta {
         try {
             this.Venta = FactoryVenta.GetVentaImplementacion("SQL");
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

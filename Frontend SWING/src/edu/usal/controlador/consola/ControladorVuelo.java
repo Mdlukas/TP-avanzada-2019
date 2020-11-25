@@ -7,7 +7,7 @@ import edu.usal.vista.consola.VistaVuelo;
 public class ControladorVuelo {
 
 
-    private VistaVuelo vistaVuelo;
+    private final VistaVuelo vistaVuelo;
     private VueloDAO Vuelo;
 
 
@@ -16,7 +16,6 @@ public class ControladorVuelo {
         try {
             this.Vuelo = FactoryVuelo.GetVueloImplementacion("SQL");
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 

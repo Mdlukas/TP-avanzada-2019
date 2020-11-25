@@ -7,7 +7,7 @@ import edu.usal.vista.consola.VistaAerolinea;
 public class ControladorAerolinea {
 
 
-    private VistaAerolinea vistaAerolinea;
+    private final VistaAerolinea vistaAerolinea;
     private AerolineaDAO Aerolinea;
 
 
@@ -16,7 +16,6 @@ public class ControladorAerolinea {
         try {
             this.Aerolinea = FactoryAerolinea.GetAerolineaImplementacion("SQL");
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
