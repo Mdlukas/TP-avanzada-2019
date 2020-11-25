@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="TP-avanzada-2019" target="1.11" />
+      <module name="TP-avanzada-2019" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

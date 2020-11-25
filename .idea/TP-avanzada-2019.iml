@@ -9,12 +9,11 @@
           <factory-entry name="NewPersistenceUnit" value="7b9bbbe5-70ed-401c-aba3-b3bfa69a65ba" />
           <factory-entry name="PersistenciaAerolineas" />
         </datasource-mapping>
-        <naming-strategy-map />
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/resources/META-INF/persistence.xml" />
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_11">
+  <component name="NewModuleRootManager">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
