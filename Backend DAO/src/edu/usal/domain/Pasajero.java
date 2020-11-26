@@ -8,7 +8,8 @@ import java.io.Serializable;
 public class Pasajero implements Serializable{
 
 	@Id
-	@Column(name="IDPasajeroFrecuente")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="IDPasajeroFrecuente", unique = true)
 	private int IDnrodepasajero;
 
 	@Basic

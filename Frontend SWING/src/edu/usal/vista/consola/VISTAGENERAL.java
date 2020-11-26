@@ -1,9 +1,6 @@
 package edu.usal.vista.consola;
 
-import edu.usal.controlador.consola.ControladorAerolinea;
-import edu.usal.controlador.consola.ControladorCliente;
-import edu.usal.controlador.consola.ControladorVenta;
-import edu.usal.controlador.consola.ControladorVuelo;
+import edu.usal.controlador.consola.*;
 
 import java.util.Scanner;
 
@@ -25,7 +22,8 @@ public class VISTAGENERAL {
                     + "\n 2- CRUD de Vuelos."
                     + "\n 3- CRUD de Aerolineas."
                     + "\n 4- CRUD de Ventas."
-                    + "\n 5 - Salir");
+                    + "\n 5- Implementacion Files."
+                    + "\n 6- Salir");
 
             n = leer.nextInt();
 
@@ -61,6 +59,11 @@ public class VISTAGENERAL {
                 controladorVenta.MostrarMenuVenta();
                 break;
             case 5:
+                VistaAlianzayProvincia vistaAlianzayProvincia = new VistaAlianzayProvincia();
+                ControladorAlianzayProvincia controladorAlianzayProvincia = new ControladorAlianzayProvincia(vistaAlianzayProvincia);
+                controladorAlianzayProvincia.MostrarMenuFile();
+                break;
+            case 6:
                 System.out.println("Gracias por usar el Improvisado por consola!");
                 n = 7;
                 break;

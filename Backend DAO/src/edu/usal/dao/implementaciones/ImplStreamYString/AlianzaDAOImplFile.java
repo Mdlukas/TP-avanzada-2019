@@ -22,7 +22,6 @@ public class AlianzaDAOImplFile implements AlianzaDAO {
         for (String alianza : FileHelper.LeerArchivoLista(path)) {
             alianzasCargadas.add(new Alianza(alianza));
         }
-        System.out.println("------------------------- "+alianzasCargadas.toString());
         return alianzasCargadas;
     }
 

@@ -8,7 +8,8 @@ import javax.persistence.*;
 public class Direccion {
 
 	@Id
-	@Column(name="IDDireccion")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="IDDireccion", unique = true)
 	private int IDDireccion;
 
 	@Basic

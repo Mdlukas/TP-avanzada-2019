@@ -9,7 +9,8 @@ import java.util.Date;
 public class Pasaporte implements Serializable {
 
 	@Id
-	@Column(name="IDPasaporte")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="IDPasaporte", unique = true)
 	private int IDPasaporte;
 
 	@Basic

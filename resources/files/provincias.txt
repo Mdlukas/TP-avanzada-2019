@@ -1,0 +1,25 @@
+CABA
+Cordoba
+Corrientes
+Entre Rios
+Buenos Aires
+Catamarca
+Chaco
+La Pampa
+La Rioja
+Rio Negro
+Salta
+San Luis
+San Juan
+Santa Cruz
+Santa Fe
+Santiago del Estero
+Tierra del Fuego
+Tucuman
+Chubut
+Formosa
+Jujuy
+Mendoza
+Misiones
+Neuquen
+Antartida Argentina
