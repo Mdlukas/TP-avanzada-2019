@@ -323,8 +323,12 @@ public class NuevoCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void textFNombreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFNombreClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textFNombreClienteActionPerformed
+        System.out.println("funciona");
+    }
+
+    public void btnGuardarClienteActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_btnGuardarClienteActionPerformed
+        System.out.println("funciona");
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
