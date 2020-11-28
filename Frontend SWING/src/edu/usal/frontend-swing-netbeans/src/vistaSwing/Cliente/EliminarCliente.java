@@ -5,11 +5,16 @@
  */
 package vistaSwing.Cliente;
 
+import edu.usal.controlador.consola.ControladorCliente;
+import edu.usal.domain.Cliente;
+
 /**
  *
  * @author fservidio
  */
 public class EliminarCliente extends javax.swing.JInternalFrame {
+
+    ControladorCliente controlador = new ControladorCliente();
 
     /**
      * Creates new form EliminarCliente
@@ -106,13 +111,14 @@ public class EliminarCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEliminarClienteActionPerformed
+        Cliente baja = new Cliente();
+        baja.setIDCliente(Integer.parseInt(textFidCliente.getText()));
+        controlador.BajadeCliente(baja);
+    }
 
     private void textFidClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFidClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textFidClienteActionPerformed
-
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminarCliente;

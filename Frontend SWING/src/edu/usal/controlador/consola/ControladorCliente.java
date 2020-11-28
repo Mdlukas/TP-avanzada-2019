@@ -2,19 +2,21 @@ package edu.usal.controlador.consola;
 
 import edu.usal.dao.factory.FactoryCliente;
 import edu.usal.dao.interfaces.ClienteDAO;
+import edu.usal.domain.Cliente;
 import edu.usal.vista.consola.VistaCliente;
 
 import java.io.IOException;
+import java.util.List;
 
 
 public class ControladorCliente {
 
-    private final VistaCliente vista;
+    private final VistaCliente vistaConsola;
     private ClienteDAO cliente;
 
 
     public ControladorCliente(VistaCliente vista) {
-        this.vista = vista;
+        this.vistaConsola = vista;
         try {
             this.cliente = FactoryCliente.GetImplementacion();
         } catch (Exception e) {
@@ -22,72 +24,75 @@ public class ControladorCliente {
         }
     }
 
-    public void AltaCliente() throws ClassNotFoundException, IOException {
-        this.cliente.AltaCliente(vista.AltaCliente());
+    public ControladorCliente() {
+        this.vistaConsola = null;
+        try {
+            this.cliente = FactoryCliente.GetImplementacion();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public void BajadeCliente() throws ClassNotFoundException, IOException {
-        this.cliente.BajaCliente(vista.BajadeCliente());
-
+    public void AltaCliente(Cliente alta) {
+        try {
+            this.cliente.AltaCliente(alta);
+        } catch (ClassNotFoundException | IOException classNotFoundException) {
+            classNotFoundException.printStackTrace();
+        }
     }
 
-    public void ModificaciondeCliente() throws ClassNotFoundException, IOException {
-        this.cliente.ModCliente(vista.ModificaciondeCliente());
-
+    public void BajadeCliente(Cliente baja) {
+        try {
+            this.cliente.BajaCliente(baja);
+        } catch (ClassNotFoundException | IOException classNotFoundException) {
+            classNotFoundException.printStackTrace();
+        }
     }
 
-    public void ConsultadeCliente() {
-        vista.imprimirConsultadeClientes(this.cliente.ConsultadeCliente(vista.ConsultadeCliente()));
+    public void ModificaciondeCliente(Cliente modificacion){
+        try {
+            this.cliente.ModCliente(modificacion);
+        } catch (ClassNotFoundException | IOException classNotFoundException) {
+            classNotFoundException.printStackTrace();
+        }
     }
 
-    public void ListadodeClientes() throws ClassNotFoundException, IOException {
-        vista.ListadodeClientes(cliente.leerTodoCliente());
+    public Cliente ConsultadeCliente(Cliente consulta) {
+        return this.cliente.ConsultadeCliente(consulta);
     }
 
+    public List<Cliente> ListadodeClientes(){
+        try{
+        List<Cliente> clientesEncontrados = this.cliente.leerTodoCliente();
+        return clientesEncontrados;
+        } catch (ClassNotFoundException | IOException classNotFoundException){
+            classNotFoundException.printStackTrace();
+        }
+        return null;
+    }
+
+    //Este menu solamente se utiliza para la implementacion de los CRUDS por consola. En la implementacion por swing,
+    //cada pantalla llama de forma directa a cada uno de los metodos de los controladores.
     public void MiMenuCliente() {
-        int opcion = vista.menu();
+        int opcion = vistaConsola.menu();
         switch (opcion) {
             case 1:
-                try {
-                    this.AltaCliente();
-                } catch (ClassNotFoundException | IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
+                this.AltaCliente(this.vistaConsola.AltaCliente());
                 this.MiMenuCliente();
                 break;
             case 2:
-                try {
-                    this.BajadeCliente();
-                } catch (ClassNotFoundException | IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
+                this.BajadeCliente(this.vistaConsola.BajadeCliente());
                 this.MiMenuCliente();
-                break;
             case 3:
-                try {
-                    this.ModificaciondeCliente();
-                } catch (ClassNotFoundException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                } catch (IOException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }
+                this.ModificaciondeCliente(this.vistaConsola.ModificaciondeCliente());
                 this.MiMenuCliente();
                 break;
             case 4:
-                this.ConsultadeCliente();
+                this.vistaConsola.imprimirConsultadeClientes(this.ConsultadeCliente(this.vistaConsola.ConsultadeCliente()));
                 this.MiMenuCliente();
                 break;
             case 5:
-                try {
-                    this.ListadodeClientes();
-                } catch (ClassNotFoundException | IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
+                this.vistaConsola.ListadodeClientes(this.ListadodeClientes());
                 this.MiMenuCliente();
                 break;
             case 6:

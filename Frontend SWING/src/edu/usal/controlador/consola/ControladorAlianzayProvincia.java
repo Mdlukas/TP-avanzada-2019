@@ -37,15 +37,11 @@ public class ControladorAlianzayProvincia {
         int opcion = this.vista.MostrarMenuFile();
         switch (opcion){
             case 1:
-                System.out.println("Mostrar alianzas cargadas");
-                System.out.println("\n");
                 this.ListarAlianzas();
                 this.MostrarMenuFile();
                 break;
 
             case 2:
-                System.out.println("Mostrar provincias cargadas");
-                System.out.println("\n");
                 this.ListarProvincias();
                 this.MostrarMenuFile();
         }
