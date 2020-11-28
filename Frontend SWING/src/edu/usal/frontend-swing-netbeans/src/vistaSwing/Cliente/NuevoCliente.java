@@ -138,6 +138,11 @@ public class NuevoCliente extends javax.swing.JInternalFrame {
         comboBoxCategoriaPFrecuente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnGuardarCliente.setText("Guardar");
+        btnGuardarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarClienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -325,6 +330,10 @@ public class NuevoCliente extends javax.swing.JInternalFrame {
     private void textFNombreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFNombreClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textFNombreClienteActionPerformed
+
+    private void btnGuardarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

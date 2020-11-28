@@ -74,6 +74,7 @@ public class ModificarCliente extends javax.swing.JInternalFrame {
         jLabel17 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         btnGuardarCliente = new javax.swing.JButton();
+        btnVerCliente = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -148,6 +149,18 @@ public class ModificarCliente extends javax.swing.JInternalFrame {
         jLabel27.setText("Codigo Postal:");
 
         btnGuardarCliente.setText("Guardar");
+        btnGuardarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarClienteActionPerformed(evt);
+            }
+        });
+
+        btnVerCliente.setText("Ver datos");
+        btnVerCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerClienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -162,7 +175,9 @@ public class ModificarCliente extends javax.swing.JInternalFrame {
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(textFidCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(492, 492, 492))
+                .addGap(18, 18, 18)
+                .addComponent(btnVerCliente)
+                .addGap(377, 377, 377))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -258,7 +273,8 @@ public class ModificarCliente extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textFidCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
+                    .addComponent(jLabel12)
+                    .addComponent(btnVerCliente))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -352,9 +368,18 @@ public class ModificarCliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textFNombreClienteActionPerformed
 
+    private void btnVerClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerClienteActionPerformed
+
+    private void btnGuardarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarClienteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardarCliente;
+    private javax.swing.JButton btnVerCliente;
     private javax.swing.JComboBox<String> comboBoxAlianzapFrecuente;
     private javax.swing.JComboBox<String> comboBoxCategoriaPFrecuente;
     private com.toedter.calendar.JDateChooser dateFechaEmisionPasaporte;
