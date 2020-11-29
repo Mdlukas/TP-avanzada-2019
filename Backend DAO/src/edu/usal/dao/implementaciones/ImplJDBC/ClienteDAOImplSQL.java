@@ -6,6 +6,7 @@ import java.util.List;
 import edu.usal.dao.interfaces.ClienteDAO;
 import edu.usal.domain.Cliente;
 import edu.usal.domain.Telefono;
+import edu.usal.util.ConexionSQLServer;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,10 +14,8 @@ import javax.persistence.Persistence;
 
 public class ClienteDAOImplSQL implements ClienteDAO {
 
-    //Genero entidad de persistencia Hibernate.
-    EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("PersistenciaAerolineas");
     //Genero entidad manager basado en la persistencia.
-    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    EntityManager entityManager = ConexionSQLServer.entityManagerFactory.createEntityManager();
 
 
     @Override

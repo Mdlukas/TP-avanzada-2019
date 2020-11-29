@@ -3,6 +3,7 @@ package edu.usal.dao.implementaciones.ImplJDBC;
 import edu.usal.dao.interfaces.AerolineaDAO;
 import edu.usal.domain.Aerolinea;
 import edu.usal.domain.Cliente;
+import edu.usal.util.ConexionSQLServer;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,10 +12,8 @@ import java.util.List;
 
 public class AerolineaDAOImplSQL implements AerolineaDAO {
 
-    //Genero entidad de persistencia Hibernate.
-    EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("PersistenciaAerolineas");
     //Genero entidad manager basado en la persistencia.
-    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    EntityManager entityManager = ConexionSQLServer.entityManagerFactory.createEntityManager();
 
     @Override
     public Aerolinea ConsultarAerolinea(Aerolinea consulta) {

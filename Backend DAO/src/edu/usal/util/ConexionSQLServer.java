@@ -1,36 +1,25 @@
 package edu.usal.util;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 public class ConexionSQLServer {
-	
-	
-	public static synchronized Connection QuispeConexion() {
-		try {
-						
-			Class.forName(PropertiesUtil.getString("JDBC_DRIVER"));
-			Connection connection = DriverManager.getConnection(PropertiesUtil.getString("JDBC_URL"), PropertiesUtil.getString("JDBC_USER"), PropertiesUtil.getString("JDBC_PASS"));
-			if (!connection.isClosed()) {
-				return connection;
-			}
-			
-		} catch (ClassNotFoundException e) {
-			
-			e.printStackTrace();
-			
-		} 
-		
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		
-		return null;
-	}
-	
-	
-	
+
+    public static EntityManagerFactory entityManagerFactory = null;
+
+
+    //Inicializo la conexion al server sql!
+    public static EntityManagerFactory ConnectToSqlDatabase(){
+        try{
+            System.out.println("Inicializando conexion a la base de datos!");
+            entityManagerFactory = Persistence.createEntityManagerFactory("PersistenciaAerolineas");
+            System.out.println("Se ha podido conectar de forma correcta!");
+            return entityManagerFactory;
+        } catch (Exception e){
+            System.out.println("Ocurrio un problema al realizar la conexion a la base de datos!");
+            e.printStackTrace();
+            return null;
+        }
+    }
 
 }

@@ -3,6 +3,7 @@ package edu.usal.dao.implementaciones.ImplJDBC;
 import edu.usal.dao.interfaces.VueloDAO;
 import edu.usal.domain.Cliente;
 import edu.usal.domain.Vuelo;
+import edu.usal.util.ConexionSQLServer;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,8 +12,7 @@ import java.util.List;
 
 public class VueloDAOImplSQL implements VueloDAO {
 
-    EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("PersistenciaAerolineas");
-    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    EntityManager entityManager = ConexionSQLServer.entityManagerFactory.createEntityManager();
 
     @Override
     public Vuelo ConsultadeVuelo(Vuelo obtener) {
