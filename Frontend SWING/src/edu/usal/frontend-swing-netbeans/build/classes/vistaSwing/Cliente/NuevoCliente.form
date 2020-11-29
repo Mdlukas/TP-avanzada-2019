@@ -37,7 +37,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="102" max="32767" attributes="0"/>
+              <EmptySpace pref="101" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -67,118 +67,135 @@
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="textFNombreCliente" alignment="0" pref="165" max="32767" attributes="0"/>
-                                          <Component id="textFApellidoCliente" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="textFRSCliente" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="textFDNI" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                          <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="dateFechaNacimientoCliente" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="textFNombreCliente" alignment="0" pref="165" max="32767" attributes="0"/>
+                                  <Component id="textFApellidoCliente" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="textFRSCliente" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="textFDNI" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                  <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="dateFechaNacimientoCliente" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
+                              <Component id="textFMailCliente" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="129" pref="129" max="-2" attributes="0"/>
+                                  <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="1" attributes="0">
+                                                  <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                                               <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="jLabel30" min="-2" max="-2" attributes="0"/>
+                                              <Component id="labelProvinciaArg" min="-2" max="-2" attributes="0"/>
+                                              <Component id="labelProvinciaOtro" min="-2" pref="61" max="-2" attributes="0"/>
+                                              <Component id="labelPaisOtro" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="textFieldProvinciaOtro" max="32767" attributes="0"/>
+                                      <Component id="textFCodigoPostalDireccion" alignment="0" pref="165" max="32767" attributes="0"/>
+                                      <Component id="textFCiudadDireccion" alignment="0" pref="165" max="32767" attributes="0"/>
+                                      <Component id="textFAlturaDireccion" alignment="0" pref="165" max="32767" attributes="0"/>
+                                      <Component id="textFCalleDireccion" alignment="0" pref="165" max="32767" attributes="0"/>
+                                      <Component id="comboBoxPais" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="comboBoxProvinciaArg" max="32767" attributes="0"/>
+                                      <Component id="textFieldPaisOtro" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel22" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel20" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel19" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel18" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel21" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="textFPaisEmisionPasaporte" min="-2" pref="165" max="-2" attributes="0"/>
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                                  <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" attributes="0">
+                                                  <Component id="textFAutoridadEmisionPasaporte" min="-2" pref="165" max="-2" attributes="0"/>
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                                  <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="textFNumeroPasaporte" min="-2" pref="165" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="textFCodigoPostalDireccion" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
-                                              <Component id="textFProviciaDireccion" alignment="1" min="-2" pref="165" max="-2" attributes="0"/>
-                                              <Component id="textFCiudadDireccion" alignment="1" min="-2" pref="165" max="-2" attributes="0"/>
-                                              <Component id="textFAlturaDireccion" alignment="1" min="-2" pref="165" max="-2" attributes="0"/>
-                                              <Component id="textFCalleDireccion" alignment="1" min="-2" pref="165" max="-2" attributes="0"/>
+                                              <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
+                                              <Component id="textFNumeroPFrecuente" pref="165" max="32767" attributes="0"/>
+                                              <Component id="comboBoxAlianzapFrecuente" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="comboBoxAerolineapFrecuente" max="32767" attributes="0"/>
                                           </Group>
+                                          <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
                                       </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="129" pref="129" max="-2" attributes="0"/>
-                                          <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel22" alignment="1" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel20" alignment="1" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel19" alignment="1" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel18" alignment="1" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel21" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Group type="102" attributes="0">
                                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                      <Group type="102" alignment="0" attributes="0">
-                                                          <Component id="textFPaisEmisionPasaporte" min="-2" pref="165" max="-2" attributes="0"/>
-                                                          <EmptySpace max="32767" attributes="0"/>
-                                                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <Group type="102" attributes="0">
-                                                          <Component id="textFAutoridadEmisionPasaporte" min="-2" pref="165" max="-2" attributes="0"/>
-                                                          <EmptySpace max="32767" attributes="0"/>
-                                                          <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <Group type="102" alignment="0" attributes="0">
-                                                          <Component id="textFNumeroPasaporte" min="-2" pref="165" max="-2" attributes="0"/>
-                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                          <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
-                                                      </Group>
+                                                      <Component id="dateVencimientoPasaporte" alignment="0" pref="165" max="32767" attributes="0"/>
+                                                      <Component id="dateFechaEmisionPasaporte" alignment="0" max="32767" attributes="0"/>
                                                   </Group>
-                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                      <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="textFNumeroPFrecuente" pref="165" max="32767" attributes="0"/>
-                                                      <Component id="comboBoxAlianzapFrecuente" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="comboBoxAerolineapFrecuente" max="32767" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                                  <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <Group type="102" alignment="1" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                                   <Group type="103" groupAlignment="1" attributes="0">
-                                                      <Group type="102" attributes="0">
-                                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                              <Component id="dateVencimientoPasaporte" alignment="0" pref="165" max="32767" attributes="0"/>
-                                                              <Component id="dateFechaEmisionPasaporte" alignment="0" max="32767" attributes="0"/>
-                                                          </Group>
-                                                          <EmptySpace max="32767" attributes="0"/>
-                                                          <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <Group type="102" attributes="0">
-                                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                                          <Group type="103" groupAlignment="1" attributes="0">
-                                                              <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
-                                                              <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
-                                                              <Component id="jLabel29" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                          </Group>
-                                                      </Group>
-                                                  </Group>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                      <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="textfPersonalTelefono" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="textfLaboralTelefono" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="textfCelularTelefono" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="comboBoxCategoriapFrecuente" min="-2" pref="165" max="-2" attributes="0"/>
+                                                      <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jLabel29" alignment="1" min="-2" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
-                                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                                              <Component id="textfPersonalTelefono" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="textfLaboralTelefono" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="textfCelularTelefono" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="comboBoxCategoriapFrecuente" min="-2" pref="165" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
                               </Group>
-                              <Component id="textFMailCliente" min="-2" pref="165" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
+                                  <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -186,7 +203,7 @@
                           <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="12" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -244,9 +261,9 @@
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="textFDNI" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="textFProviciaDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="textFCodigoPostalDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                           <Component id="jLabel26" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -261,9 +278,9 @@
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="textFCodigoPostalDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel30" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="comboBoxPais" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="dateFechaNacimientoCliente" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -273,34 +290,49 @@
                       <Component id="dateVencimientoPasaporte" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                              <Component id="textFMailCliente" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel27" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="textfPersonalTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel28" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="textfLaboralTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel29" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="textfCelularTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="17" max="32767" attributes="0"/>
+                          <Component id="btnGuardarCliente" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                              <Component id="textFMailCliente" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="labelProvinciaArg" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="comboBoxProvinciaArg" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="textFieldProvinciaOtro" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelProvinciaOtro" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="labelPaisOtro" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="textFieldPaisOtro" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel28" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="textfLaboralTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel29" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="textfCelularTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="17" max="32767" attributes="0"/>
-                  <Component id="btnGuardarCliente" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -390,12 +422,10 @@
         </Component>
         <Component class="javax.swing.JTextField" name="textFCiudadDireccion">
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel16">
+        <Component class="javax.swing.JLabel" name="labelProvinciaArg">
           <Properties>
             <Property name="text" type="java.lang.String" value="Provincia:"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="textFProviciaDireccion">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel17">
           <Properties>
@@ -544,6 +574,55 @@
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel30">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Pais:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="comboBoxPais">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="Item 1"/>
+                <StringItem index="1" value="Item 2"/>
+                <StringItem index="2" value="Item 3"/>
+                <StringItem index="3" value="Item 4"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="comboBoxProvinciaArg">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="Item 1"/>
+                <StringItem index="1" value="Item 2"/>
+                <StringItem index="2" value="Item 3"/>
+                <StringItem index="3" value="Item 4"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JTextField" name="textFieldProvinciaOtro">
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelProvinciaOtro">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Provincia:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelPaisOtro">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Pais:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="textFieldPaisOtro">
         </Component>
       </SubComponents>
     </Container>
