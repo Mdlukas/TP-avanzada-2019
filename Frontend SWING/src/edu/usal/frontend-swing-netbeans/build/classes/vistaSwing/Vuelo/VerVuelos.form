@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <Properties>
     <Property name="closable" type="boolean" value="true"/>
     <Property name="iconifiable" type="boolean" value="true"/>
@@ -74,13 +74,13 @@
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="7" rowCount="4">
-                    <Column editable="true" title="Numero de Vuelo" type="java.lang.Object"/>
-                    <Column editable="true" title="Cantidad de Asientos" type="java.lang.Object"/>
-                    <Column editable="true" title="Aeropuerto de salida" type="java.lang.Object"/>
-                    <Column editable="true" title="Aeropuero de Llegada" type="java.lang.Object"/>
-                    <Column editable="true" title="Fecha y Hora de Salida" type="java.lang.Object"/>
-                    <Column editable="true" title="Fecha y Hora de Llegada" type="java.lang.Object"/>
-                    <Column editable="true" title="Tiempo de Vuelo" type="java.lang.Object"/>
+                    <Column editable="true" title="ID" type="java.lang.Integer"/>
+                    <Column editable="true" title="Numero de Vuelo" type="java.lang.Integer"/>
+                    <Column editable="true" title="Cantidad de Asientos" type="java.lang.Integer"/>
+                    <Column editable="true" title="Aeropuerto de salida" type="java.lang.String"/>
+                    <Column editable="true" title="Aeropuero de Llegada" type="java.lang.String"/>
+                    <Column editable="true" title="Fecha y Hora de Salida" type="java.lang.String"/>
+                    <Column editable="true" title="Fecha y Hora de Llegada" type="java.lang.String"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

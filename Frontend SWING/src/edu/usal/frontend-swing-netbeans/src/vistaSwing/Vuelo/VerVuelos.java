@@ -47,9 +47,17 @@ public class VerVuelos extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Numero de Vuelo", "Cantidad de Asientos", "Aeropuerto de salida", "Aeropuero de Llegada", "Fecha y Hora de Salida", "Fecha y Hora de Llegada", "Tiempo de Vuelo"
+                "ID", "Numero de Vuelo", "Cantidad de Asientos", "Aeropuerto de salida", "Aeropuero de Llegada", "Fecha y Hora de Salida", "Fecha y Hora de Llegada"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setText("Lista de Vuelos");
