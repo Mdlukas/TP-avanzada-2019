@@ -5,17 +5,28 @@
  */
 package vistaSwing.Cliente;
 
+import edu.usal.controlador.consola.ControladorCliente;
+import edu.usal.domain.Cliente;
+
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
+
 /**
  *
  * @author fservidio
  */
 public class VerClientes extends javax.swing.JInternalFrame {
 
+    ControladorCliente  controlador = new ControladorCliente();
+    List<Cliente> clientesEnBD;
+
     /**
      * Creates new form VerCliente
      */
     public VerClientes() {
+        clientesEnBD = controlador.ListadodeClientes();
         initComponents();
+        this.addRowToTable(this.clientesEnBD);
     }
 
     /**
@@ -42,10 +53,6 @@ public class VerClientes extends javax.swing.JInternalFrame {
 
         tableVerClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
             },
             new String [] {
                 "ID", "Nombre", "Apellido", "DNI", "Mail"
@@ -98,6 +105,18 @@ public class VerClientes extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void addRowToTable(List<Cliente> clientes){
+        DefaultTableModel model = (DefaultTableModel) tableVerClientes.getModel();
+        Object rowData[] = new Object[5];
+        for (int i = 0; i < clientes.size(); i++){
+            rowData[0] = clientes.get(i).getIDCliente();
+            rowData[1] = clientes.get(i).getNombreCliente();
+            rowData[2] = clientes.get(i).getApellidoCliente();
+            rowData[3] = clientes.get(i).getDni();
+            rowData[4] = clientes.get(i).getMail();
+            model.addRow(rowData);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

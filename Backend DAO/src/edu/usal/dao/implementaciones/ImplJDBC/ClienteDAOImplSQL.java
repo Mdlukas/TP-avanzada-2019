@@ -1,5 +1,6 @@
 package edu.usal.dao.implementaciones.ImplJDBC;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.usal.dao.interfaces.ClienteDAO;
@@ -39,12 +40,18 @@ public class ClienteDAOImplSQL implements ClienteDAO {
         //Comienzo la transaccion!
         this.entityManager.getTransaction().begin();
         //Native query para hacer un SELECT *
-        List<Cliente> clientes = this.entityManager.createQuery("SELECT c FROM Cliente c").getResultList();
+
+        List<Cliente> clientesDB = this.entityManager.createQuery("SELECT NEW  Cliente (c.IDCliente,c.mail,c.NombreCliente,c.ApellidoCliente,c.dni) FROM Cliente c").getResultList();
         //Realizo commit!
         try{
             this.entityManager.getTransaction().commit();
+//            List<Cliente> clientes = new ArrayList<Cliente>();
+//            for ( Cliente clienteEnDb: clientesDB) {
+//                Cliente clienteEncontrado = new Cliente();
+//                clienteEncontrado.setIDCliente(clienteEnDb.getIDCliente());
+//            }
             //Retorno clientes.
-            return clientes;
+            return clientesDB;
         } catch (Exception e){
             System.out.println("No pude retornar los clientes!");
             this.entityManager.getTransaction().rollback();
@@ -55,18 +62,10 @@ public class ClienteDAOImplSQL implements ClienteDAO {
 
     @Override
     public void AltaCliente(Cliente alta) {
-        //Genero cliente para guardar y le setteo todos los datos!
-        Cliente save = new Cliente();
-        save.setApellidoCliente(alta.getApellidoCliente());
-        save.setNombreCliente(alta.getNombreCliente());
-        save.setDni(alta.getDni());
-        save.setRS(alta.getRS());
-        //TODO save.setFechaNacimiento(alta.getFechaNacimiento();
-        save.setMail(alta.getMail());
         //Comienzo la transaccion.
         this.entityManager.getTransaction().begin();
         try {
-            this.entityManager.persist(save);
+            this.entityManager.persist(alta);
             //Realizo commit!
             this.entityManager.getTransaction().commit();
             System.out.println("Se guardo el cliente de forma correcta!");
@@ -85,12 +84,18 @@ public class ClienteDAOImplSQL implements ClienteDAO {
         try {
             //Utilizo la live transaction  para hacer el modificacion
             Cliente enBaseDeDatos = this.entityManager.find(Cliente.class, modificar.getIDCliente());
+            //Datos base del cliente
             enBaseDeDatos.setApellidoCliente(modificar.getApellidoCliente());
             enBaseDeDatos.setNombreCliente(modificar.getNombreCliente());
             enBaseDeDatos.setDni(modificar.getDni());
             enBaseDeDatos.setRS(modificar.getRS());
-            //TODO save.setFechaNacimiento(alta.getFechaNacimiento();
             enBaseDeDatos.setMail(modificar.getMail());
+            enBaseDeDatos.setFechaNacimiento(modificar.getFechaNacimiento());
+            //Varios objetos.
+            enBaseDeDatos.setPasajeroFrecuente(modificar.getPasajeroFrecuente());
+            enBaseDeDatos.setDireccion(modificar.getDireccion());
+            enBaseDeDatos.setPasaporte(modificar.getPasaporte());
+            enBaseDeDatos.setTelefono(modificar.getTelefono());
             //Realizo commit!
             this.entityManager.getTransaction().commit();
             System.out.println("Se guardo actualizo el cliente " + modificar.getIDCliente() + "  de forma correcta!");

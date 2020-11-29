@@ -5,11 +5,17 @@
  */
 package vistaSwing.Cliente;
 
+import edu.usal.controlador.consola.ControladorCliente;
+import edu.usal.domain.*;
+
 /**
  *
  * @author fservidio
  */
 public class ModificarCliente extends javax.swing.JInternalFrame {
+
+    ControladorCliente controlador;
+    Cliente consulta;
 
     /**
      * Creates new form ModificarCliente
@@ -369,11 +375,108 @@ public class ModificarCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_textFNombreClienteActionPerformed
 
     private void btnVerClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerClienteActionPerformed
-        // TODO add your handling code here:
+        //Inicializo controller y  Cliente
+        this.controlador = new ControladorCliente();
+        this.consulta = new Cliente();
+        //Realizo consulta a la base de datos.
+        consulta.setIDCliente(Integer.parseInt(this.textFidCliente.getText()));
+        consulta = controlador.ConsultadeCliente(consulta);
+
+        //Mapeo y populo campos..
+        //Mapeo el cliente primero.
+        this.textFNombreCliente.setText(consulta.getNombreCliente());
+        this.textFApellidoCliente.setText(consulta.getApellidoCliente());
+        this.textFMailCliente.setText(consulta.getMail());
+        this.textFRSCliente.setText(consulta.getRS());
+        this.textFDNI.setText(consulta.getDni());
+        if(consulta.getFechaNacimiento() !=  null){
+            this.dateFechaNacimientoCliente.setDate(consulta.getFechaNacimiento());
+        }
+
+        //Direccion
+        if (consulta.getDireccion() != null){
+            this.textFAlturaDireccion.setText(consulta.getDireccion().getAltura());
+            this.textFCalleDireccion.setText(consulta.getDireccion().getCalle());
+            this.textFCodigoPostalDireccion.setText(consulta.getDireccion().getCodigoPostal());
+            this.textFCiudadDireccion.setText(consulta.getDireccion().getCiudad());
+            this.textFProviciaDireccion.setText(consulta.getDireccion().getProvincia());
+        }
+
+
+        //Ahora el telefono
+        //TODO Falta implementar la parte de telefono en esta pantalla.
+//        Telefono telefonoAlta = new Telefono();
+//        telefonoAlta.setNumeroPersonal(text);
+//        telefonoAlta.setNumeroLaboral();
+//        telefonoAlta.setNumeroCelular();
+
+        //Pasaporte
+        if(consulta.getPasaporte() != null){
+            this.textFNumeroPasaporte.setText(consulta.getPasaporte().getNrodePasaporte());
+            this.textFAutoridadEmisionPasaporte.setText(consulta.getPasaporte().getAutoridadEmision());
+            this.dateVencimientoPasaporte.setDate(consulta.getPasaporte().getFechadeVencimiento());
+            this.dateFechaEmisionPasaporte.setDate(consulta.getPasaporte().getFechadeEmision());
+            this.textFPaisEmisionPasaporte.setText(consulta.getPasaporte().getPaisEmision());
+        }
+
+        //Pasajero Frecuente
+        //Todo y la implementacion posta de esto
+        if (consulta.getPasajeroFrecuente() != null){
+            this.textFNumeroPFrecuente.setText(consulta.getPasajeroFrecuente().getNumero());
+        }
+
     }//GEN-LAST:event_btnVerClienteActionPerformed
 
     private void btnGuardarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClienteActionPerformed
-        // TODO add your handling code here:
+        //Inicializo controller y  Cliente
+        controlador = new ControladorCliente();
+
+        if (consulta != null ){
+
+            //Mapeo el cliente primero.
+            consulta.setNombreCliente(this.textFNombreCliente.getText());
+            consulta.setApellidoCliente(this.textFApellidoCliente.getText());
+            consulta.setMail(this.textFMailCliente.getText());
+            consulta.setRS(this.textFRSCliente.getText());
+            consulta.setDni(this.textFDNI.getText());
+            consulta.setFechaNacimiento(this.dateFechaNacimientoCliente.getDate());
+
+            //Direccion
+            Direccion direccionAlta = new Direccion();
+            direccionAlta.setAltura(this.textFAlturaDireccion.getText());
+            direccionAlta.setCalle(this.textFCalleDireccion.getText());
+            direccionAlta.setCodigoPostal(this.textFCodigoPostalDireccion.getText());
+            direccionAlta.setCiudad(this.textFCiudadDireccion.getText());
+            direccionAlta.setProvincia(this.textFProviciaDireccion.getText());
+
+            //Ahora el telefono
+            //TODO Falta implementar la parte de telefono en esta pantalla.
+            Telefono telefonoAlta = new Telefono();
+//        telefonoAlta.setNumeroPersonal(text);
+//        telefonoAlta.setNumeroLaboral();
+//        telefonoAlta.setNumeroCelular();
+
+            //Pasaporte
+            Pasaporte pasaporteAlta = new Pasaporte();
+            pasaporteAlta.setNrodePasaporte(this.textFNumeroPasaporte.getText());
+            pasaporteAlta.setAutoridadEmision(this.textFAutoridadEmisionPasaporte.getText());
+            pasaporteAlta.setFechadeVencimiento(this.dateVencimientoPasaporte.getDate());
+            pasaporteAlta.setFechadeEmision(this.dateFechaEmisionPasaporte.getDate());
+            pasaporteAlta.setPaisEmision(this.textFPaisEmisionPasaporte.getText());
+
+            //Pasajero Frecuente
+            Pasajero pasajeroAlta = new Pasajero();
+
+            // Y finalmente el mapeo final.
+            consulta.setTelefono(telefonoAlta);
+            consulta.setPasaporte(pasaporteAlta);
+            consulta.setDireccion(direccionAlta);
+            consulta.setPasajeroFrecuente(pasajeroAlta);
+            this.controlador.ModificaciondeCliente(consulta);
+        } else {
+            System.out.println("Se deben consultar un cliente primero antes de modificarlo!");
+        }
+
     }//GEN-LAST:event_btnGuardarClienteActionPerformed
 
 

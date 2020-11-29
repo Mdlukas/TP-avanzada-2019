@@ -5,11 +5,18 @@
  */
 package vistaSwing.Cliente;
 
+import edu.usal.controlador.consola.ControladorCliente;
+import edu.usal.domain.*;
+
+import java.util.Date;
+
 /**
  *
  * @author fservidio
  */
 public class NuevoCliente extends javax.swing.JInternalFrame {
+
+    ControladorCliente controlador;
 
     /**
      * Creates new form NuevoCliente
@@ -331,12 +338,56 @@ public class NuevoCliente extends javax.swing.JInternalFrame {
         System.out.println("funciona");
     }
 
-    public void btnGuardarClienteActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_btnGuardarClienteActionPerformed
-        System.out.println("funciona");
-    }
 
     private void btnGuardarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClienteActionPerformed
-        // TODO add your handling code here:
+
+        //Inicializo controller y  Cliente
+        controlador = new ControladorCliente();
+        Cliente alta = new Cliente();
+
+        //Mapeo el cliente primero.
+        alta.setNombreCliente(this.textFNombreCliente.getText());
+        alta.setApellidoCliente(this.textFApellidoCliente.getText());
+        alta.setMail(this.textFMailCliente.getText());
+        alta.setRS(this.textFRSCliente.getText());
+        alta.setDni(this.textFDNI.getText());
+        alta.setFechaNacimiento(this.dateFechaNacimientoCliente.getDate());
+
+
+        //Direccion
+        Direccion direccionAlta = new Direccion();
+        direccionAlta.setAltura(this.textFAlturaDireccion.getText());
+        direccionAlta.setCalle(this.textFCalleDireccion.getText());
+        direccionAlta.setCodigoPostal(this.textFCodigoPostalDireccion.getText());
+        direccionAlta.setCiudad(this.textFCiudadDireccion.getText());
+        direccionAlta.setProvincia(this.textFProviciaDireccion.getText());
+
+        //Ahora el telefono
+        //TODO Falta implementar la parte de telefono en esta pantalla.
+        Telefono telefonoAlta = new Telefono();
+//        telefonoAlta.setNumeroPersonal(text);
+//        telefonoAlta.setNumeroLaboral();
+//        telefonoAlta.setNumeroCelular();
+
+        //Pasaporte
+        Pasaporte pasaporteAlta = new Pasaporte();
+        pasaporteAlta.setNrodePasaporte(this.textFNumeroPasaporte.getText());
+        pasaporteAlta.setAutoridadEmision(this.textFAutoridadEmisionPasaporte.getText());
+        pasaporteAlta.setFechadeVencimiento(this.dateVencimientoPasaporte.getDate());
+        pasaporteAlta.setFechadeEmision(this.dateFechaEmisionPasaporte.getDate());
+        pasaporteAlta.setPaisEmision(this.textFPaisEmisionPasaporte.getText());
+
+        //Pasajero Frecuente
+        //TODO definir tema de las alianzas y aerolineas aca.
+        Pasajero pasajeroAlta = new Pasajero();
+        pasajeroAlta.setNumero(this.textFNumeroPFrecuente.getText());
+
+        // Y finalmente el mapeo final.
+        alta.setTelefono(telefonoAlta);
+        alta.setPasaporte(pasaporteAlta);
+        alta.setDireccion(direccionAlta);
+        alta.setPasajeroFrecuente(pasajeroAlta);
+        this.controlador.AltaCliente(alta);
     }//GEN-LAST:event_btnGuardarClienteActionPerformed
 
 
