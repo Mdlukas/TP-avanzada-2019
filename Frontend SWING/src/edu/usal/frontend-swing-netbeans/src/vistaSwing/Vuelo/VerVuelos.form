@@ -73,7 +73,7 @@
             <Component class="javax.swing.JTable" name="jTable1">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="7" rowCount="4">
+                  <Table columnCount="8" rowCount="4">
                     <Column editable="true" title="ID" type="java.lang.Integer"/>
                     <Column editable="true" title="Numero de Vuelo" type="java.lang.Integer"/>
                     <Column editable="true" title="Cantidad de Asientos" type="java.lang.Integer"/>
@@ -81,10 +81,16 @@
                     <Column editable="true" title="Aeropuero de Llegada" type="java.lang.String"/>
                     <Column editable="true" title="Fecha y Hora de Salida" type="java.lang.String"/>
                     <Column editable="true" title="Fecha y Hora de Llegada" type="java.lang.String"/>
+                    <Column editable="true" title="Tipo de Vuelo" type="java.lang.String"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>

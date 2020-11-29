@@ -41,17 +41,17 @@ public class VerVuelos extends javax.swing.JInternalFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Numero de Vuelo", "Cantidad de Asientos", "Aeropuerto de salida", "Aeropuero de Llegada", "Fecha y Hora de Salida", "Fecha y Hora de Llegada"
+                "ID", "Numero de Vuelo", "Cantidad de Asientos", "Aeropuerto de salida", "Aeropuero de Llegada", "Fecha y Hora de Salida", "Fecha y Hora de Llegada", "Tipo de Vuelo"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
