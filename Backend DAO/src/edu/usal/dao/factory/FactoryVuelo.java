@@ -9,7 +9,7 @@ public class FactoryVuelo {
 
     private static String implementacion = PropertiesUtil.getString("Vuelo_implementation");
 
-    public static VueloDAO GetVueloImplementacion(String sql) {
+    public static VueloDAO GetVueloImplementacion() {
         if (implementacion.equals("SQL")) {
             System.out.println("Retorno una implementacion del tipo SQL para el uso de clientes!");
             return new VueloDAOImplSQL();

@@ -11,6 +11,8 @@ package vistaSwing.Vuelo;
  */
 public class NuevoVuelo extends javax.swing.JInternalFrame {
 
+
+
     /**
      * Creates new form NuevoVuelo
      */

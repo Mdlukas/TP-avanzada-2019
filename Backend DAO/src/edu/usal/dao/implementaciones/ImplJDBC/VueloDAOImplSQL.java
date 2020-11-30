@@ -46,7 +46,7 @@ public class VueloDAOImplSQL implements VueloDAO {
 
 
     @Override
-    public void AltadeVuelo(Vuelo alta) {
+    public boolean AltadeVuelo(Vuelo alta) {
         Vuelo save = new Vuelo();
         //Solamente agrego los objetos sin relaciones, por que me guardo esos para el modificar!
         save.setCantAsientos(alta.getCantAsientos());
@@ -56,15 +56,17 @@ public class VueloDAOImplSQL implements VueloDAO {
             this.entityManager.persist(save);
             this.entityManager.getTransaction().commit();
             System.out.println("Se guardo el vuelo de forma correcta!");
+            return true;
         } catch (Exception e) {
             this.entityManager.getTransaction().rollback();
             e.printStackTrace();
             System.out.println("No pude guardar el vuelo hermano!");
+            return false;
         }
     }
 
     @Override
-    public void ModificaciondeVuelo(Vuelo modificar) {
+    public boolean ModificaciondeVuelo(Vuelo modificar) {
         this.entityManager.getTransaction().begin();
         try {
             Vuelo enBaseDeDatos = this.entityManager.find(Vuelo.class, modificar.getIDVuelo());
@@ -72,26 +74,30 @@ public class VueloDAOImplSQL implements VueloDAO {
             enBaseDeDatos.setCantAsientos(modificar.getCantAsientos());
             this.entityManager.getTransaction().commit();
             System.out.println("Se guardo actualizo el vuelo " + modificar.getIDVuelo() + "  de forma correcta!");
+            return true;
         } catch (Exception e) {
             this.entityManager.getTransaction().rollback();
             e.printStackTrace();
             System.out.println("No pude editar el vuelo hermano!");
+            return false;
         }
     }
 
     @Override
-    public void BajadeVuelo(Vuelo baja) {
+    public boolean BajadeVuelo(Vuelo baja) {
         this.entityManager.getTransaction().begin();
         Vuelo vueloEncontrado = entityManager.find(Vuelo.class, baja.getIDVuelo());
         try {
             this.entityManager.remove(vueloEncontrado);
             this.entityManager.getTransaction().commit();
             System.out.println("Borre el vuelo: " + baja.getIDVuelo() + " sin problemas!");
+            return true;
         } catch (Exception e) {
             //Realizo un rollback si no se pudo borrar el cliente.
             this.entityManager.getTransaction().rollback();
             e.printStackTrace();
             System.out.println("No se pudo borrar el cliente con el ID: " + baja.getIDVuelo());
+            return false;
         }
     }
 

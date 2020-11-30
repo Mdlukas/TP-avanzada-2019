@@ -9,9 +9,9 @@ public interface VueloDAO {
 	
 	public Vuelo ConsultadeVuelo (Vuelo obtener);
 	public List<Vuelo> listadodeVuelos () ;
-	public void AltadeVuelo(Vuelo alta);
-	public void ModificaciondeVuelo (Vuelo modificar);
-	public void BajadeVuelo (Vuelo  baja);
+	public boolean AltadeVuelo(Vuelo alta);
+	public boolean ModificaciondeVuelo (Vuelo modificar);
+	public boolean BajadeVuelo (Vuelo  baja);
 	
 	
 	
