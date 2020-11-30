@@ -112,12 +112,33 @@ public class EliminarCliente extends javax.swing.JInternalFrame {
 
     private void btnEliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarClienteActionPerformed
         Cliente baja = new Cliente();
-        baja.setIDCliente(Integer.parseInt(textFidCliente.getText()));
-        controlador.BajadeCliente(baja);
+        //Valido que el campo de id no este vacio...
+        if (!textFidCliente.getText().equals("")){
+            baja.setIDCliente(Integer.parseInt(textFidCliente.getText()));
+            if(controlador.BajadeCliente(baja)){
+                vistaSwing.Alertas.AlertaCreacion alerta = new vistaSwing.Alertas.AlertaCreacion("Se pudo borrar el cliente de forma correcta!");
+                this.jPanel1.add(alerta);
+                alerta.setClosable(true);
+                alerta.show();
+                alerta.moveToFront();
+            } else {
+                vistaSwing.Alertas.AlertaCreacion alerta = new vistaSwing.Alertas.AlertaCreacion("No se pudo borrar el cliente, porfavor revise la consola!");
+                this.jPanel1.add(alerta);
+                alerta.setClosable(true);
+                alerta.show();
+                alerta.moveToFront();
+            }
+        }
+        else {
+            vistaSwing.Alertas.AlertaCreacion alerta = new vistaSwing.Alertas.AlertaCreacion("Se debe ingresar un ID antes de borrar!");
+            this.jPanel1.add(alerta);
+            alerta.setClosable(true);
+            alerta.show();
+            alerta.moveToFront();
+        }
     }
 
     private void textFidClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFidClienteActionPerformed
-        // TODO add your handling code here:
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

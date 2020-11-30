@@ -5,12 +5,16 @@
  */
 package vistaSwing.Aerolinea;
 
+import edu.usal.controlador.consola.ControladorAerolinea;
+import edu.usal.domain.Aerolinea;
+
 /**
  *
  * @author fservidio
  */
 public class EliminarAerolinea extends javax.swing.JInternalFrame {
 
+    ControladorAerolinea controladorAerolinea = new ControladorAerolinea();
     /**
      * Creates new form EliminarAerolinea
      */
@@ -91,9 +95,32 @@ public class EliminarAerolinea extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+
+        if(!this.jTextField3.getText().equals("")){
+            Aerolinea baja = new Aerolinea();
+            baja.setIDAerolinea(Integer.parseInt(this.jTextField3.getText()));
+            if (this.controladorAerolinea.BajadeAerolinea(baja)) {
+                vistaSwing.Alertas.AlertaCreacion alerta = new vistaSwing.Alertas.AlertaCreacion("Se pudo borrar la Aerolinea de forma correcta!");
+                super.add(alerta);
+                alerta.setClosable(true);
+                alerta.show();
+                alerta.moveToFront();
+            } else {
+                vistaSwing.Alertas.AlertaCreacion alerta = new vistaSwing.Alertas.AlertaCreacion("No se ha podido borrar de forma correcta, consulte la consola!");
+                super.add(alerta);
+                alerta.setClosable(true);
+                alerta.show();
+                alerta.moveToFront();
+            }
+        } else {
+            vistaSwing.Alertas.AlertaCreacion alerta = new vistaSwing.Alertas.AlertaCreacion("Se tiene que ingresar un ID primero!");
+            super.add(alerta);
+            alerta.setClosable(true);
+            alerta.show();
+            alerta.moveToFront();
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -8,7 +8,7 @@ public class FactoryProvincia {
 
     private static final String implementacion = PropertiesUtil.getString("Alianza_implementation");
 
-    public static ProvinciaDAO GetProvinciaImplementacion(String sql) {
+    public static ProvinciaDAO GetProvinciaImplementacion() {
         if (implementacion.equals("SQL")) {
             System.out.println("Retorno una implementacion del tipo SQL para el uso de provincias!");
             //Pero alianzas no tiene una implementacion SQL!

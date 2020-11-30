@@ -1,8 +1,14 @@
 package edu.usal.controlador.consola;
 
 import edu.usal.dao.factory.FactoryCliente;
+import edu.usal.dao.factory.FactoryPais;
+import edu.usal.dao.factory.FactoryProvincia;
 import edu.usal.dao.interfaces.ClienteDAO;
+import edu.usal.dao.interfaces.PaisDAO;
+import edu.usal.dao.interfaces.ProvinciaDAO;
 import edu.usal.domain.Cliente;
+import edu.usal.domain.Pais;
+import edu.usal.domain.Provincia;
 import edu.usal.vista.consola.VistaCliente;
 
 import java.io.IOException;
@@ -12,7 +18,9 @@ import java.util.List;
 public class ControladorCliente {
 
     private final VistaCliente vistaConsola;
+    private PaisDAO pais;
     private ClienteDAO cliente;
+    private ProvinciaDAO provincia;
 
 
     public ControladorCliente(VistaCliente vista) {
@@ -28,32 +36,37 @@ public class ControladorCliente {
         this.vistaConsola = null;
         try {
             this.cliente = FactoryCliente.GetImplementacion();
+            this.pais = FactoryPais.GetImplementacion();
+            this.provincia = FactoryProvincia.GetProvinciaImplementacion();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void AltaCliente(Cliente alta) {
+    public boolean AltaCliente(Cliente alta) {
         try {
-            this.cliente.AltaCliente(alta);
+            return this.cliente.AltaCliente(alta);
         } catch (ClassNotFoundException | IOException classNotFoundException) {
             classNotFoundException.printStackTrace();
+            return false;
         }
     }
 
-    public void BajadeCliente(Cliente baja) {
+    public boolean BajadeCliente(Cliente baja) {
         try {
-            this.cliente.BajaCliente(baja);
+            return this.cliente.BajaCliente(baja);
         } catch (ClassNotFoundException | IOException classNotFoundException) {
             classNotFoundException.printStackTrace();
+            return false;
         }
     }
 
-    public void ModificaciondeCliente(Cliente modificacion){
+    public boolean ModificaciondeCliente(Cliente modificacion) {
         try {
-            this.cliente.ModCliente(modificacion);
+             return this.cliente.ModCliente(modificacion);
         } catch (ClassNotFoundException | IOException classNotFoundException) {
             classNotFoundException.printStackTrace();
+            return false;
         }
     }
 
@@ -61,14 +74,36 @@ public class ControladorCliente {
         return this.cliente.ConsultadeCliente(consulta);
     }
 
-    public List<Cliente> ListadodeClientes(){
-        try{
-        List<Cliente> clientesEncontrados = this.cliente.leerTodoCliente();
-        return clientesEncontrados;
-        } catch (ClassNotFoundException | IOException classNotFoundException){
+    //Metodo para traer los paises desde la base de datos!
+    public List<Pais> GetPaises() {
+        try {
+            List<Pais> paises = this.pais.listadodePaises();
+            return paises;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
+    //Para los paises a la hora de gestionar un cliente!
+    public List<Cliente> ListadodeClientes() {
+        try {
+            return this.cliente.leerTodoCliente();
+        } catch (ClassNotFoundException | IOException classNotFoundException) {
             classNotFoundException.printStackTrace();
         }
         return null;
+    }
+
+    //Para las provincias a la hora de gestionar un cliente!
+    public List<Provincia> GetProvincias() {
+        try {
+            return this.provincia.ReadList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     //Este menu solamente se utiliza para la implementacion de los CRUDS por consola. En la implementacion por swing,
@@ -100,4 +135,6 @@ public class ControladorCliente {
                 break;
         }
     }
+
+
 }

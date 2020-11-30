@@ -10,9 +10,9 @@ public interface ClienteDAO {
 	
 	public Cliente ConsultadeCliente (Cliente IDCliente);
 	public List<Cliente> leerTodoCliente() throws IOException, ClassNotFoundException;
-	public void AltaCliente(Cliente AltaCliente) throws IOException, ClassNotFoundException;
-	public void ModCliente (Cliente ModicarCliente) throws ClassNotFoundException, IOException;
-	public void BajaCliente (Cliente BajaCliente) throws ClassNotFoundException, IOException;
+	public boolean AltaCliente(Cliente AltaCliente) throws IOException, ClassNotFoundException;
+	public boolean ModCliente (Cliente ModicarCliente) throws ClassNotFoundException, IOException;
+	public boolean BajaCliente (Cliente BajaCliente) throws ClassNotFoundException, IOException;
 	
 
 }

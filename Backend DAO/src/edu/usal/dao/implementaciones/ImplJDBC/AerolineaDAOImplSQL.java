@@ -49,27 +49,25 @@ public class AerolineaDAOImplSQL implements AerolineaDAO {
     }
 
     @Override
-    public void AltadeAerolinea(Aerolinea alta) {
-        //Genero cliente para guardar y le setteo todos los datos!
-        Aerolinea save = new Aerolinea();
-        save.setNombreAereoLinea(alta.getNombreAereoLinea());
-        save.setAlianza(alta.getAlianza());
+    public boolean AltadeAerolinea(Aerolinea alta) {
         //Comienzo la transaccion.
         this.entityManager.getTransaction().begin();
         try {
-            this.entityManager.persist(save);
+            this.entityManager.persist(alta);
             //Realizo commit!
             this.entityManager.getTransaction().commit();
             System.out.println("Se guardo el Aerolinea de forma correcta!");
+            return true;
         } catch (Exception e) {
             this.entityManager.getTransaction().rollback();
             e.printStackTrace();
             System.out.println("No pude guardar la Aerolinea hermano!");
+            return false;
         }
     }
 
     @Override
-    public void ModificaciondeAerolinea(Aerolinea modificar) {
+    public boolean ModificaciondeAerolinea(Aerolinea modificar) {
         //Comienzo la transaccion.
         this.entityManager.getTransaction().begin();
         try {
@@ -80,15 +78,17 @@ public class AerolineaDAOImplSQL implements AerolineaDAO {
             //Realizo commit!
             this.entityManager.getTransaction().commit();
             System.out.println("Se guardo actualizo la Aerolinea " + modificar.getNombreAereoLinea() + "  de forma correcta!");
+            return true;
         } catch (Exception e) {
             this.entityManager.getTransaction().rollback();
             e.printStackTrace();
-            System.out.println("No pude modificar esa Aerolinea hermano!");
+            System.out.println("No pude modificar esa Aerolinea!");
+            return false;
         }
     }
 
     @Override
-    public void BajadeAerolinea(Aerolinea baja) {
+    public boolean BajadeAerolinea(Aerolinea baja) {
         //Comienzo la transaccion.
         this.entityManager.getTransaction().begin();
         Aerolinea AerolineaEncontrada = entityManager.find(Aerolinea.class, baja.getIDAerolinea());
@@ -98,11 +98,13 @@ public class AerolineaDAOImplSQL implements AerolineaDAO {
             //Realizo commit!
             this.entityManager.getTransaction().commit();
             System.out.println("Borre la Aerolinea: " + baja.getIDAerolinea() + " sin problemas!");
+            return true;
         } catch (Exception e) {
             //Realizo un rollback si no se pudo borrar el cliente.
             this.entityManager.getTransaction().rollback();
             e.printStackTrace();
             System.out.println("No se pudo borrar la erolinea con el ID: " + baja.getIDAerolinea());
+            return false;
         }
 
     }

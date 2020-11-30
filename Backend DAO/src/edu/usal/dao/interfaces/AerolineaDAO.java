@@ -8,8 +8,8 @@ public interface AerolineaDAO {
 
 	public Aerolinea ConsultarAerolinea (Aerolinea obtener);
 	public List<Aerolinea> listadodeAerolineas () ;
-	public void AltadeAerolinea(Aerolinea altaAerolinea);
-	public void ModificaciondeAerolinea (Aerolinea modificarAerolinea);
-	public void BajadeAerolinea (Aerolinea  bajaAerolinea);
+	public boolean AltadeAerolinea(Aerolinea altaAerolinea);
+	public boolean ModificaciondeAerolinea (Aerolinea modificarAerolinea);
+	public boolean BajadeAerolinea (Aerolinea  bajaAerolinea);
 	
 }

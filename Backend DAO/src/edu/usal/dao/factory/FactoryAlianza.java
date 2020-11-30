@@ -8,7 +8,7 @@ public class FactoryAlianza {
 
     private static final String implementacion = PropertiesUtil.getString("Alianza_implementation");
 
-    public static AlianzaDAO GetAlianzaImplementacion(String sql) {
+    public static AlianzaDAO GetAlianzaImplementacion() {
         if (implementacion.equals("SQL")) {
             System.out.println("Retorno una implementacion del tipo SQL para el uso de alianzas!");
             //Pero alianzas no tiene una implementacion SQL!

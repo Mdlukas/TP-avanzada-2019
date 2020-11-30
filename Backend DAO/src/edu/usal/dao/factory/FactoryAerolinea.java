@@ -8,7 +8,7 @@ public class FactoryAerolinea {
 
     private static final String implementacion = PropertiesUtil.getString("Aerolineas_implementation");
 
-    public static AerolineaDAO GetAerolineaImplementacion(String type) {
+    public static AerolineaDAO GetAerolineaImplementacion() {
         if (implementacion.equals("SQL")) {
             System.out.println("Retorno una implementacion del tipo SQL para el uso de Aerolineas!");
             return new AerolineaDAOImplSQL();

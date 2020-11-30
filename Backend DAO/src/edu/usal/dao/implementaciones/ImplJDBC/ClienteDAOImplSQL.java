@@ -39,17 +39,10 @@ public class ClienteDAOImplSQL implements ClienteDAO {
         //Comienzo la transaccion!
         this.entityManager.getTransaction().begin();
         //Native query para hacer un SELECT *
-
         List<Cliente> clientesDB = this.entityManager.createQuery("SELECT NEW  Cliente (c.IDCliente,c.mail,c.NombreCliente,c.ApellidoCliente,c.dni) FROM Cliente c").getResultList();
         //Realizo commit!
         try{
             this.entityManager.getTransaction().commit();
-//            List<Cliente> clientes = new ArrayList<Cliente>();
-//            for ( Cliente clienteEnDb: clientesDB) {
-//                Cliente clienteEncontrado = new Cliente();
-//                clienteEncontrado.setIDCliente(clienteEnDb.getIDCliente());
-//            }
-            //Retorno clientes.
             return clientesDB;
         } catch (Exception e){
             System.out.println("No pude retornar los clientes!");
@@ -60,7 +53,7 @@ public class ClienteDAOImplSQL implements ClienteDAO {
     }
 
     @Override
-    public void AltaCliente(Cliente alta) {
+    public boolean AltaCliente(Cliente alta) {
         //Comienzo la transaccion.
         this.entityManager.getTransaction().begin();
         try {
@@ -68,16 +61,18 @@ public class ClienteDAOImplSQL implements ClienteDAO {
             //Realizo commit!
             this.entityManager.getTransaction().commit();
             System.out.println("Se guardo el cliente de forma correcta!");
+            return true;
         } catch (Exception e) {
             this.entityManager.getTransaction().rollback();
             e.printStackTrace();
             System.out.println("No pude guardar nada hermano!");
+            return false;
         }
     }
 
     //Guardo cliente Actualizado!
     @Override
-    public void ModCliente(Cliente modificar) {
+    public boolean ModCliente(Cliente modificar) {
         //Comienzo la transaccion.
         this.entityManager.getTransaction().begin();
         try {
@@ -98,15 +93,17 @@ public class ClienteDAOImplSQL implements ClienteDAO {
             //Realizo commit!
             this.entityManager.getTransaction().commit();
             System.out.println("Se guardo actualizo el cliente " + modificar.getIDCliente() + "  de forma correcta!");
+            return true;
         } catch (Exception e) {
             this.entityManager.getTransaction().rollback();
             e.printStackTrace();
             System.out.println("No pude guardar nada hermano!");
+            return false;
         }
     }
 
     @Override
-    public void BajaCliente(Cliente baja) {
+    public boolean BajaCliente(Cliente baja) {
         //Comienzo la transaccion.
         this.entityManager.getTransaction().begin();
         Cliente ClienteEncontrado = entityManager.find(Cliente.class, baja.getIDCliente());
@@ -116,11 +113,13 @@ public class ClienteDAOImplSQL implements ClienteDAO {
             //Realizo commit!
             this.entityManager.getTransaction().commit();
             System.out.println("Borre el cliente: " + baja.getIDCliente() + " sin problemas!");
+            return true;
         } catch (Exception e) {
             //Realizo un rollback si no se pudo borrar el cliente.
             this.entityManager.getTransaction().rollback();
             e.printStackTrace();
             System.out.println("No se pudo borrar el cliente con el ID: " + baja.getIDCliente());
+            return false;
         }
     }
 

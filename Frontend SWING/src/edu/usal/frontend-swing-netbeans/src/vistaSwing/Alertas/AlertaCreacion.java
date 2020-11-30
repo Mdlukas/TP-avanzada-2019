@@ -14,8 +14,10 @@ public class AlertaCreacion extends javax.swing.JInternalFrame {
     /**
      * Creates new form AlertaCreacion
      */
-    public AlertaCreacion() {
+    public AlertaCreacion(String message)
+    {
         initComponents();
+        this.labelMensaje.setText(message);
     }
 
     /**
@@ -72,6 +74,8 @@ public class AlertaCreacion extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
+    //TODO falto el codigo generado del boton OK...
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOK;
