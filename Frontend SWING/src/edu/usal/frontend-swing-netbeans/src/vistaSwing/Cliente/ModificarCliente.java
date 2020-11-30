@@ -425,51 +425,68 @@ public class ModificarCliente extends javax.swing.JInternalFrame {
         //Inicializo controller y  Cliente
         this.controlador = new ControladorCliente();
         this.consulta = new Cliente();
+
         //Realizo consulta a la base de datos.
-        consulta.setIDCliente(Integer.parseInt(this.textFidCliente.getText()));
-        consulta = controlador.ConsultadeCliente(consulta);
+        if (!this.textFidCliente.getText().equals("")) {
 
-        //Mapeo y populo campos..
-        //Mapeo el cliente primero.
-        this.textFNombreCliente.setText(consulta.getNombreCliente());
-        this.textFApellidoCliente.setText(consulta.getApellidoCliente());
-        this.textFMailCliente.setText(consulta.getMail());
-        this.textFRSCliente.setText(consulta.getRS());
-        this.textFDNI.setText(consulta.getDni());
-        if(consulta.getFechaNacimiento() !=  null){
-            this.dateFechaNacimientoCliente.setDate(consulta.getFechaNacimiento());
-        }
+            consulta.setIDCliente(Integer.parseInt(this.textFidCliente.getText()));
+            consulta = controlador.ConsultadeCliente(consulta);
 
-        //Direccion
-        if (consulta.getDireccion() != null){
-            this.textFAlturaDireccion.setText(consulta.getDireccion().getAltura());
-            this.textFCalleDireccion.setText(consulta.getDireccion().getCalle());
-            this.textFCodigoPostalDireccion.setText(consulta.getDireccion().getCodigoPostal());
-            this.textFCiudadDireccion.setText(consulta.getDireccion().getCiudad());
-            this.textFProviciaDireccion.setText(consulta.getDireccion().getProvincia());
-        }
+            if (consulta != null) {
+                //Mapeo y populo campos..
+                //Mapeo el cliente primero.
+                this.textFNombreCliente.setText(consulta.getNombreCliente());
+                this.textFApellidoCliente.setText(consulta.getApellidoCliente());
+                this.textFMailCliente.setText(consulta.getMail());
+                this.textFRSCliente.setText(consulta.getRS());
+                this.textFDNI.setText(consulta.getDni());
+                if (consulta.getFechaNacimiento() != null) {
+                    this.dateFechaNacimientoCliente.setDate(consulta.getFechaNacimiento());
+                }
+
+                //Direccion
+                if (consulta.getDireccion() != null) {
+                    this.textFAlturaDireccion.setText(consulta.getDireccion().getAltura());
+                    this.textFCalleDireccion.setText(consulta.getDireccion().getCalle());
+                    this.textFCodigoPostalDireccion.setText(consulta.getDireccion().getCodigoPostal());
+                    this.textFCiudadDireccion.setText(consulta.getDireccion().getCiudad());
+                    //this.textFProviciaDireccion.setText(consulta.getDireccion().getProvincia());
+                }
 
 
-        //Ahora el telefono
-        //TODO Falta implementar la parte de telefono en esta pantalla.
-//        Telefono telefonoAlta = new Telefono();
-//        telefonoAlta.setNumeroPersonal(text);
-//        telefonoAlta.setNumeroLaboral();
-//        telefonoAlta.setNumeroCelular();
+                //Ahora el telefono
+                if (consulta.getTelefono() != null) {
+                    this.textfCelularTelefono.setText(consulta.getTelefono().getNumeroCelular());
+                    this.textfLaboralTelefono.setText(consulta.getTelefono().getNumeroLaboral());
+                    this.textfPersonalTelefono.setText(consulta.getTelefono().getNumeroPersonal());
+                }
 
-        //Pasaporte
-        if(consulta.getPasaporte() != null){
-            this.textFNumeroPasaporte.setText(consulta.getPasaporte().getNrodePasaporte());
-            this.textFAutoridadEmisionPasaporte.setText(consulta.getPasaporte().getAutoridadEmision());
-            this.dateVencimientoPasaporte.setDate(consulta.getPasaporte().getFechadeVencimiento());
-            this.dateFechaEmisionPasaporte.setDate(consulta.getPasaporte().getFechadeEmision());
-            this.textFPaisEmisionPasaporte.setText(consulta.getPasaporte().getPaisEmision());
-        }
+                //Pasaporte
+                if (consulta.getPasaporte() != null) {
+                    this.textFNumeroPasaporte.setText(consulta.getPasaporte().getNrodePasaporte());
+                    this.textFAutoridadEmisionPasaporte.setText(consulta.getPasaporte().getAutoridadEmision());
+                    this.dateVencimientoPasaporte.setDate(consulta.getPasaporte().getFechadeVencimiento());
+                    this.dateFechaEmisionPasaporte.setDate(consulta.getPasaporte().getFechadeEmision());
+                    this.textFPaisEmisionPasaporte.setText(consulta.getPasaporte().getPaisEmision());
+                }
 
-        //Pasajero Frecuente
-        //Todo y la implementacion posta de esto
-        if (consulta.getPasajeroFrecuente() != null){
-            this.textFNumeroPFrecuente.setText(consulta.getPasajeroFrecuente().getNumero());
+                //Pasajero Frecuente
+                if (consulta.getPasajeroFrecuente() != null) {
+                    this.textFNumeroPFrecuente.setText(consulta.getPasajeroFrecuente().getNumero());
+                }
+            } else {
+                vistaSwing.Alertas.AlertaCreacion alerta = new vistaSwing.Alertas.AlertaCreacion("No se ha podido encontrar el cliente consultado, porfavor revise la consola!");
+                this.jPanel1.add(alerta);
+                alerta.setClosable(true);
+                alerta.show();
+                alerta.moveToFront();
+            }
+        } else {
+            vistaSwing.Alertas.AlertaCreacion alerta = new vistaSwing.Alertas.AlertaCreacion("Se debe colocar un id para consultar!");
+            this.jPanel1.add(alerta);
+            alerta.setClosable(true);
+            alerta.show();
+            alerta.moveToFront();
         }
 
     }//GEN-LAST:event_btnVerClienteActionPerformed
@@ -478,8 +495,8 @@ public class ModificarCliente extends javax.swing.JInternalFrame {
         //Inicializo controller y  Cliente
         controlador = new ControladorCliente();
 
-        if (consulta != null ){
 
+        if (consulta != null) {
             //Mapeo el cliente primero.
             consulta.setNombreCliente(this.textFNombreCliente.getText());
             consulta.setApellidoCliente(this.textFApellidoCliente.getText());
@@ -494,14 +511,13 @@ public class ModificarCliente extends javax.swing.JInternalFrame {
             direccionAlta.setCalle(this.textFCalleDireccion.getText());
             direccionAlta.setCodigoPostal(this.textFCodigoPostalDireccion.getText());
             direccionAlta.setCiudad(this.textFCiudadDireccion.getText());
-            direccionAlta.setProvincia(this.textFProviciaDireccion.getText());
+            //direccionAlta.setProvincia(this.textFProviciaDireccion.getText());
 
             //Ahora el telefono
-            //TODO Falta implementar la parte de telefono en esta pantalla.
             Telefono telefonoAlta = new Telefono();
-//        telefonoAlta.setNumeroPersonal(text);
-//        telefonoAlta.setNumeroLaboral();
-//        telefonoAlta.setNumeroCelular();
+            telefonoAlta.setNumeroPersonal(this.textfPersonalTelefono.getText());
+            telefonoAlta.setNumeroLaboral(this.textfLaboralTelefono.getText());
+            telefonoAlta.setNumeroCelular(this.textfCelularTelefono.getText());
 
             //Pasaporte
             Pasaporte pasaporteAlta = new Pasaporte();
@@ -519,9 +535,25 @@ public class ModificarCliente extends javax.swing.JInternalFrame {
             consulta.setPasaporte(pasaporteAlta);
             consulta.setDireccion(direccionAlta);
             consulta.setPasajeroFrecuente(pasajeroAlta);
-            this.controlador.ModificaciondeCliente(consulta);
+            if (this.controlador.ModificaciondeCliente(consulta)) {
+                vistaSwing.Alertas.AlertaCreacion alerta = new vistaSwing.Alertas.AlertaCreacion("Se pudo modificar el cliente de forma correcta!");
+                this.jPanel1.add(alerta);
+                alerta.setClosable(true);
+                alerta.show();
+                alerta.moveToFront();
+            } else {
+                vistaSwing.Alertas.AlertaCreacion alerta = new vistaSwing.Alertas.AlertaCreacion("No se pudo modificar el cliente, porfavor revise la consola!");
+                this.jPanel1.add(alerta);
+                alerta.setClosable(true);
+                alerta.show();
+                alerta.moveToFront();
+            }
         } else {
-            System.out.println("Se deben consultar un cliente primero antes de modificarlo!");
+            vistaSwing.Alertas.AlertaCreacion alerta = new vistaSwing.Alertas.AlertaCreacion("Se debe consultar un cliente primero antes de modificarlo!");
+            this.jPanel1.add(alerta);
+            alerta.setClosable(true);
+            alerta.show();
+            alerta.moveToFront();
         }
 
     }//GEN-LAST:event_btnGuardarClienteActionPerformed

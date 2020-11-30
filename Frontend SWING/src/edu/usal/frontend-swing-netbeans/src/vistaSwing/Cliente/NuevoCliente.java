@@ -5,10 +5,12 @@
  */
 package vistaSwing.Cliente;
 
+import edu.usal.controlador.consola.ControladorAlianzayProvincia;
 import edu.usal.controlador.consola.ControladorCliente;
 import edu.usal.domain.*;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -16,13 +18,18 @@ import java.util.Date;
  */
 public class NuevoCliente extends javax.swing.JInternalFrame {
 
-    ControladorCliente controlador;
+    ControladorCliente controlador = new ControladorCliente();
+    ControladorAlianzayProvincia controladorAlianzayProvincia = new ControladorAlianzayProvincia();
+
 
     /**
      * Creates new form NuevoCliente
      */
     public NuevoCliente() {
         initComponents();
+        this.PopulatePaises();
+        this.PopulateProvincias();
+        this.PopulateAlianzas();
     }
 
     /**
@@ -459,7 +466,6 @@ public class NuevoCliente extends javax.swing.JInternalFrame {
     private void btnGuardarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClienteActionPerformed
 
         //Inicializo controller y  Cliente
-        controlador = new ControladorCliente();
         Cliente alta = new Cliente();
 
         //Mapeo el cliente primero.
@@ -477,14 +483,14 @@ public class NuevoCliente extends javax.swing.JInternalFrame {
         direccionAlta.setCalle(this.textFCalleDireccion.getText());
         direccionAlta.setCodigoPostal(this.textFCodigoPostalDireccion.getText());
         direccionAlta.setCiudad(this.textFCiudadDireccion.getText());
-        direccionAlta.setProvincia(this.textFProviciaDireccion.getText());
+        //Y el pais
+        Pais paisAlta = new Pais();
 
         //Ahora el telefono
-        //TODO Falta implementar la parte de telefono en esta pantalla.
         Telefono telefonoAlta = new Telefono();
-//        telefonoAlta.setNumeroPersonal(text);
-//        telefonoAlta.setNumeroLaboral();
-//        telefonoAlta.setNumeroCelular();
+        telefonoAlta.setNumeroPersonal(this.textfPersonalTelefono.getText());
+        telefonoAlta.setNumeroLaboral(this.textfLaboralTelefono.getText());
+        telefonoAlta.setNumeroCelular(this.textfCelularTelefono.getText());
 
         //Pasaporte
         Pasaporte pasaporteAlta = new Pasaporte();
@@ -495,7 +501,6 @@ public class NuevoCliente extends javax.swing.JInternalFrame {
         pasaporteAlta.setPaisEmision(this.textFPaisEmisionPasaporte.getText());
 
         //Pasajero Frecuente
-        //TODO definir tema de las alianzas y aerolineas aca.
         Pasajero pasajeroAlta = new Pasajero();
         pasajeroAlta.setNumero(this.textFNumeroPFrecuente.getText());
 
@@ -504,7 +509,21 @@ public class NuevoCliente extends javax.swing.JInternalFrame {
         alta.setPasaporte(pasaporteAlta);
         alta.setDireccion(direccionAlta);
         alta.setPasajeroFrecuente(pasajeroAlta);
-        this.controlador.AltaCliente(alta);
+
+        //Llamo al controlador, guardo y si todo sale bien, genero una alerta. Sino, genero una alerta de error!
+        if (this.controlador.AltaCliente(alta)) {
+            vistaSwing.Alertas.AlertaCreacion alerta = new vistaSwing.Alertas.AlertaCreacion("Se pudo guardar el cliente de forma correcta!");
+            this.jPanel1.add(alerta);
+            alerta.setClosable(true);
+            alerta.show();
+            alerta.moveToFront();
+        } else {
+            vistaSwing.Alertas.AlertaCreacion alerta = new vistaSwing.Alertas.AlertaCreacion("No se ha podido guardar de forma correcta, consulte la consola!");
+            this.jPanel1.add(alerta);
+            alerta.setClosable(true);
+            alerta.show();
+            alerta.moveToFront();
+        }
     }//GEN-LAST:event_btnGuardarClienteActionPerformed
 
     private void textfPersonalTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textfPersonalTelefonoActionPerformed
@@ -519,6 +538,26 @@ public class NuevoCliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxAlianzapFrecuenteActionPerformed
 
+    private void PopulatePaises() {
+        List<Pais> paises = this.controlador.GetPaises();
+        for (Pais p : paises) {
+            this.comboBoxPais.addItem(p.getNombrePais());
+        }
+    }
+
+    private void PopulateProvincias() {
+        List<Provincia> provincias = this.controladorAlianzayProvincia.ListarProvincias();
+        for (Provincia p : provincias) {
+            this.comboBoxProvinciaArg.addItem(p.getNombreProvincia());
+        }
+    }
+
+    private void PopulateAlianzas() {
+        List<Alianza> alianzas = this.controladorAlianzayProvincia.ListarAlianzas();
+        for (Alianza a : alianzas) {
+            this.comboBoxAlianzapFrecuente.addItem(a.getNombreAlianza());
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardarCliente;
