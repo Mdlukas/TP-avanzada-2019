@@ -156,9 +156,9 @@ public class ModificarAerolinea extends javax.swing.JInternalFrame {
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
-    }
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (consulta != null) {
             Aerolinea modificar = new Aerolinea();
             modificar.setIDAerolinea(Integer.parseInt(this.jTextField3.getText()));
@@ -184,9 +184,9 @@ public class ModificarAerolinea extends javax.swing.JInternalFrame {
             alerta.show();
             alerta.moveToFront();
         }
-    }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActionPerformed
         if (!this.jTextField3.getText().equals("")) {
             consulta = new Aerolinea();
             consulta.setIDAerolinea(Integer.parseInt(this.jTextField3.getText()));
@@ -209,7 +209,7 @@ public class ModificarAerolinea extends javax.swing.JInternalFrame {
             alerta.show();
             alerta.moveToFront();
         }
-    }
+    }//GEN-LAST:event_btnVerActionPerformed
 
     private void PopulateAlianzas() {
         List<Alianza> alianzas = this.controladorAlianzayProvincia.ListarAlianzas();
