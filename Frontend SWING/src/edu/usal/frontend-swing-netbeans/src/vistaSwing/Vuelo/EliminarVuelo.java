@@ -5,6 +5,14 @@
  */
 package vistaSwing.Vuelo;
 
+import edu.usal.controlador.consola.ControladorAerolinea;
+import edu.usal.controlador.consola.ControladorVuelo;
+import edu.usal.domain.Aerolinea;
+import edu.usal.domain.Vuelo;
+
+import java.awt.*;
+import java.util.List;
+
 /**
  *
  * @author fservidio
@@ -109,7 +117,11 @@ public class EliminarVuelo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        if (this.HandleVueloDelete()){
+            this.ShowAlerta("Se borro el vuelo de forma correcta!");
+        } else {
+            this.ShowAlerta("El vuelo no se pudo eliminar, porfavor consulte la consola!");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -120,4 +132,35 @@ public class EliminarVuelo extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
+    // ----------------------------------------------------- = ------------------------------------------------------
+
+    //Declaro mis objetos
+    ControladorVuelo controlador = new ControladorVuelo();
+    PopupMenu alerta;
+
+    //Y mis metodos de manejo.
+
+    private void ShowAlerta(String mensaje){
+        alerta = new PopupMenu();
+        alerta.add(mensaje);
+        this.jPanel1.add(alerta);
+        alerta.show(jPanel1,0,0);
+    }
+
+    private boolean HandleVueloDelete(){
+        try{
+            int borrado = Integer.parseInt(this.jTextField1.getText());
+            Vuelo vueloBorrar = new Vuelo();
+            vueloBorrar.setIDVuelo(borrado);
+            if(this.controlador.BajadeVuelo(vueloBorrar)){
+                return true;
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+            this.ShowAlerta("El ID debe ser un valor numerico!");
+        }
+        return false;
+
+    }
 }

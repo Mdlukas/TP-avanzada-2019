@@ -18,6 +18,9 @@ public class AlertaCreacion extends javax.swing.JInternalFrame {
     {
         initComponents();
         this.labelMensaje.setText(message);
+        super.setClosable(true);
+        super.toFront();
+        super.repaint();
     }
 
     /**

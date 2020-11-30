@@ -1,8 +1,9 @@
 package edu.usal.dao.implementaciones.ImplJDBC;
 
+import edu.usal.dao.factory.FactoryAerolinea;
+import edu.usal.dao.interfaces.AerolineaDAO;
 import edu.usal.dao.interfaces.VueloDAO;
-import edu.usal.domain.Cliente;
-import edu.usal.domain.Vuelo;
+import edu.usal.domain.*;
 import edu.usal.util.ConexionSQLServer;
 
 import javax.persistence.EntityManager;
@@ -47,13 +48,17 @@ public class VueloDAOImplSQL implements VueloDAO {
 
     @Override
     public boolean AltadeVuelo(Vuelo alta) {
-        Vuelo save = new Vuelo();
-        //Solamente agrego los objetos sin relaciones, por que me guardo esos para el modificar!
-        save.setCantAsientos(alta.getCantAsientos());
-        save.setTiempovuelo(alta.getTiempovuelo());
         this.entityManager.getTransaction().begin();
+        Aeropuerto llegada = this.entityManager.find(Aeropuerto.class,alta.getAeropuertodeLLegada().getCodigodeAeropuerto());
+        Aeropuerto salida = this.entityManager.find(Aeropuerto.class,alta.getAeropuertodeSalida().getCodigodeAeropuerto());
         try {
-            this.entityManager.persist(save);
+            if(llegada != null){
+                alta.setAeropuertodeLLegada(llegada);
+            } if (salida != null){
+                alta.setAeropuertodeSalida(salida);
+            }
+            alta.setAerolinea(this.entityManager.find(Aerolinea.class, alta.getAerolinea().getIDAerolinea()));
+            this.entityManager.persist(alta);
             this.entityManager.getTransaction().commit();
             System.out.println("Se guardo el vuelo de forma correcta!");
             return true;
@@ -68,10 +73,20 @@ public class VueloDAOImplSQL implements VueloDAO {
     @Override
     public boolean ModificaciondeVuelo(Vuelo modificar) {
         this.entityManager.getTransaction().begin();
+        Aeropuerto llegada = this.entityManager.find(Aeropuerto.class,modificar.getAeropuertodeLLegada().getCodigodeAeropuerto());
+        Aeropuerto salida = this.entityManager.find(Aeropuerto.class,modificar.getAeropuertodeSalida().getCodigodeAeropuerto());
         try {
             Vuelo enBaseDeDatos = this.entityManager.find(Vuelo.class, modificar.getIDVuelo());
+            if(llegada != null){
+                enBaseDeDatos.setAeropuertodeLLegada(llegada);
+            } if (salida != null){
+                enBaseDeDatos.setAeropuertodeSalida(salida);
+            }
             enBaseDeDatos.setTiempovuelo(modificar.getTiempovuelo());
+            enBaseDeDatos.setAerolinea(this.entityManager.find(Aerolinea.class, modificar.getAerolinea().getIDAerolinea()));
             enBaseDeDatos.setCantAsientos(modificar.getCantAsientos());
+            enBaseDeDatos.setFechaSalida(modificar.getFechaSalida());
+            enBaseDeDatos.setFechaLLegada(modificar.getFechaLLegada());
             this.entityManager.getTransaction().commit();
             System.out.println("Se guardo actualizo el vuelo " + modificar.getIDVuelo() + "  de forma correcta!");
             return true;

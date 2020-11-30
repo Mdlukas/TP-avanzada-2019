@@ -7,12 +7,8 @@ import java.io.Serializable;
 @Table(name = "Aeropuerto")
 public class Aeropuerto implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "IDAeropuerto", unique = true)
-	private int IDAeropuerto;
 
-	@Basic
+	@Id
 	@Column(name = "IdentificacionAeropuerto")
 	private String CodigodeAeropuerto;
 
@@ -34,7 +30,6 @@ public class Aeropuerto implements Serializable {
 
 	public Aeropuerto(int iDAeropuerto, String codigodeAeropuerto, String ciudad, Pais pais, Provincia provincia) {
 		super();
-		IDAeropuerto = iDAeropuerto;
 		CodigodeAeropuerto = codigodeAeropuerto;
 		Ciudad = ciudad;
 		this.pais = pais;
@@ -53,13 +48,6 @@ public class Aeropuerto implements Serializable {
 	
 
 
-	public int getIDAeropuerto() {
-		return IDAeropuerto;
-	}
-
-	public void setIDAeropuerto(int iDAeropuerto) {
-		IDAeropuerto = iDAeropuerto;
-	}
 
 	public String getCodigodeAeropuerto() {
 		return CodigodeAeropuerto;
@@ -99,7 +87,6 @@ public class Aeropuerto implements Serializable {
 	@Override
 	public String toString() {
 		return "Aeropuerto{" +
-				"IDAeropuerto=" + IDAeropuerto +
 				", CodigodeAeropuerto='" + CodigodeAeropuerto + '\'' +
 				", Ciudad='" + Ciudad + '\'' +
 				", provincia=" + provincia +

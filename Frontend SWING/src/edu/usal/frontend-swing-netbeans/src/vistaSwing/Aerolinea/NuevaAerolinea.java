@@ -10,6 +10,7 @@ import edu.usal.controlador.consola.ControladorAlianzayProvincia;
 import edu.usal.domain.Aerolinea;
 import edu.usal.domain.Alianza;
 
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -17,9 +18,6 @@ import java.util.List;
  * @author fservidio
  */
 public class NuevaAerolinea extends javax.swing.JInternalFrame {
-
-    ControladorAlianzayProvincia controladorAlianzayProvincia = new ControladorAlianzayProvincia();
-    ControladorAerolinea controladorAerolinea = new ControladorAerolinea();
 
 
     /**
@@ -137,43 +135,25 @@ public class NuevaAerolinea extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         //Instancio la aerolinea!
         Aerolinea alta = new Aerolinea();
-
         //Checkeo que se le de nombre a la aerolinea
         if(!this.jTextField1.getText().equals("")){
             alta.setAlianza(this.comboBoxTipoDeAlianzaAerolineas.getSelectedItem().toString());
             alta.setNombreAereoLinea(this.jTextField1.getText());
             //Llamo al controlador, guardo y si todo sale bien, genero una alerta. Sino, genero una alerta de error!
             if (this.controladorAerolinea.AltadeAerolinea(alta)) {
-                vistaSwing.Alertas.AlertaCreacion alerta = new vistaSwing.Alertas.AlertaCreacion("Se pudo guardar la Aerolinea de forma correcta!");
-                this.jPanel1.add(alerta);
-                alerta.setClosable(true);
-                alerta.show();
-                alerta.moveToFront();
+                this.ShowAlerta("Se pudo guardar la Aerolinea de forma correcta!");
             } else {
-                vistaSwing.Alertas.AlertaCreacion alerta = new vistaSwing.Alertas.AlertaCreacion("No se ha podido guardar de forma correcta, consulte la consola!");
-                this.jPanel1.add(alerta);
-                alerta.setClosable(true);
-                alerta.show();
-                alerta.moveToFront();
+                this.ShowAlerta("No se ha podido guardar de forma correcta, consulte la consola!");
             }
         } else {
-            vistaSwing.Alertas.AlertaCreacion alerta = new vistaSwing.Alertas.AlertaCreacion("La Aerolinea tiene que tener un nombre!");
-            this.jPanel1.add(alerta);
-            alerta.setClosable(true);
-            alerta.show();
-            alerta.moveToFront();
+            this.ShowAlerta("La Aerolinea debe tener un nombre!");
         }
 
 
     }
 
 
-    private void PopulateAlianzas() {
-        List<Alianza> alianzas = this.controladorAlianzayProvincia.ListarAlianzas();
-        for (Alianza a : alianzas) {
-            this.comboBoxTipoDeAlianzaAerolineas.addItem(a.getNombreAlianza());
-        }
-    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> comboBoxTipoDeAlianzaAerolineas;
@@ -184,4 +164,26 @@ public class NuevaAerolinea extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
+    // ----------------------------------------------------- = ------------------------------------------------------
+
+    //Comienza mi codigo!
+    ControladorAlianzayProvincia controladorAlianzayProvincia = new ControladorAlianzayProvincia();
+    ControladorAerolinea controladorAerolinea = new ControladorAerolinea();
+    PopupMenu alerta;
+
+    private void ShowAlerta(String mensaje){
+        alerta = new PopupMenu();
+        alerta.add(mensaje);
+        this.jPanel1.add(alerta);
+        alerta.show(jPanel1,0,0);
+    }
+
+    private void PopulateAlianzas() {
+        List<Alianza> alianzas = this.controladorAlianzayProvincia.ListarAlianzas();
+        for (Alianza a : alianzas) {
+            this.comboBoxTipoDeAlianzaAerolineas.addItem(a.getNombreAlianza());
+        }
+    }
+
 }
