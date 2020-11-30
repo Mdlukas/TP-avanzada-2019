@@ -37,6 +37,11 @@ public class ControladorAerolinea {
     }
 
 
+    public List<Aerolinea> TraerAerolineasPorAlianza(String alianza) {
+        return Aerolinea.listadodeAerolineasPorAlianza(alianza);
+    }
+
+
     public Aerolinea ConsultadeAerolinea(Aerolinea consulta) {
          return this.Aerolinea.ConsultarAerolinea(consulta);
     }

@@ -139,7 +139,7 @@ public class NuevaAerolinea extends javax.swing.JInternalFrame {
         if(!this.jTextField1.getText().equals("")){
             alta.setAlianza(this.comboBoxTipoDeAlianzaAerolineas.getSelectedItem().toString());
             alta.setNombreAereoLinea(this.jTextField1.getText());
-            //Llamo al controlador, guardo y si todo sale bien, genero una alerta. Sino, genero una alerta de error!
+            //Save con el controlador, si sale to  do bien, se guarda, sino tira la alerta correspondiente.
             if (this.controladorAerolinea.AltadeAerolinea(alta)) {
                 this.ShowAlerta("Se pudo guardar la Aerolinea de forma correcta!");
             } else {

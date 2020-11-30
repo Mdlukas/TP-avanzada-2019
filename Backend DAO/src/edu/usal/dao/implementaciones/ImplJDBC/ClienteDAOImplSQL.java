@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.usal.dao.interfaces.ClienteDAO;
+import edu.usal.domain.Aerolinea;
 import edu.usal.domain.Cliente;
+import edu.usal.domain.Pasajero;
 import edu.usal.domain.Telefono;
 import edu.usal.util.ConexionSQLServer;
 
@@ -56,6 +58,8 @@ public class ClienteDAOImplSQL implements ClienteDAO {
     public boolean AltaCliente(Cliente alta) {
         //Comienzo la transaccion.
         this.entityManager.getTransaction().begin();
+        Aerolinea AerolineaEncontrada =  this.entityManager.find(Aerolinea.class, alta.getPasajeroFrecuente().getAerolinea().getIDAerolinea());
+        alta.getPasajeroFrecuente().setAerolinea(AerolineaEncontrada);
         try {
             this.entityManager.persist(alta);
             //Realizo commit!

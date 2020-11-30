@@ -5,10 +5,12 @@
  */
 package vistaSwing.Cliente;
 
+import edu.usal.controlador.consola.ControladorAerolinea;
 import edu.usal.controlador.consola.ControladorAlianzayProvincia;
 import edu.usal.controlador.consola.ControladorCliente;
 import edu.usal.domain.*;
 
+import java.awt.*;
 import java.util.Date;
 import java.util.List;
 
@@ -17,9 +19,6 @@ import java.util.List;
  * @author fservidio
  */
 public class NuevoCliente extends javax.swing.JInternalFrame {
-
-    ControladorCliente controlador = new ControladorCliente();
-    ControladorAlianzayProvincia controladorAlianzayProvincia = new ControladorAlianzayProvincia();
 
 
     /**
@@ -162,7 +161,7 @@ public class NuevoCliente extends javax.swing.JInternalFrame {
 
         jLabel26.setText("Categoria:");
 
-        comboBoxAlianzapFrecuente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxAlianzapFrecuente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
         comboBoxAlianzapFrecuente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxAlianzapFrecuenteActionPerformed(evt);
@@ -178,7 +177,7 @@ public class NuevoCliente extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Aerolinea:");
 
-        comboBoxAerolineapFrecuente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxAerolineapFrecuente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
 
         jLabel8.setText("Telefono");
 
@@ -198,14 +197,14 @@ public class NuevoCliente extends javax.swing.JInternalFrame {
 
         jLabel30.setText("Pais:");
 
-        comboBoxPais.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxPais.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
         comboBoxPais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxPaisActionPerformed(evt);
             }
         });
 
-        comboBoxProvinciaArg.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxProvinciaArg.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
 
         labelProvinciaOtro.setText("Provincia:");
 
@@ -468,62 +467,20 @@ public class NuevoCliente extends javax.swing.JInternalFrame {
         //Inicializo controller y  Cliente
         Cliente alta = new Cliente();
 
-        //Mapeo el cliente primero.
-        alta.setNombreCliente(this.textFNombreCliente.getText());
-        alta.setApellidoCliente(this.textFApellidoCliente.getText());
-        alta.setMail(this.textFMailCliente.getText());
-        alta.setRS(this.textFRSCliente.getText());
-        alta.setDni(this.textFDNI.getText());
-        alta.setFechaNacimiento(this.dateFechaNacimientoCliente.getDate());
-
-
-        //Direccion
-        Direccion direccionAlta = new Direccion();
-        direccionAlta.setAltura(this.textFAlturaDireccion.getText());
-        direccionAlta.setCalle(this.textFCalleDireccion.getText());
-        direccionAlta.setCodigoPostal(this.textFCodigoPostalDireccion.getText());
-        direccionAlta.setCiudad(this.textFCiudadDireccion.getText());
-        //Y el pais
-        Pais paisAlta = new Pais();
-
-        //Ahora el telefono
-        Telefono telefonoAlta = new Telefono();
-        telefonoAlta.setNumeroPersonal(this.textfPersonalTelefono.getText());
-        telefonoAlta.setNumeroLaboral(this.textfLaboralTelefono.getText());
-        telefonoAlta.setNumeroCelular(this.textfCelularTelefono.getText());
-
-        //Pasaporte
-        Pasaporte pasaporteAlta = new Pasaporte();
-        pasaporteAlta.setNrodePasaporte(this.textFNumeroPasaporte.getText());
-        pasaporteAlta.setAutoridadEmision(this.textFAutoridadEmisionPasaporte.getText());
-        pasaporteAlta.setFechadeVencimiento(this.dateVencimientoPasaporte.getDate());
-        pasaporteAlta.setFechadeEmision(this.dateFechaEmisionPasaporte.getDate());
-        pasaporteAlta.setPaisEmision(this.textFPaisEmisionPasaporte.getText());
-
-        //Pasajero Frecuente
-        Pasajero pasajeroAlta = new Pasajero();
-        pasajeroAlta.setNumero(this.textFNumeroPFrecuente.getText());
-
-        // Y finalmente el mapeo final.
-        alta.setTelefono(telefonoAlta);
-        alta.setPasaporte(pasaporteAlta);
-        alta.setDireccion(direccionAlta);
-        alta.setPasajeroFrecuente(pasajeroAlta);
-
-        //Llamo al controlador, guardo y si todo sale bien, genero una alerta. Sino, genero una alerta de error!
-        if (this.controlador.AltaCliente(alta)) {
-            vistaSwing.Alertas.AlertaCreacion alerta = new vistaSwing.Alertas.AlertaCreacion("Se pudo guardar el cliente de forma correcta!");
-            this.jPanel1.add(alerta);
-            alerta.setClosable(true);
-            alerta.show();
-            alerta.moveToFront();
+        //Corro metodo principal de validacion.
+        if (this.HandleNewClient(alta)){
+            //Llamo al controlador, guardo y si to do sale bien, genero una alerta. Sino, genero una alerta de error!
+            if (this.controlador.AltaCliente(alta)) {
+                this.ShowAlerta("Se pudo guardar el cliente de forma correcta!");
+            } else {
+                this.ShowAlerta("No se ha podido guardar de forma correcta, consulte la consola!");
+            }
         } else {
-            vistaSwing.Alertas.AlertaCreacion alerta = new vistaSwing.Alertas.AlertaCreacion("No se ha podido guardar de forma correcta, consulte la consola!");
-            this.jPanel1.add(alerta);
-            alerta.setClosable(true);
-            alerta.show();
-            alerta.moveToFront();
+            this.ShowAlerta("Uno o mas campos criticos no estan correctamente"+"\n llenados, porfavor revise y" +
+                    " intente de nuevo!");
         }
+
+
     }//GEN-LAST:event_btnGuardarClienteActionPerformed
 
     private void textfPersonalTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textfPersonalTelefonoActionPerformed
@@ -531,33 +488,13 @@ public class NuevoCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_textfPersonalTelefonoActionPerformed
 
     private void comboBoxPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPaisActionPerformed
-        // TODO add your handling code here:
+        this.HandlePaises(this.comboBoxPais.getSelectedItem().toString());
     }//GEN-LAST:event_comboBoxPaisActionPerformed
 
     private void comboBoxAlianzapFrecuenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxAlianzapFrecuenteActionPerformed
-        // TODO add your handling code here:
+        this.PopulateAerolineas(this.comboBoxAlianzapFrecuente.getSelectedItem().toString());
     }//GEN-LAST:event_comboBoxAlianzapFrecuenteActionPerformed
 
-    private void PopulatePaises() {
-        List<Pais> paises = this.controlador.GetPaises();
-        for (Pais p : paises) {
-            this.comboBoxPais.addItem(p.getNombrePais());
-        }
-    }
-
-    private void PopulateProvincias() {
-        List<Provincia> provincias = this.controladorAlianzayProvincia.ListarProvincias();
-        for (Provincia p : provincias) {
-            this.comboBoxProvinciaArg.addItem(p.getNombreProvincia());
-        }
-    }
-
-    private void PopulateAlianzas() {
-        List<Alianza> alianzas = this.controladorAlianzayProvincia.ListarAlianzas();
-        for (Alianza a : alianzas) {
-            this.comboBoxAlianzapFrecuente.addItem(a.getNombreAlianza());
-        }
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardarCliente;
@@ -621,4 +558,154 @@ public class NuevoCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField textfLaboralTelefono;
     private javax.swing.JTextField textfPersonalTelefono;
     // End of variables declaration//GEN-END:variables
+
+    // ----------------------------------------------------- = ------------------------------------------------------
+
+    //Declaro mis objetos
+    ControladorCliente controlador = new ControladorCliente();
+    ControladorAerolinea controladorAerolinea = new ControladorAerolinea();
+    ControladorAlianzayProvincia controladorAlianzayProvincia = new ControladorAlianzayProvincia();
+    PopupMenu alerta;
+    List<Aerolinea> aerolineas;
+
+    //Y mis metodos de manejo.
+
+    private void ShowAlerta(String mensaje){
+        alerta = new PopupMenu();
+        alerta.add(mensaje);
+        this.jPanel1.add(alerta);
+        alerta.show(jPanel1,0,0);
+    }
+
+    //Populators
+
+    private void PopulatePaises() {
+        List<Pais> paises = this.controlador.GetPaises();
+        for (Pais p : paises) {
+            this.comboBoxPais.addItem(p.getNombrePais());
+        }
+    }
+
+    private void PopulateProvincias() {
+        List<Provincia> provincias = this.controladorAlianzayProvincia.ListarProvincias();
+        for (Provincia p : provincias) {
+            this.comboBoxProvinciaArg.addItem(p.getNombreProvincia());
+        }
+    }
+
+    private void PopulateAlianzas() {
+        List<Alianza> alianzas = this.controladorAlianzayProvincia.ListarAlianzas();
+        for (Alianza a : alianzas) {
+            this.comboBoxAlianzapFrecuente.addItem(a.getNombreAlianza());
+        }
+    }
+
+    private void PopulateAerolineas(String alianza){
+        this.comboBoxAerolineapFrecuente.removeAllItems();
+        aerolineas = this.controladorAerolinea.TraerAerolineasPorAlianza(alianza);
+        for (Aerolinea a : aerolineas) {
+            this.comboBoxAerolineapFrecuente.addItem(a.getNombreAereoLinea());
+        }
+    }
+
+    // Handlers
+    private boolean HandleNewClient(Cliente alta){
+        boolean valido = false;
+        try {
+            //Mapeo el cliente primero.
+            alta.setNombreCliente(this.textFNombreCliente.getText());
+            alta.setApellidoCliente(this.textFApellidoCliente.getText());
+            alta.setMail(this.textFMailCliente.getText());
+            alta.setRS(this.textFRSCliente.getText());
+            alta.setDni(this.textFDNI.getText());
+            alta.setFechaNacimiento(this.dateFechaNacimientoCliente.getDate());
+
+
+            //Direccion
+            Direccion direccionAlta = new Direccion();
+            direccionAlta.setAltura(this.textFAlturaDireccion.getText());
+            direccionAlta.setCalle(this.textFCalleDireccion.getText());
+            direccionAlta.setCodigoPostal(this.textFCodigoPostalDireccion.getText());
+            direccionAlta.setCiudad(this.textFCiudadDireccion.getText());
+            direccionAlta.setProvincia(this.HandleProvincias(this.comboBoxPais.getSelectedItem().toString()));
+            //Y el pais
+            Pais paisAlta = new Pais();
+
+            //Ahora el telefono
+            Telefono telefonoAlta = new Telefono();
+            telefonoAlta.setNumeroPersonal(this.textfPersonalTelefono.getText());
+            telefonoAlta.setNumeroLaboral(this.textfLaboralTelefono.getText());
+            telefonoAlta.setNumeroCelular(this.textfCelularTelefono.getText());
+
+            //Pasaporte
+            Pasaporte pasaporteAlta = new Pasaporte();
+            pasaporteAlta.setNrodePasaporte(this.textFNumeroPasaporte.getText());
+            pasaporteAlta.setAutoridadEmision(this.textFAutoridadEmisionPasaporte.getText());
+            pasaporteAlta.setFechadeVencimiento(this.dateVencimientoPasaporte.getDate());
+            pasaporteAlta.setFechadeEmision(this.dateFechaEmisionPasaporte.getDate());
+            pasaporteAlta.setPaisEmision(this.textFPaisEmisionPasaporte.getText());
+
+            //Pasajero Frecuente
+            Pasajero pasajeroAlta = new Pasajero();
+            pasajeroAlta.setNumero(this.textFNumeroPFrecuente.getText());
+            pasajeroAlta.setCategoria(this.comboBoxCategoriapFrecuente.getSelectedItem().toString());
+            for (Aerolinea a: this.aerolineas) {
+                if (a.getNombreAereoLinea().equals(this.comboBoxAerolineapFrecuente.getSelectedItem().toString())){
+                    pasajeroAlta.setAerolinea(a);
+                }
+            }
+
+            // Y finalmente el mapeo final.
+            alta.setTelefono(telefonoAlta);
+            alta.setPasaporte(pasaporteAlta);
+            alta.setDireccion(direccionAlta);
+            alta.setPasajeroFrecuente(pasajeroAlta);
+
+            //Y finalmente...
+            valido = true;
+            return valido;
+        } catch (Exception e){
+            return valido;
+        }
+
+    }
+
+
+    //Handler para manejar la logica de cual de las barras se muestra.
+    private void HandlePaises(String paisSeleccionado) {
+        if (paisSeleccionado.equals("Argentina")){
+            this.labelProvinciaArg.setVisible(true);
+            this.comboBoxProvinciaArg.setVisible(true);
+            this.labelProvinciaOtro.setVisible(false);
+            this.textFieldProvinciaOtro.setVisible(false);
+            this.labelPaisOtro.setVisible(false);
+            this.textFieldPaisOtro.setVisible(false);
+        } else if(paisSeleccionado.equals("OTRO")){
+            this.labelProvinciaArg.setVisible(false);
+            this.comboBoxProvinciaArg.setVisible(false);
+            this.labelProvinciaOtro.setVisible(true);
+            this.textFieldProvinciaOtro.setVisible(true);
+            this.labelPaisOtro.setVisible(true);
+            this.textFieldPaisOtro.setVisible(true);
+        } else {
+            this.labelProvinciaArg.setVisible(false);
+            this.comboBoxProvinciaArg.setVisible(false);
+            this.labelProvinciaOtro.setVisible(true);
+            this.textFieldProvinciaOtro.setVisible(true);
+            this.labelPaisOtro.setVisible(false);
+            this.textFieldPaisOtro.setVisible(false);
+        }
+    }
+
+    //Metodo para definir cual de todas las provincias se retorna.
+    private String HandleProvincias(String paisSeleccionado){
+        if (paisSeleccionado.equals("Argentina")){
+            return this.comboBoxProvinciaArg.getSelectedItem().toString();
+        } else if(paisSeleccionado.equals("OTRO")){
+            return this.textFieldProvinciaOtro.getText();
+        } else{
+            return this.textFieldProvinciaOtro.getText();
+        }
+    }
+
 }

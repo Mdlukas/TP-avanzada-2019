@@ -3,11 +3,13 @@ package edu.usal.dao.implementaciones.ImplJDBC;
 import edu.usal.dao.interfaces.AerolineaDAO;
 import edu.usal.domain.Aerolinea;
 import edu.usal.domain.Cliente;
+import edu.usal.domain.Pasajero;
 import edu.usal.util.ConexionSQLServer;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import java.util.List;
 
 public class AerolineaDAOImplSQL implements AerolineaDAO {
@@ -35,6 +37,27 @@ public class AerolineaDAOImplSQL implements AerolineaDAO {
         this.entityManager.getTransaction().begin();
         //Native query para hacer un SELECT *
         List<Aerolinea> aerolineas = this.entityManager.createQuery("SELECT a FROM Aerolinea a").getResultList();
+        //Realizo commit!
+        try {
+            this.entityManager.getTransaction().commit();
+            //Retorno clientes.
+            return aerolineas;
+        } catch (Exception e) {
+            System.out.println("No pude retornar las Aerolineas!");
+            this.entityManager.getTransaction().rollback();
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public List<Aerolinea> listadodeAerolineasPorAlianza(String alianza) {
+        //Comienzo la transaccion!
+        this.entityManager.getTransaction().begin();
+        //Native query para hacer un SELECT *
+        Query q = this.entityManager.createQuery("SELECT a FROM Aerolinea a WHERE Alianza=:alianza");
+        q.setParameter("alianza",alianza);
+        List<Aerolinea> aerolineas = q.getResultList();
         //Realizo commit!
         try {
             this.entityManager.getTransaction().commit();

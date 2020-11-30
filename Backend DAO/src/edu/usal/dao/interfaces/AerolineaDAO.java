@@ -8,6 +8,7 @@ public interface AerolineaDAO {
 
 	public Aerolinea ConsultarAerolinea (Aerolinea obtener);
 	public List<Aerolinea> listadodeAerolineas () ;
+	public List<Aerolinea> listadodeAerolineasPorAlianza(String alianza);
 	public boolean AltadeAerolinea(Aerolinea altaAerolinea);
 	public boolean ModificaciondeAerolinea (Aerolinea modificarAerolinea);
 	public boolean BajadeAerolinea (Aerolinea  bajaAerolinea);
