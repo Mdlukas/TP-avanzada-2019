@@ -44,7 +44,7 @@ public class VentaDAOImplSQL implements VentaDAO {
     }
 
     @Override
-    public void AltadeVenta(Venta alta) {
+    public boolean AltadeVenta(Venta alta) {
         Venta save = new Venta();
         //Solamente agrego los objetos sin relaciones, por que me guardo esos para el modificar!
         save.setFormadePago(alta.getFormadePago());
@@ -54,16 +54,18 @@ public class VentaDAOImplSQL implements VentaDAO {
             this.entityManager.persist(save);
             this.entityManager.getTransaction().commit();
             System.out.println("Se guardo venta de forma correcta!");
+            return true;
         } catch (Exception e) {
             this.entityManager.getTransaction().rollback();
             e.printStackTrace();
             System.out.println("No pude guardar la venta hermano!");
+            return false;
         }
     }
 
 
     @Override
-    public void ModificaciondeVenta(Venta modificar) {
+    public boolean ModificaciondeVenta(Venta modificar) {
         this.entityManager.getTransaction().begin();
         try {
             Venta enBaseDeDatos = this.entityManager.find(Venta.class, modificar.getIDVenta());
@@ -71,27 +73,31 @@ public class VentaDAOImplSQL implements VentaDAO {
             //TODO aca es donde tendria que ir al set de Cliente/Vuelo y Aerolinea.
             this.entityManager.getTransaction().commit();
             System.out.println("Se guardo actualizo la venta " + modificar.getIDVenta() + "  de forma correcta!");
+            return true;
         } catch (Exception e) {
             this.entityManager.getTransaction().rollback();
             e.printStackTrace();
             System.out.println("No pude editar la venta hermano!");
+            return false;
         }
     }
 
 
     @Override
-    public void BajadeVenta(Venta baja) {
+    public boolean BajadeVenta(Venta baja) {
         this.entityManager.getTransaction().begin();
         Venta ventaEncontrada = entityManager.find(Venta.class, baja.getIDVenta());
         try {
             this.entityManager.remove(ventaEncontrada);
             this.entityManager.getTransaction().commit();
             System.out.println("Borre la venta: " + baja.getIDVenta() + " sin problemas!");
+            return true;
         } catch (Exception e) {
             //Realizo un rollback si no se pudo borrar el cliente.
             this.entityManager.getTransaction().rollback();
             e.printStackTrace();
             System.out.println("No se pudo borrar el cliente con el ID: " + baja.getIDVenta());
+            return false;
         }
     }
 

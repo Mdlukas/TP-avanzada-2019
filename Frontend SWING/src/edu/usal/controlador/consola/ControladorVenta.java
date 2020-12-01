@@ -2,42 +2,53 @@ package edu.usal.controlador.consola;
 
 import edu.usal.dao.factory.FactoryVenta;
 import edu.usal.dao.interfaces.VentaDAO;
+import edu.usal.domain.Venta;
 import edu.usal.vista.consola.VistaVenta;
+
+import java.util.List;
 
 public class ControladorVenta {
 
-    private final VistaVenta vistaVenta;
+    private VistaVenta vistaVenta;
     private VentaDAO Venta;
 
 
     public ControladorVenta(VistaVenta vista) {
         this.vistaVenta = vista;
         try {
-            this.Venta = FactoryVenta.GetVentaImplementacion("SQL");
+            this.Venta = FactoryVenta.GetVentaImplementacion();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void AltadeVenta() {
-        this.Venta.AltadeVenta(vistaVenta.AltadeVenta());
+    public ControladorVenta() {
+        try {
+            this.Venta = FactoryVenta.GetVentaImplementacion();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public void ListadodeVenta() {
-        this.vistaVenta.ListadodeVenta(Venta.listadodeVentas());
+    public boolean AltadeVenta(Venta Alta) {
+        return this.Venta.AltadeVenta(Alta);
+    }
+
+    public List<Venta> ListadodeVenta() {
+        return this.Venta.listadodeVentas();
     }
 
 
-    public void ConsultadeVenta() {
-        vistaVenta.imprimirVenta(this.Venta.ObtenerVenta(vistaVenta.ConsultadeVenta()));
+    public Venta ConsultadeVenta(Venta Obtener) {
+        return this.Venta.ObtenerVenta(Obtener);
     }
 
-    public void BajadeVenta() {
-        this.Venta.BajadeVenta(vistaVenta.BajadeVenta());
+    public boolean BajadeVenta(Venta Baja) {
+        return this.Venta.BajadeVenta(Baja);
     }
 
-    public void ModificaciondeVenta() {
-        this.Venta.ModificaciondeVenta(vistaVenta.ModificaciondeVenta());
+    public boolean ModificaciondeVenta(Venta Modificacion) {
+        return this.Venta.ModificaciondeVenta(Modificacion);
     }
 
 
@@ -47,48 +58,41 @@ public class ControladorVenta {
             case 1:
                 System.out.println("Alta de Venta ");
                 System.out.println("\n");
-                this.AltadeVenta();
+                this.AltadeVenta(this.vistaVenta.AltadeVenta());
                 this.MostrarMenuVenta();
-
                 break;
 
             case 2:
                 System.out.println("Baja de Venta \n");
                 System.out.println("\n");
-                this.BajadeVenta();
+                this.BajadeVenta(this.vistaVenta.BajadeVenta());
                 this.MostrarMenuVenta();
-
-
                 break;
 
             case 3:
                 System.out.println("Modificacion de Venta \n");
                 System.out.println("\n");
-                this.ModificaciondeVenta();
+                this.ModificaciondeVenta(this.vistaVenta.ModificaciondeVenta());
                 this.MostrarMenuVenta();
-
                 break;
 
             case 4:
                 System.out.println("Consulta de Venta \n");
                 System.out.println("\n");
-                this.ConsultadeVenta();
+                this.ConsultadeVenta(this.vistaVenta.ConsultadeVenta());
                 this.MostrarMenuVenta();
                 break;
 
             case 5:
                 System.out.println("Listado de Venta \n");
                 System.out.println("\n");
-                this.ListadodeVenta();
+                this.vistaVenta.ListadodeVenta(this.ListadodeVenta());
                 this.MostrarMenuVenta();
-
                 break;
 
             case 6:
                 System.out.println("Finalizar Ejecucion \n");
-
                 break;
-
         }
 
     }
