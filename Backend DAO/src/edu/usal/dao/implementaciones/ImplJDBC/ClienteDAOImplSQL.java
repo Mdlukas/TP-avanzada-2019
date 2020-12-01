@@ -1,18 +1,11 @@
 package edu.usal.dao.implementaciones.ImplJDBC;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import edu.usal.dao.interfaces.ClienteDAO;
-import edu.usal.domain.Aerolinea;
-import edu.usal.domain.Cliente;
-import edu.usal.domain.Pasajero;
-import edu.usal.domain.Telefono;
+import edu.usal.domain.*;
 import edu.usal.util.ConexionSQLServer;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import java.util.List;
 
 public class ClienteDAOImplSQL implements ClienteDAO {
 
@@ -43,10 +36,10 @@ public class ClienteDAOImplSQL implements ClienteDAO {
         //Native query para hacer un SELECT *
         List<Cliente> clientesDB = this.entityManager.createQuery("SELECT NEW  Cliente (c.IDCliente,c.mail,c.NombreCliente,c.ApellidoCliente,c.dni) FROM Cliente c").getResultList();
         //Realizo commit!
-        try{
+        try {
             this.entityManager.getTransaction().commit();
             return clientesDB;
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("No pude retornar los clientes!");
             this.entityManager.getTransaction().rollback();
             e.printStackTrace();
@@ -58,7 +51,7 @@ public class ClienteDAOImplSQL implements ClienteDAO {
     public boolean AltaCliente(Cliente alta) {
         //Comienzo la transaccion.
         this.entityManager.getTransaction().begin();
-        Aerolinea AerolineaEncontrada =  this.entityManager.find(Aerolinea.class, alta.getPasajeroFrecuente().getAerolinea().getIDAerolinea());
+        Aerolinea AerolineaEncontrada = this.entityManager.find(Aerolinea.class, alta.getPasajeroFrecuente().getAerolinea().getIDAerolinea());
         alta.getPasajeroFrecuente().setAerolinea(AerolineaEncontrada);
         try {
             this.entityManager.persist(alta);
@@ -89,11 +82,31 @@ public class ClienteDAOImplSQL implements ClienteDAO {
             enBaseDeDatos.setRS(modificar.getRS());
             enBaseDeDatos.setMail(modificar.getMail());
             enBaseDeDatos.setFechaNacimiento(modificar.getFechaNacimiento());
-            //Varios objetos.
-            enBaseDeDatos.setPasajeroFrecuente(modificar.getPasajeroFrecuente());
-            enBaseDeDatos.setDireccion(modificar.getDireccion());
-            enBaseDeDatos.setPasaporte(modificar.getPasaporte());
-            enBaseDeDatos.setTelefono(modificar.getTelefono());
+            //Pasajero
+            Pasajero pasajeroEncontrado = this.entityManager.find(Pasajero.class, enBaseDeDatos.getPasajeroFrecuente().getIDnrodepasajero());
+            pasajeroEncontrado.setNumero(modificar.getPasajeroFrecuente().getNumero());
+            enBaseDeDatos.setPasajeroFrecuente(pasajeroEncontrado);
+            //Direccion
+            Direccion direccionEncontrada = this.entityManager.find(Direccion.class, modificar.getDireccion().getIDDireccion());
+            direccionEncontrada.setCiudad(modificar.getDireccion().getCiudad());
+            direccionEncontrada.setCodigoPostal(modificar.getDireccion().getCodigoPostal());
+            direccionEncontrada.setAltura(modificar.getDireccion().getAltura());
+            direccionEncontrada.setCalle(modificar.getDireccion().getCalle());
+            enBaseDeDatos.setDireccion(direccionEncontrada);
+            //Telefono
+            Telefono telefonoEncontrado = this.entityManager.find(Telefono.class, modificar.getTelefono().getIDTelefono());
+            telefonoEncontrado.setNumeroCelular(modificar.getTelefono().getNumeroCelular());
+            telefonoEncontrado.setNumeroLaboral(modificar.getTelefono().getNumeroLaboral());
+            telefonoEncontrado.setNumeroPersonal(modificar.getTelefono().getNumeroPersonal());
+            enBaseDeDatos.setTelefono(telefonoEncontrado);
+            //Pasaporte
+            Pasaporte pasaporteEncontrado = this.entityManager.find(Pasaporte.class,modificar.getPasaporte().getIDPasaporte());
+            pasaporteEncontrado.setFechadeVencimiento(modificar.getPasaporte().getFechadeVencimiento());
+            pasaporteEncontrado.setFechadeEmision(modificar.getPasaporte().getFechadeEmision());
+            pasaporteEncontrado.setAutoridadEmision(modificar.getPasaporte().getAutoridadEmision());
+            pasaporteEncontrado.setNrodePasaporte(modificar.getPasaporte().getNrodePasaporte());
+            pasaporteEncontrado.setPaisEmision(modificar.getPasaporte().getPaisEmision());
+            enBaseDeDatos.setPasaporte(pasaporteEncontrado);
             //Realizo commit!
             this.entityManager.getTransaction().commit();
             System.out.println("Se guardo actualizo el cliente " + modificar.getIDCliente() + "  de forma correcta!");
