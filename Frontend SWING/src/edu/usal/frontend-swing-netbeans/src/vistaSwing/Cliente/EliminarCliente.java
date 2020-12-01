@@ -6,7 +6,10 @@
 package vistaSwing.Cliente;
 
 import edu.usal.controlador.consola.ControladorCliente;
+import edu.usal.controlador.consola.ControladorVuelo;
 import edu.usal.domain.Cliente;
+
+import java.awt.*;
 
 /**
  *
@@ -14,7 +17,7 @@ import edu.usal.domain.Cliente;
  */
 public class EliminarCliente extends javax.swing.JInternalFrame {
 
-    ControladorCliente controlador = new ControladorCliente();
+
 
     /**
      * Creates new form EliminarCliente
@@ -111,30 +114,24 @@ public class EliminarCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarClienteActionPerformed
-        Cliente baja = new Cliente();
         //Valido que el campo de id no este vacio...
         if (!textFidCliente.getText().equals("")){
-            baja.setIDCliente(Integer.parseInt(textFidCliente.getText()));
-            if(controlador.BajadeCliente(baja)){
-                vistaSwing.Alertas.AlertaCreacion alerta = new vistaSwing.Alertas.AlertaCreacion("Se pudo borrar el cliente de forma correcta!");
-                this.jPanel1.add(alerta);
-                alerta.setClosable(true);
-                alerta.show();
-                alerta.moveToFront();
-            } else {
-                vistaSwing.Alertas.AlertaCreacion alerta = new vistaSwing.Alertas.AlertaCreacion("No se pudo borrar el cliente, porfavor revise la consola!");
-                this.jPanel1.add(alerta);
-                alerta.setClosable(true);
-                alerta.show();
-                alerta.moveToFront();
+            try{
+                int bajaId = (Integer.parseInt(textFidCliente.getText()));
+                Cliente baja = new Cliente();
+                baja.setIDCliente(bajaId);
+                if(controlador.BajadeCliente(baja)){
+                    this.ShowAlerta("Se pudo borrar el cliente de forma correcta!");
+                } else {
+                    this.ShowAlerta("No se pudo borrar el cliente, porfavor revise la consola!");
+                }
+            } catch (Exception e){
+                e.printStackTrace();
+                this.ShowAlerta("El id tiene que ser un valor numerico!");
             }
         }
         else {
-            vistaSwing.Alertas.AlertaCreacion alerta = new vistaSwing.Alertas.AlertaCreacion("Se debe ingresar un ID antes de borrar!");
-            this.jPanel1.add(alerta);
-            alerta.setClosable(true);
-            alerta.show();
-            alerta.moveToFront();
+            this.ShowAlerta("Se debe ingresar un ID antes de borrar!");
         }
     }
 
@@ -148,4 +145,19 @@ public class EliminarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField textFidCliente;
     // End of variables declaration//GEN-END:variables
+
+    // ----------------------------------------------------- = ------------------------------------------------------
+
+    //Declaro mis objetos
+    ControladorCliente controlador = new ControladorCliente();
+    PopupMenu alerta;
+
+    //Y mis metodos de manejo.
+
+    private void ShowAlerta(String mensaje){
+        alerta = new PopupMenu();
+        alerta.add(mensaje);
+        this.jPanel1.add(alerta);
+        alerta.show(jPanel1,0,0);
+    }
 }

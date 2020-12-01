@@ -8,8 +8,8 @@ public interface VentaDAO {
 	
 	public Venta ObtenerVenta (Venta obtener);
 	public List<Venta> listadodeVentas () ;
-	public void AltadeVenta(Venta alta);
-	public void ModificaciondeVenta (Venta modificar);
-	public void BajadeVenta (Venta  baja);
+	public boolean AltadeVenta(Venta alta);
+	public boolean ModificaciondeVenta (Venta modificar);
+	public boolean BajadeVenta (Venta  baja);
 
 }

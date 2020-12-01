@@ -14,6 +14,10 @@ public class Vuelo implements Serializable {
     @Column(name = "IDVuelos", unique = true)
     private int IDVuelo;
 
+    @Basic
+    @Column(name = "NUMvuelo")
+    private String numeroVuelo;
+
 	@Basic
 	@Column(name = "CantAsientos")
     private int cantAsientos;
@@ -30,15 +34,15 @@ public class Vuelo implements Serializable {
 	@Column(name = "TiempoVuelo")
     private String tiempovuelo;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "idAeropuertoSalida")
     private Aeropuerto aeropuertodeSalida;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "idAeropuertoLlegada")
     private Aeropuerto aeropuertodeLlegada;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "idLineaAerea")
     private Aerolinea aerolinea;
 
@@ -69,6 +73,14 @@ public class Vuelo implements Serializable {
         this.aerolinea = aerolinea;
     }
 
+
+    public String getNumeroVuelo() {
+        return numeroVuelo;
+    }
+
+    public void setNumeroVuelo(String numeroVuelo) {
+        this.numeroVuelo = numeroVuelo;
+    }
 
     public Aeropuerto getAeropuertodeSalida() {
         return aeropuertodeSalida;
@@ -146,6 +158,7 @@ public class Vuelo implements Serializable {
 	public String toString() {
 		return "Vuelo{" +
 				"IDVuelo=" + IDVuelo +
+                ", numVuelo " + numeroVuelo +
 				", cantAsientos=" + cantAsientos +
 				", fechaSalida=" + fechaSalida +
 				", fechaLlegada=" + fechaLlegada +

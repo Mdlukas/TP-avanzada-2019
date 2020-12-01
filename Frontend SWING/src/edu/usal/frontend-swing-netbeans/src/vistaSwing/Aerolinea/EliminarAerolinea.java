@@ -8,6 +8,8 @@ package vistaSwing.Aerolinea;
 import edu.usal.controlador.consola.ControladorAerolinea;
 import edu.usal.domain.Aerolinea;
 
+import java.awt.*;
+
 /**
  *
  * @author fservidio
@@ -98,27 +100,21 @@ public class EliminarAerolinea extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
 
         if(!this.jTextField3.getText().equals("")){
-            Aerolinea baja = new Aerolinea();
-            baja.setIDAerolinea(Integer.parseInt(this.jTextField3.getText()));
-            if (this.controladorAerolinea.BajadeAerolinea(baja)) {
-                vistaSwing.Alertas.AlertaCreacion alerta = new vistaSwing.Alertas.AlertaCreacion("Se pudo borrar la Aerolinea de forma correcta!");
-                super.add(alerta);
-                alerta.setClosable(true);
-                alerta.show();
-                alerta.moveToFront();
-            } else {
-                vistaSwing.Alertas.AlertaCreacion alerta = new vistaSwing.Alertas.AlertaCreacion("No se ha podido borrar de forma correcta, consulte la consola!");
-                super.add(alerta);
-                alerta.setClosable(true);
-                alerta.show();
-                alerta.moveToFront();
+            try {
+                int idBorrado = Integer.parseInt(this.jTextField3.getText());
+                Aerolinea baja = new Aerolinea(idBorrado);
+                if (this.controladorAerolinea.BajadeAerolinea(baja)) {
+                    this.ShowAlerta("Se pudo borrar la Aerolinea de forma correcta!");
+                } else {
+                    this.ShowAlerta("No se ha podido borrar de forma correcta, consulte la consola!");
+                }
+            } catch (Exception e){
+                e.printStackTrace();
+                this.ShowAlerta("El id debe ser un valor numerico!");
             }
+
         } else {
-            vistaSwing.Alertas.AlertaCreacion alerta = new vistaSwing.Alertas.AlertaCreacion("Se tiene que ingresar un ID primero!");
-            super.add(alerta);
-            alerta.setClosable(true);
-            alerta.show();
-            alerta.moveToFront();
+            this.ShowAlerta("Se tiene que ingresar un ID primero!");
         }
     }
 
@@ -129,4 +125,17 @@ public class EliminarAerolinea extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
+
+    // ----------------------------------------------------- = ------------------------------------------------------
+
+    PopupMenu alerta;
+
+    //Y mis metodos de manejo.
+
+    private void ShowAlerta(String mensaje){
+        alerta = new PopupMenu();
+        alerta.add(mensaje);
+        super.add(alerta);
+        alerta.show(super.rootPane,0,0);
+    }
 }

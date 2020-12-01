@@ -8,7 +8,7 @@ public class FactoryVenta {
 
     private static String implementacion = PropertiesUtil.getString("Venta_implementation");
 
-    public static VentaDAO GetVentaImplementacion(String sql) {
+    public static VentaDAO GetVentaImplementacion() {
         if (implementacion.equals("SQL")) {
             System.out.println("Retorno una implementacion del tipo SQL para el uso de clientes!");
             return new VentaDAOImplSQL();

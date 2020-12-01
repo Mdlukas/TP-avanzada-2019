@@ -5,6 +5,14 @@
  */
 package vistaSwing.Vuelo;
 
+import edu.usal.controlador.consola.ControladorVuelo;
+import edu.usal.domain.Aerolinea;
+import edu.usal.domain.Vuelo;
+
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.util.List;
+
 /**
  *
  * @author fservidio
@@ -16,6 +24,7 @@ public class VerVuelos extends javax.swing.JInternalFrame {
      */
     public VerVuelos() {
         initComponents();
+        this.addRowToTable(this.controlador.ListadodeVuelo());
     }
 
     /**
@@ -40,18 +49,15 @@ public class VerVuelos extends javax.swing.JInternalFrame {
         setToolTipText("");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
-            },
+            new Object [][] {},
             new String [] {
-                "ID", "Numero de Vuelo", "Cantidad de Asientos", "Aeropuerto de salida", "Aeropuero de Llegada", "Fecha y Hora de Salida", "Fecha y Hora de Llegada", "Tipo de Vuelo"
+                "ID", "Numero de Vuelo", "Cantidad de Asientos", "Aeropuerto de salida", "Aeropuero de Llegada", "Fecha y Hora de Salida",
+                    "Fecha y Hora de Llegada", "Tipo de Vuelo", "Aerolinea"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class,
+                    java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -103,4 +109,29 @@ public class VerVuelos extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    // ----------------------------------------------------- = ------------------------------------------------------
+
+    //Declaro mis objetos
+    ControladorVuelo controlador = new ControladorVuelo();
+    PopupMenu alerta;
+
+    //Y mis metodos de manejo.
+    public void addRowToTable(List<Vuelo> vuelos){
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        Object rowData[] = new Object[9];
+        for (int i = 0; i < vuelos.size(); i++){
+            rowData[0] = vuelos.get(i).getIDVuelo();
+            rowData[1] = vuelos.get(i).getNumeroVuelo();
+            rowData[2] = vuelos.get(i).getCantAsientos();
+            rowData[3] = vuelos.get(i).getAeropuertodeSalida().getCodigodeAeropuerto();
+            rowData[4] = vuelos.get(i).getAeropuertodeLLegada().getCodigodeAeropuerto();
+            rowData[5] = vuelos.get(i).getFechaSalida();
+            rowData[6] = vuelos.get(i).getFechaLLegada();
+            rowData[7] = "One-Way";
+            rowData[8] = vuelos.get(i).getAerolinea().getNombreAereoLinea();
+            model.addRow(rowData);
+        }
+    }
+
 }

@@ -30,6 +30,7 @@ public class ControladorVuelo {
     }
 
     public boolean AltadeVuelo(Vuelo Alta) {
+        Alta.setNumeroVuelo(this.HandleNumeroVuelo(Alta));
         return this.Vuelo.AltadeVuelo(Alta);
     }
 
@@ -38,6 +39,7 @@ public class ControladorVuelo {
     }
 
     public boolean ModificaciondeVuelo(Vuelo Modificacion) {
+        Modificacion.setNumeroVuelo(this.HandleNumeroVuelo(Modificacion));
         return this.Vuelo.ModificaciondeVuelo(Modificacion);
     }
 
@@ -49,6 +51,21 @@ public class ControladorVuelo {
         return this.Vuelo.listadodeVuelos();
     }
 
+    //Funcion para manejar la restriccion del numero de vuelo
+    private String HandleNumeroVuelo(Vuelo alta) {
+        String firstLetters = "";
+        int validador = 0;
+        for (String input: alta.getAerolinea().getNombreAereoLinea().split(" ")) {
+            firstLetters += input.charAt(0);
+            validador++;
+        }
+        if (validador < 2){
+            String input = alta.getAerolinea().getNombreAereoLinea();
+            firstLetters += input.charAt(1);
+        }
+        firstLetters = firstLetters+"-"+alta.getNumeroVuelo();
+        return firstLetters;
+    }
 
     public void MostrarMenuVuelo() {
 

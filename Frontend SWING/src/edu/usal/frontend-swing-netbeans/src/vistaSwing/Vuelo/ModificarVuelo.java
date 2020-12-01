@@ -5,6 +5,15 @@
  */
 package vistaSwing.Vuelo;
 
+import edu.usal.controlador.consola.ControladorAerolinea;
+import edu.usal.controlador.consola.ControladorVuelo;
+import edu.usal.domain.Aerolinea;
+import edu.usal.domain.Aeropuerto;
+import edu.usal.domain.Vuelo;
+
+import java.awt.*;
+import java.util.List;
+
 /**
  *
  * @author fservidio
@@ -16,6 +25,7 @@ public class ModificarVuelo extends javax.swing.JInternalFrame {
      */
     public ModificarVuelo() {
         initComponents();
+        this.PopulateAerolineas();
     }
 
     /**
@@ -96,7 +106,7 @@ public class ModificarVuelo extends javax.swing.JInternalFrame {
 
         jLabel11.setText("Aerolinea:");
 
-        comboBoxAerolineaVuelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxAerolineaVuelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
         comboBoxAerolineaVuelo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxAerolineaVueloActionPerformed(evt);
@@ -232,11 +242,18 @@ public class ModificarVuelo extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        //BOTON MODIFICAR.
+        this.HandleConsultarVuelo();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        if(consulta != null) {
+            this.HandleEditVuelo(consulta);
+        } else {
+            this.ShowAlerta("No se pude editar un vuelo sin consultarlo primero!");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void comboBoxAerolineaVueloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxAerolineaVueloActionPerformed
@@ -270,4 +287,151 @@ public class ModificarVuelo extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables
+
+    // ----------------------------------------------------- = ------------------------------------------------------
+
+    //Declaro mis objetos
+    ControladorVuelo controlador = new ControladorVuelo();
+    ControladorAerolinea controladorAerolinea = new ControladorAerolinea();
+    List<Aerolinea> aerolineasList =  this.controladorAerolinea.ListadodeAerolinea();
+    Vuelo consulta = new Vuelo();
+    PopupMenu alerta;
+
+    //Y mis metodos de manejo.
+
+    //Metodo para traer datos de consulta.
+    private void HandleConsultarVuelo() {
+        try{
+            int busqueda = Integer.parseInt(this.jTextField8.getText());
+            consulta = new Vuelo();
+            consulta.setIDVuelo(busqueda);
+        } catch (Exception e){
+            this.ShowAlerta("El Id tiene que ser un valor numerico!");
+            e.printStackTrace();
+        }
+        try {
+            consulta = this.controlador.ConsultadeVuelo(consulta);
+            this.jTextField1.setText(consulta.getNumeroVuelo());
+            this.jTextField2.setText(String.valueOf(consulta.getCantAsientos()));
+            this.jTextField3.setText(consulta.getAeropuertodeSalida().getCodigodeAeropuerto());
+            this.jTextField4.setText(consulta.getAeropuertodeLLegada().getCodigodeAeropuerto());
+            this.dateFechaSalidaVuelo.setDate(consulta.getFechaSalida());
+            this.dateFechaLlegadaVuelo.setDate(consulta.getFechaLLegada());
+            this.jTextField7.setText(consulta.getTiempovuelo());
+        } catch (Exception e){
+            this.ShowAlerta("No se ha podido encontrar el vuelo, porfavor consulte la consola!");
+        }
+    }
+
+    private void ShowAlerta(String mensaje){
+        alerta = new PopupMenu();
+        alerta.add(mensaje);
+        this.jPanel1.add(alerta);
+        alerta.show(jPanel1,0,0);
+    }
+
+    private void HandleEditVuelo(Vuelo alta){
+        //Instancio Aeropuertos
+        Aeropuerto salida;
+        Aeropuerto llegada;
+
+        boolean valido = true;
+
+        //Mapeo el vuelo en cuestion.
+        //Numero de vuelo
+        if (this.HandleNumeroVuelo(this.jTextField1.getText())) {
+            alta.setNumeroVuelo(this.jTextField1.getText());
+        } else {
+            valido = false;
+            this.ShowAlerta("El numero de vuelo no puede estar vacio!");
+        }
+
+        //Asientos
+        if(!this.jTextField2.getText().equals("")){
+            alta.setCantAsientos(Integer.parseInt(this.jTextField2.getText()));
+        } else {
+            valido = false;
+            this.ShowAlerta("La cantidad de asientos no puede ser dejada vacia!");
+        }
+        //Valido Aeropuerto de Salida
+        if(this.HandleAeropuerto(this.jTextField3.getText())){
+            salida = new Aeropuerto();
+            salida.setCodigodeAeropuerto(this.jTextField3.getText());
+            alta.setAeropuertodeSalida(salida);
+        }
+        //Valido Aeropuerto de Llegada
+        if(this.HandleAeropuerto(this.jTextField4.getText())){
+            llegada = new Aeropuerto();
+            llegada.setCodigodeAeropuerto(this.jTextField4.getText());
+            alta.setAeropuertodeLLegada(llegada);
+        }
+        //Valido dates de salida y llegada.
+        if(this.dateFechaLlegadaVuelo.getDate() != null || this.dateFechaSalidaVuelo.getDate() != null){
+            alta.setFechaLLegada(this.dateFechaLlegadaVuelo.getDate());
+            alta.setFechaSalida(this.dateFechaSalidaVuelo.getDate());
+        } else {
+            valido = false;
+            this.ShowAlerta("El vuelo tiene que tener fecha de Llegada y salida!");
+        }
+
+        alta.setTiempovuelo(this.jTextField7.getText());
+        alta.setAerolinea(this.HandleAerolineaSelected());
+
+        if (valido){
+            if(this.controlador.ModificaciondeVuelo(alta)){
+                this.ShowAlerta("Se guardo el vuelo de forma correcta!");
+            } else {
+                this.ShowAlerta("No se pudo guardar el vuelo, consulte la consola!");
+            }
+        }
+
+
+
+    }
+
+
+    private Aerolinea HandleAerolineaSelected() {
+
+        for (Aerolinea a: aerolineasList) {
+            if (a.getNombreAereoLinea().equals(this.comboBoxAerolineaVuelo.getSelectedItem().toString())){
+                return a;
+            }
+        }
+        return null;
+    }
+
+    //Metodo para validar los caracteres de Aeropuerto/Vuelo
+    private boolean HandleAeropuerto(String aeropuerto) {
+        if(aeropuerto.length() == 3){
+            return true;
+        } else {
+            this.ShowAlerta("Error, el Aeropuerto solo puede seguir un codigo de 3 letras!" +
+                    "\n EJ: EZE");
+            return false;
+        }
+    }
+
+    //Metodo para Popular la lista de Aerolineas del combobox.
+    private void PopulateAerolineas(){
+        for (Aerolinea a: aerolineasList) {
+            this.comboBoxAerolineaVuelo.addItem(a.getNombreAereoLinea());
+        }
+    }
+
+    //Metodo para generar el numero del vuelo correspondiente.
+    private boolean HandleNumeroVuelo(String numerodevuelo) {
+        try{
+            int validar = Integer.parseInt(numerodevuelo);
+            if(numerodevuelo.length() == 4){
+                return true;
+            } else {
+                this.ShowAlerta("El numero de vuelo debe estar compuesto de 4 numeros!");
+            }
+        } catch (Exception e){
+            this.ShowAlerta("Para editar el numero de vuelo se deben ingresar 4 nuevos numeros!");
+            e.printStackTrace();
+            return false;
+        }
+        return false;
+    }
 }

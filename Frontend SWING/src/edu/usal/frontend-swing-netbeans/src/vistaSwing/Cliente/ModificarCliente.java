@@ -8,14 +8,15 @@ package vistaSwing.Cliente;
 import edu.usal.controlador.consola.ControladorCliente;
 import edu.usal.domain.*;
 
+import java.awt.*;
+
 /**
  *
  * @author fservidio
  */
 public class ModificarCliente extends javax.swing.JInternalFrame {
 
-    ControladorCliente controlador;
-    Cliente consulta;
+
 
     /**
      * Creates new form ModificarCliente
@@ -450,7 +451,6 @@ public class ModificarCliente extends javax.swing.JInternalFrame {
                     this.textFCalleDireccion.setText(consulta.getDireccion().getCalle());
                     this.textFCodigoPostalDireccion.setText(consulta.getDireccion().getCodigoPostal());
                     this.textFCiudadDireccion.setText(consulta.getDireccion().getCiudad());
-                    //this.textFProviciaDireccion.setText(consulta.getDireccion().getProvincia());
                 }
 
 
@@ -475,18 +475,10 @@ public class ModificarCliente extends javax.swing.JInternalFrame {
                     this.textFNumeroPFrecuente.setText(consulta.getPasajeroFrecuente().getNumero());
                 }
             } else {
-                vistaSwing.Alertas.AlertaCreacion alerta = new vistaSwing.Alertas.AlertaCreacion("No se ha podido encontrar el cliente consultado, porfavor revise la consola!");
-                this.jPanel1.add(alerta);
-                alerta.setClosable(true);
-                alerta.show();
-                alerta.moveToFront();
+                this.ShowAlerta("No se ha podido encontrar el cliente consultado, porfavor revise la consola!\"");
             }
         } else {
-            vistaSwing.Alertas.AlertaCreacion alerta = new vistaSwing.Alertas.AlertaCreacion("Se debe colocar un id para consultar!");
-            this.jPanel1.add(alerta);
-            alerta.setClosable(true);
-            alerta.show();
-            alerta.moveToFront();
+            this.ShowAlerta("Se debe colocar un id para consultar!");
         }
 
     }//GEN-LAST:event_btnVerClienteActionPerformed
@@ -507,20 +499,22 @@ public class ModificarCliente extends javax.swing.JInternalFrame {
 
             //Direccion
             Direccion direccionAlta = new Direccion();
+            direccionAlta.setIDDireccion(consulta.getDireccion().getIDDireccion());
             direccionAlta.setAltura(this.textFAlturaDireccion.getText());
             direccionAlta.setCalle(this.textFCalleDireccion.getText());
             direccionAlta.setCodigoPostal(this.textFCodigoPostalDireccion.getText());
             direccionAlta.setCiudad(this.textFCiudadDireccion.getText());
-            //direccionAlta.setProvincia(this.textFProviciaDireccion.getText());
 
             //Ahora el telefono
             Telefono telefonoAlta = new Telefono();
+            telefonoAlta.setIDTelefono(consulta.getTelefono().getIDTelefono());
             telefonoAlta.setNumeroPersonal(this.textfPersonalTelefono.getText());
             telefonoAlta.setNumeroLaboral(this.textfLaboralTelefono.getText());
             telefonoAlta.setNumeroCelular(this.textfCelularTelefono.getText());
 
             //Pasaporte
             Pasaporte pasaporteAlta = new Pasaporte();
+            pasaporteAlta.setIDPasaporte(consulta.getPasaporte().getIDPasaporte());
             pasaporteAlta.setNrodePasaporte(this.textFNumeroPasaporte.getText());
             pasaporteAlta.setAutoridadEmision(this.textFAutoridadEmisionPasaporte.getText());
             pasaporteAlta.setFechadeVencimiento(this.dateVencimientoPasaporte.getDate());
@@ -529,6 +523,8 @@ public class ModificarCliente extends javax.swing.JInternalFrame {
 
             //Pasajero Frecuente
             Pasajero pasajeroAlta = new Pasajero();
+            pasajeroAlta.setIDnrodepasajero(consulta.getPasajeroFrecuente().getIDnrodepasajero());
+            pasajeroAlta.setNumero(this.textFNumeroPFrecuente.getText());
 
             // Y finalmente el mapeo final.
             consulta.setTelefono(telefonoAlta);
@@ -536,24 +532,12 @@ public class ModificarCliente extends javax.swing.JInternalFrame {
             consulta.setDireccion(direccionAlta);
             consulta.setPasajeroFrecuente(pasajeroAlta);
             if (this.controlador.ModificaciondeCliente(consulta)) {
-                vistaSwing.Alertas.AlertaCreacion alerta = new vistaSwing.Alertas.AlertaCreacion("Se pudo modificar el cliente de forma correcta!");
-                this.jPanel1.add(alerta);
-                alerta.setClosable(true);
-                alerta.show();
-                alerta.moveToFront();
+                this.ShowAlerta("Se pudo modificar el cliente de forma correcta!");
             } else {
-                vistaSwing.Alertas.AlertaCreacion alerta = new vistaSwing.Alertas.AlertaCreacion("No se pudo modificar el cliente, porfavor revise la consola!");
-                this.jPanel1.add(alerta);
-                alerta.setClosable(true);
-                alerta.show();
-                alerta.moveToFront();
+                this.ShowAlerta("No se pudo modificar el cliente, porfavor revise la consola!");
             }
         } else {
-            vistaSwing.Alertas.AlertaCreacion alerta = new vistaSwing.Alertas.AlertaCreacion("Se debe consultar un cliente primero antes de modificarlo!");
-            this.jPanel1.add(alerta);
-            alerta.setClosable(true);
-            alerta.show();
-            alerta.moveToFront();
+            this.ShowAlerta("Se debe consultar un cliente primero antes de modificarlo!");
         }
 
     }//GEN-LAST:event_btnGuardarClienteActionPerformed
@@ -616,4 +600,20 @@ public class ModificarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField textfLaboralTelefono;
     private javax.swing.JTextField textfPersonalTelefono;
     // End of variables declaration//GEN-END:variables
+
+    // ----------------------------------------------------- = ------------------------------------------------------
+
+    //Declaro mis objetos
+    ControladorCliente controlador = new ControladorCliente();
+    PopupMenu alerta;
+    Cliente consulta;
+
+    //Y mis metodos de manejo.
+
+    private void ShowAlerta(String mensaje){
+        alerta = new PopupMenu();
+        alerta.add(mensaje);
+        this.jPanel1.add(alerta);
+        alerta.show(jPanel1,0,0);
+    }
 }
