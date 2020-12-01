@@ -33,9 +33,16 @@ public class AlertaCreacion extends javax.swing.JInternalFrame {
         labelMensaje = new javax.swing.JLabel();
         btnOK = new javax.swing.JButton();
 
+        setClosable(true);
+
         labelMensaje.setText("jLabel1");
 
         btnOK.setText("OK");
+        btnOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOKActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -73,6 +80,10 @@ public class AlertaCreacion extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnOKActionPerformed
 
 
     //TODO falto el codigo generado del boton OK...
