@@ -63,12 +63,13 @@ public class Cliente implements Serializable {
 		IDCliente = idCliente;
 	}
 
-	public Cliente(int idCliente, String nombreCliente, String apellidoCliente, String DNI, String MAIL){
+	public Cliente(int idCliente, String nombreCliente, String apellidoCliente, String DNI, String MAIL, Date fechaNacimiento){
 		this.IDCliente = idCliente;
 		this.NombreCliente = nombreCliente;
 		this.ApellidoCliente = apellidoCliente;
 		this.dni = DNI;
 		this.mail = MAIL;
+		this.FechaNacimiento = fechaNacimiento;
 	}
 
 	public Cliente(int iDCliente, String nombreCliente, String apellidoCliente, String dni, String RS,

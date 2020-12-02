@@ -34,7 +34,7 @@ public class ClienteDAOImplSQL implements ClienteDAO {
         //Comienzo la transaccion!
         this.entityManager.getTransaction().begin();
         //Native query para hacer un SELECT *
-        List<Cliente> clientesDB = this.entityManager.createQuery("SELECT NEW  Cliente (c.IDCliente,c.mail,c.NombreCliente,c.ApellidoCliente,c.dni) FROM Cliente c").getResultList();
+        List<Cliente> clientesDB = this.entityManager.createQuery("SELECT c FROM Cliente c").getResultList();
         //Realizo commit!
         try {
             this.entityManager.getTransaction().commit();

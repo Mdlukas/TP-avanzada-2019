@@ -5,6 +5,13 @@
  */
 package vistaSwing.Venta;
 
+import edu.usal.controlador.consola.ControladorVenta;
+import edu.usal.controlador.consola.ControladorVuelo;
+import edu.usal.domain.Venta;
+import edu.usal.domain.Vuelo;
+
+import java.awt.*;
+
 /**
  *
  * @author fservidio
@@ -98,4 +105,35 @@ public class EliminarVenta extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
+    // ----------------------------------------------------- = ------------------------------------------------------
+
+    //Declaro mis objetos
+    ControladorVenta controlador = new ControladorVenta();
+    PopupMenu alerta;
+
+    //Y mis metodos de manejo.
+
+    private void ShowAlerta(String mensaje){
+        alerta = new PopupMenu();
+        alerta.add(mensaje);
+        this.jPanel1.add(alerta);
+        alerta.show(jPanel1,0,0);
+    }
+
+    private boolean HandleVentaDelete(){
+        try{
+            int borrado = Integer.parseInt(this.jTextField1.getText());
+            Venta ventaBorrar = new Venta();
+            ventaBorrar.setIDVenta(borrado);
+            if(this.controlador.BajadeVenta(ventaBorrar)){
+                return true;
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+            this.ShowAlerta("El ID debe ser un valor numerico!");
+        }
+        return false;
+
+    }
 }

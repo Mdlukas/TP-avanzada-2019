@@ -2,6 +2,8 @@ package edu.usal.controlador.consola;
 
 import edu.usal.dao.factory.FactoryVuelo;
 import edu.usal.dao.interfaces.VueloDAO;
+import edu.usal.domain.Aerolinea;
+import edu.usal.domain.TipoPago;
 import edu.usal.domain.Vuelo;
 import edu.usal.vista.consola.VistaVuelo;
 
@@ -50,6 +52,11 @@ public class ControladorVuelo {
     public List<Vuelo> ListadodeVuelo() {
         return this.Vuelo.listadodeVuelos();
     }
+
+    public List<Vuelo> ListadoDeVuelosPorAerolinea(Aerolinea a) {
+        return this.Vuelo.listadoDeVuelosPorAerolinea(a);
+    }
+
 
     //Funcion para manejar la restriccion del numero de vuelo
     private String HandleNumeroVuelo(Vuelo alta) {
@@ -115,6 +122,7 @@ public class ControladorVuelo {
         }
 
     }
+
 
 
 }

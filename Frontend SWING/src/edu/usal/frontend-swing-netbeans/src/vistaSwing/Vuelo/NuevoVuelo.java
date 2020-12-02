@@ -9,6 +9,7 @@ import edu.usal.controlador.consola.ControladorAerolinea;
 import edu.usal.controlador.consola.ControladorVuelo;
 import edu.usal.domain.Aerolinea;
 import edu.usal.domain.Aeropuerto;
+import edu.usal.domain.TipoPago;
 import edu.usal.domain.Vuelo;
 
 import java.awt.*;
@@ -256,6 +257,7 @@ public class NuevoVuelo extends javax.swing.JInternalFrame {
     List<Aerolinea> aerolineasList =  this.controladorAerolinea.ListadodeAerolinea();
     PopupMenu alerta;
 
+
     //Y mis metodos de manejo.
 
     private void ShowAlerta(String mensaje){
@@ -326,7 +328,6 @@ public class NuevoVuelo extends javax.swing.JInternalFrame {
 
 
     private Aerolinea HandleAerolineaSelected() {
-
         for (Aerolinea a: aerolineasList) {
             if (a.getNombreAereoLinea().equals(this.comboBoxAerolineaVuelo.getSelectedItem().toString())){
                 return a;

@@ -1,6 +1,7 @@
 package edu.usal.dao.implementaciones.ImplJDBC;
 
 import edu.usal.dao.interfaces.VentaDAO;
+import edu.usal.domain.Cliente;
 import edu.usal.domain.Venta;
 import edu.usal.domain.Vuelo;
 import edu.usal.util.ConexionSQLServer;
@@ -45,13 +46,14 @@ public class VentaDAOImplSQL implements VentaDAO {
 
     @Override
     public boolean AltadeVenta(Venta alta) {
-        Venta save = new Venta();
         //Solamente agrego los objetos sin relaciones, por que me guardo esos para el modificar!
-        save.setFormadePago(alta.getFormadePago());
-        //TODO aca es donde tendria que ir al set de Cliente/Vuelo y Aerolinea.
         this.entityManager.getTransaction().begin();
         try {
-            this.entityManager.persist(save);
+            alta.setCliente(this.entityManager.find(Cliente.class, alta.getCliente().getIDCliente()));
+            Vuelo vueloEnDB = this.entityManager.find(Vuelo.class, alta.getVuelo().getIDVuelo());
+            vueloEnDB.setCantAsientos(alta.getVuelo().getCantAsientos());
+            alta.setVuelo(vueloEnDB);
+            this.entityManager.persist(alta);
             this.entityManager.getTransaction().commit();
             System.out.println("Se guardo venta de forma correcta!");
             return true;

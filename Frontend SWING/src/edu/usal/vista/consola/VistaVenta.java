@@ -27,7 +27,6 @@ public class VistaVenta {
         Cliente cliente = new Cliente();
         Aerolinea aerolinea = new Aerolinea();
         venta.setCliente(cliente);
-        venta.setAerolinea(aerolinea);
         //TODO implementar fecha con datepicker a la hora de settear este Date!
         //venta.setFecha_HS_Venta("Ingrese Fecha HS Venta: ");
         venta.setFormadePago(TipoPago.getPago(IOGeneral.leerFrase("Ingrese tipo de Pago (Tarjeta de Credito , Tarjeta de Debito , Efectivo)")));
@@ -39,7 +38,6 @@ public class VistaVenta {
         Cliente cliente = new Cliente();
         Aerolinea aerolinea = new Aerolinea();
         venta.setCliente(cliente);
-        venta.setAerolinea(aerolinea);
         System.out.print("Ingrese Datos a modificar: ");
         //TODO datepicker venta...
 //        venta.setFecha_HS_Venta("Ingrese Fecha HS Venta: ");

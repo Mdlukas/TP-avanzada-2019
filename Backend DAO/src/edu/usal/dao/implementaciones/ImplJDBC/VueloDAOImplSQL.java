@@ -9,6 +9,7 @@ import edu.usal.util.ConexionSQLServer;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import java.util.List;
 
 public class VueloDAOImplSQL implements VueloDAO {
@@ -39,6 +40,28 @@ public class VueloDAOImplSQL implements VueloDAO {
             return vuelos;
         } catch (Exception e){
             System.out.println("No pude retornar los vuelos!");
+            this.entityManager.getTransaction().rollback();
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public List<Vuelo> listadoDeVuelosPorAerolinea(Aerolinea a) {
+        //Comienzo la transaccion!
+        this.entityManager.getTransaction().begin();
+        a = this.entityManager.find(Aerolinea.class, a.getIDAerolinea());
+        //Native query para hacer un SELECT *
+        Query q = this.entityManager.createQuery("SELECT v FROM Vuelo v WHERE aerolinea=:a");
+        q.setParameter("a",a);
+        List<Vuelo> vuelos = q.getResultList();
+        //Realizo commit!
+        try {
+            this.entityManager.getTransaction().commit();
+            //Retorno clientes.
+            return vuelos;
+        } catch (Exception e) {
+            System.out.println("No pude retornar las Aerolineas!");
             this.entityManager.getTransaction().rollback();
             e.printStackTrace();
             return null;

@@ -21,6 +21,14 @@ public class Venta {
     @Column(name = "FormaDePago")
     private String FormadePago;
 
+    @Basic
+    @Column(name = "Precio")
+    private String precio;
+
+    @Basic
+    @Column(name = "Cuotas")
+    private String cuotas;
+
     @ManyToOne
     @JoinColumn(name = "idCliente")
     private Cliente Cliente;
@@ -29,9 +37,8 @@ public class Venta {
     @JoinColumn(name = "idVuelo")
     private Vuelo Vuelo;
 
-    @ManyToOne
-    @JoinColumn(name = "idAerolinea")
-    private Aerolinea Aerolinea;
+
+
 
     public Venta() {
     }
@@ -44,7 +51,6 @@ public class Venta {
         FormadePago = formadePago;
         Cliente = cliente;
         Vuelo = vuelo;
-        Aerolinea = aerolinea;
     }
 
 
@@ -72,14 +78,6 @@ public class Venta {
         Vuelo = vuelo;
     }
 
-    public Aerolinea getAerolinea() {
-        return Aerolinea;
-    }
-
-    public void setAerolinea(Aerolinea aerolinea) {
-        Aerolinea = aerolinea;
-    }
-
     public Date getFecha_HS_Venta() {
         return Fecha_HS_Venta;
     }
@@ -99,15 +97,32 @@ public class Venta {
         FormadePago = formadePago;
     }
 
+    public String getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(String precio) {
+        this.precio = precio;
+    }
+
+    public String getCuotas() {
+        return cuotas;
+    }
+
+    public void setCuotas(String cuotas) {
+        this.cuotas = cuotas;
+    }
+
     @Override
     public String toString() {
         return "Venta{" +
                 "IDVenta=" + IDVenta +
                 ", Fecha_HS_Venta=" + Fecha_HS_Venta +
-                ", FormadePago=" + FormadePago +
-                ", Cliente=" + Cliente.getNombreCliente() +
-                ", Vuelo=" + Vuelo.getIDVuelo() +
-                ", Aerolinea=" + Aerolinea.getNombreAereoLinea() +
+                ", FormadePago='" + FormadePago + '\'' +
+                ", precio='" + precio + '\'' +
+                ", cuotas='" + cuotas + '\'' +
+                ", Cliente=" + Cliente +
+                ", Vuelo=" + Vuelo +
                 '}';
     }
 }

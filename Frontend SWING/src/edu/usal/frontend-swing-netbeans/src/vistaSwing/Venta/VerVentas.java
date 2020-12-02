@@ -5,6 +5,15 @@
  */
 package vistaSwing.Venta;
 
+import edu.usal.controlador.consola.ControladorVenta;
+import edu.usal.controlador.consola.ControladorVuelo;
+import edu.usal.domain.Venta;
+import edu.usal.domain.Vuelo;
+
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.util.List;
+
 /**
  *
  * @author fservidio
@@ -16,6 +25,7 @@ public class VerVentas extends javax.swing.JInternalFrame {
      */
     public VerVentas() {
         initComponents();
+        this.addRowToTable(this.controlador.ListadodeVenta());
     }
 
     /**
@@ -39,12 +49,7 @@ public class VerVentas extends javax.swing.JInternalFrame {
         setTitle("Ver Ventas");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
+            new Object [][] {},
             new String [] {
                 "Cliente", "Vuelo", "Aerolinea", "Fecha y Hora Venta", "Forma de Pago"
             }
@@ -97,4 +102,24 @@ public class VerVentas extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    // ----------------------------------------------------- = ------------------------------------------------------
+
+    //Declaro mis objetos
+    ControladorVenta controlador = new ControladorVenta();
+    PopupMenu alerta;
+
+    //Y mis metodos de manejo.
+    public void addRowToTable(List<Venta> ventas){
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        Object rowData[] = new Object[5];
+        for (int i = 0; i < ventas.size(); i++){
+            rowData[0] = ventas.get(i).getCliente().getNombreCliente() + " | " + ventas.get(i).getCliente().getApellidoCliente();
+            rowData[1] = ventas.get(i).getVuelo().getNumeroVuelo();
+            rowData[2] = ventas.get(i).getVuelo().getAerolinea().getNombreAereoLinea();
+            rowData[3] = ventas.get(i).getFecha_HS_Venta();
+            rowData[4] = ventas.get(i).getFormadePago();
+            model.addRow(rowData);
+        }
+    }
 }

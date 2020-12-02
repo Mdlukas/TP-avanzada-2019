@@ -5,6 +5,15 @@
  */
 package vistaSwing.Venta;
 
+import edu.usal.controlador.consola.ControladorAerolinea;
+import edu.usal.controlador.consola.ControladorCliente;
+import edu.usal.controlador.consola.ControladorVenta;
+import edu.usal.controlador.consola.ControladorVuelo;
+import edu.usal.domain.*;
+
+import java.awt.*;
+import java.util.List;
+
 /**
  *
  * @author fservidio
@@ -16,6 +25,11 @@ public class NuevaVenta extends javax.swing.JInternalFrame {
      */
     public NuevaVenta() {
         initComponents();
+        this.comboBoxCuotasVenta.setVisible(false);
+        this.jLabel15.setVisible(false);
+        this.PopulateAerolineas();
+        this.PopulateClientes();
+        this.PopulateTiposPago();
     }
 
     /**
@@ -253,23 +267,23 @@ public class NuevaVenta extends javax.swing.JInternalFrame {
 
         jLabel21.setText("Ingresar Nueva Venta");
 
-        comboBoxClienteVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxClienteVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
         comboBoxClienteVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxClienteVentaActionPerformed(evt);
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
 
-        comboBoxAerolineaVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxAerolineaVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
         comboBoxAerolineaVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxAerolineaVentaActionPerformed(evt);
             }
         });
 
-        comboBoxFormaDePagoVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxFormaDePagoVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
         comboBoxFormaDePagoVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxFormaDePagoVentaActionPerformed(evt);
@@ -278,7 +292,7 @@ public class NuevaVenta extends javax.swing.JInternalFrame {
 
         jLabel14.setText("Precio:");
 
-        comboBoxCuotasVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxCuotasVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"3","6","12","24"}));
         comboBoxCuotasVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxCuotasVentaActionPerformed(evt);
@@ -417,19 +431,20 @@ public class NuevaVenta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_comboBoxClienteVentaActionPerformed
 
     private void comboBoxAerolineaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxAerolineaVentaActionPerformed
-        // TODO add your handling code here:
+        this.PopulateVuelos(this.HandleAerolineaSelected());
     }//GEN-LAST:event_comboBoxAerolineaVentaActionPerformed
 
     private void comboBoxFormaDePagoVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxFormaDePagoVentaActionPerformed
-        // TODO add your handling code here:
+        this.HandleSelectedFormaDepago();
     }//GEN-LAST:event_comboBoxFormaDePagoVentaActionPerformed
 
     private void comboBoxCuotasVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxCuotasVentaActionPerformed
-        // TODO add your handling code here:
+        this.HandleCantidadDeCuotas();
     }//GEN-LAST:event_comboBoxCuotasVentaActionPerformed
 
     private void btnGuardarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarVentaActionPerformed
-        // TODO add your handling code here:
+        Venta v = new Venta();
+        this.HandleNewVenta(v);
     }//GEN-LAST:event_btnGuardarVentaActionPerformed
 
 
@@ -477,4 +492,169 @@ public class NuevaVenta extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
+
+    // ----------------------------------------------------- = ------------------------------------------------------
+
+    //Declaro mis objetos
+    ControladorVenta controlador = new ControladorVenta();
+    ControladorVuelo controladorVuelo = new ControladorVuelo();
+    ControladorCliente controladorCliente = new ControladorCliente();
+    ControladorAerolinea controladorAerolinea = new ControladorAerolinea();
+    //Instancio Listas para los combo-boxes
+    List<Aerolinea> aerolineasList =  this.controladorAerolinea.ListadodeAerolinea();
+    List<Cliente> clienteList = this.controladorCliente.ListadodeClientes();
+    List<Vuelo> vueloList;
+    //Y objetos extra necesarios
+    PopupMenu alerta;
+
+
+    //Y mis metodos de manejo.
+
+    private void ShowAlerta(String mensaje){
+        alerta = new PopupMenu();
+        alerta.add(mensaje);
+        this.jPanel1.add(alerta);
+        alerta.show(jPanel1,0,0);
+    }
+
+    //Handlers
+    private void HandleNewVenta(Venta venta){
+        boolean valido = true;
+
+        venta.setCliente(this.HandleClienteSelected());
+        venta.setVuelo(this.HandleVueloSelected());
+
+        if(venta.getVuelo() == null){
+            this.ShowAlerta("No se puede cargar una venta sin un vuelo!");
+            valido = false;
+        }
+
+        venta.setFecha_HS_Venta(this.jDateChooser1.getDate());
+        if(venta.getFecha_HS_Venta() == null){
+            this.ShowAlerta("Se tiene que seleccionar una fecha para el vuelo!");
+            valido = false;
+        }
+
+        venta.setFormadePago(this.comboBoxFormaDePagoVenta.getSelectedItem().toString());
+
+        if(venta.getFormadePago().equals("Tarjeta de Credito")){
+            venta.setCuotas(this.comboBoxCuotasVenta.getSelectedItem().toString());
+        }
+
+        if(!this.jTextField10.getText().equals("")){
+            try{
+                int precio = Integer.parseInt(this.jTextField10.getText());
+                venta.setPrecio(String.valueOf(precio));
+            } catch (Exception e){
+                this.ShowAlerta("Error, el precio debe ser un valor numerico!");
+                valido = false;
+            }
+        } else{
+            this.ShowAlerta("El precio no se puede dejar vacio!");
+            valido = false;
+        }
+
+        if (valido) {
+            this.ShowAlerta(this.controlador.AltadeVenta(venta));
+
+        } else {
+            this.ShowAlerta("No se pudo guardar la venta!");
+        }
+
+    }
+
+    //Metodo para Popular la lista de Aerolineas del combobox.
+    private void PopulateAerolineas(){
+        for (Aerolinea a: aerolineasList) {
+            this.comboBoxAerolineaVenta.addItem(a.getNombreAereoLinea());
+        }
+    }
+
+    //Metodo para determinar que Aerolinea es elegida.
+    private Aerolinea HandleAerolineaSelected() {
+        for (Aerolinea a: aerolineasList) {
+            if (a.getNombreAereoLinea().equals(this.comboBoxAerolineaVenta.getSelectedItem().toString())){
+                return a;
+            }
+        }
+        return null;
+    }
+
+    private Vuelo HandleVueloSelected(){
+        for(Vuelo v: vueloList){
+            if( v.getNumeroVuelo().equals(this.jComboBox2.getSelectedItem().toString())){
+                return v;
+            }
+        }
+        return null;
+    }
+
+    //Metodo para manejar la forma seleccionada de pago.
+    private void HandleSelectedFormaDepago(){
+        if(this.comboBoxFormaDePagoVenta.getSelectedItem().toString().equals("Efectivo")){
+            this.comboBoxCuotasVenta.setVisible(false);
+            this.jLabel15.setVisible(false);
+        }
+        if(this.comboBoxFormaDePagoVenta.getSelectedItem().toString().equals("Tarjeta de Debito")){
+            this.comboBoxCuotasVenta.setVisible(false);
+            this.jLabel15.setVisible(false);
+        }
+        if(this.comboBoxFormaDePagoVenta.getSelectedItem().toString().equals("Tarjeta de Credito")){
+            this.comboBoxCuotasVenta.setVisible(true);
+            this.jLabel15.setVisible(true);
+        }
+    }
+
+    //Metodo para manejar la cantidad de cuotas/El interes si es aplicable!
+    private void HandleCantidadDeCuotas(){
+        if(!this.jTextField10.getText().equals("")){
+            try{
+                int precio = Integer.parseInt(this.jTextField10.getText());
+                if(this.comboBoxCuotasVenta.getSelectedItem().toString().equals("12") ||
+                   this.comboBoxCuotasVenta.getSelectedItem().toString().equals("24")){
+                    precio = precio+(precio*10)/100;
+                    this.jTextField10.setText(Integer.toString(precio));
+                }
+            } catch (Exception e){
+                this.ShowAlerta("Error, el precio debe ser un valor numerico!");
+            }
+        } else{
+            this.comboBoxCuotasVenta.setSelectedIndex(0);
+            this.ShowAlerta("El precio debe ser ingresado primero!");
+        }
+    }
+
+    private Cliente HandleClienteSelected(){
+        for(Cliente c: clienteList){
+            String busqueda = c.getNombreCliente()+" | "+c.getApellidoCliente();
+            if( busqueda.equals(comboBoxClienteVenta.getSelectedItem().toString()) ){
+                return c;
+            }
+        }
+        return null;
+    }
+
+    //Metodo para Popular la lista de Clientes del combobox.
+    private void PopulateClientes(){
+        for (Cliente c: clienteList) {
+            this.comboBoxClienteVenta.addItem(c.getNombreCliente()+" | "+c.getApellidoCliente());
+        }
+    }
+
+    //Metodo para Popular los vuelos dependiendo de cual aerolinea es elegida.
+    private void PopulateVuelos(Aerolinea a){
+        this.jComboBox2.removeAllItems();
+        this.vueloList = this.controladorVuelo.ListadoDeVuelosPorAerolinea(a);
+        for (Vuelo v: vueloList) {
+            this.jComboBox2.addItem(v.getNumeroVuelo());
+        }
+    }
+
+    //Metodo para popular los tipos de pago!
+    private void PopulateTiposPago() {
+        this.comboBoxFormaDePagoVenta.addItem(TipoPago.getPago("Efectivo"));
+        this.comboBoxFormaDePagoVenta.addItem(TipoPago.getPago("Credito"));
+        this.comboBoxFormaDePagoVenta.addItem(TipoPago.getPago("Debito"));
+    }
+
 }
