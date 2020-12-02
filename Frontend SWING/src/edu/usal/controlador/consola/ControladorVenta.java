@@ -3,8 +3,12 @@ package edu.usal.controlador.consola;
 import edu.usal.dao.factory.FactoryVenta;
 import edu.usal.dao.interfaces.VentaDAO;
 import edu.usal.domain.Venta;
+import edu.usal.util.DateHelper;
 import edu.usal.vista.consola.VistaVenta;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class ControladorVenta {
@@ -30,8 +34,62 @@ public class ControladorVenta {
         }
     }
 
-    public boolean AltadeVenta(Venta Alta) {
-        return this.Venta.AltadeVenta(Alta);
+    public String AltadeVenta(Venta Alta) {
+        if (this.ValidateAsientos(Alta)) {
+            if (this.ValidateEdad(Alta)) {
+                if(this.ValidarPasaportes(Alta)){
+                    if (this.Venta.AltadeVenta(Alta)) {
+                        return "La venta se guardo de forma correcta!";
+                    } else {
+                        return "No se pudo guardar, consulte la consola!";
+                    }
+                }
+                return "El pasaporte no es valido! o La cantidad de meses entre el vuelo y el vencimiento es menor a 6!";
+            }
+            return "El cliente es muy joven para volar! (Menor de 18)";
+        }
+        return "No quedan asientos libres en ese vuelo!";
+    }
+
+    //Valido los pasaportes..
+    private boolean ValidarPasaportes(Venta alta) {
+        LocalDate fechaEmisionPasaporte = DateHelper.DateHelper(alta.getCliente().getPasaporte().getFechadeEmision());
+        LocalDate fechaVenta = DateHelper.DateHelper(alta.getFecha_HS_Venta());
+        LocalDate fechaVencimiento = DateHelper.DateHelper(alta.getCliente().getPasaporte().getFechadeVencimiento());
+        LocalDate fechaLlegada = DateHelper.DateHelper(alta.getVuelo().getFechaLLegada());
+        Period period = Period.between(fechaEmisionPasaporte,fechaVenta);
+        int emisionAnteriorAVenta = period.getDays();
+        long vencimientoMayor = ChronoUnit.MONTHS.between(fechaLlegada,fechaVencimiento);
+        if (emisionAnteriorAVenta > 0 && vencimientoMayor > 6) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //Valido que el pibito tenga porlomenos 18 años para volar.
+    private boolean ValidateEdad(Venta alta) {
+        LocalDate nacimientoCliente = DateHelper.DateHelper(alta.getCliente().getFechaNacimiento());
+        LocalDate fechaVuelo = DateHelper.DateHelper(alta.getVuelo().getFechaSalida());
+        Period period = Period.between(nacimientoCliente, fechaVuelo);
+        int edad = period.getYears();
+        System.out.println(edad);
+        if (edad >= 18) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //Valido que alcancen los sientos.
+    private boolean ValidateAsientos(Venta alta) {
+        int asientosLibres = alta.getVuelo().getCantAsientos();
+        if (asientosLibres > 0) {
+            alta.getVuelo().setCantAsientos(asientosLibres - 1);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public List<Venta> ListadodeVenta() {
