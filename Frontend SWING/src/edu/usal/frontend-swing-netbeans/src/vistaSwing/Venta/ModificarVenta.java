@@ -5,6 +5,12 @@
  */
 package vistaSwing.Venta;
 
+import edu.usal.controlador.consola.ControladorVenta;
+import edu.usal.domain.TipoPago;
+import edu.usal.domain.Venta;
+
+import java.awt.*;
+
 /**
  *
  * @author fservidio
@@ -16,6 +22,7 @@ public class ModificarVenta extends javax.swing.JInternalFrame {
      */
     public ModificarVenta() {
         initComponents();
+        this.PopulateTiposPago();
     }
 
     /**
@@ -62,7 +69,7 @@ public class ModificarVenta extends javax.swing.JInternalFrame {
 
         jLabel18.setText("Forma de Pago:");
 
-        comboBoxFormaDePagoModificarVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxFormaDePagoModificarVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
         comboBoxFormaDePagoModificarVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxFormaDePagoModificarVentaActionPerformed(evt);
@@ -72,13 +79,15 @@ public class ModificarVenta extends javax.swing.JInternalFrame {
         jLabel14.setText("Precio:");
 
         jLabel15.setText("Cuotas:");
+        jLabel15.setVisible(false);
 
-        comboBoxCuotasModificarVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxCuotasModificarVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"3","6","12","24"}));
         comboBoxCuotasModificarVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxCuotasModificarVentaActionPerformed(evt);
             }
         });
+        comboBoxCuotasModificarVenta.setVisible(false);
 
         btnGuardarModificarVenta.setText("Guardar");
         btnGuardarModificarVenta.addActionListener(new java.awt.event.ActionListener() {
@@ -189,19 +198,23 @@ public class ModificarVenta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void btnVerModificarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerModificarVentaActionPerformed
-        // TODO add your handling code here:
+        this.HandleConsultarVuelo();
     }//GEN-LAST:event_btnVerModificarVentaActionPerformed
 
     private void btnGuardarModificarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarModificarVentaActionPerformed
-        // TODO add your handling code here:
+        if(consulta != null) {
+            this.HandleModificarVenta(consulta);
+        } else {
+            this.ShowAlerta("No se pude editar un vuelo sin consultarlo primero!");
+        }
     }//GEN-LAST:event_btnGuardarModificarVentaActionPerformed
 
     private void comboBoxFormaDePagoModificarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxFormaDePagoModificarVentaActionPerformed
-        // TODO add your handling code here:
+        this.HandleSelectedFormaDepago();
     }//GEN-LAST:event_comboBoxFormaDePagoModificarVentaActionPerformed
 
     private void comboBoxCuotasModificarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxCuotasModificarVentaActionPerformed
-        // TODO add your handling code here:
+        this.HandleCantidadDeCuotas();
     }//GEN-LAST:event_comboBoxCuotasModificarVentaActionPerformed
 
 
@@ -221,4 +234,131 @@ public class ModificarVenta extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
+
+    // ----------------------------------------------------- = ------------------------------------------------------
+
+    //Declaro mis objetos
+    ControladorVenta controlador = new ControladorVenta();
+    Venta consulta;
+    PopupMenu alerta;
+
+
+    //Y mis metodos de manejo.
+
+    private void ShowAlerta(String mensaje){
+        alerta = new PopupMenu();
+        alerta.add(mensaje);
+        this.jPanel1.add(alerta);
+        alerta.show(jPanel1,0,0);
+    }
+
+    //Handlers
+
+    //Handler de consulta
+    private void HandleConsultarVuelo(){
+        this.comboBoxCuotasModificarVenta.setVisible(false);
+        this.jLabel15.setVisible(false);
+        try{
+            int busqueda = Integer.parseInt(this.jTextField6.getText());
+            consulta = new Venta();
+            consulta.setIDVenta(busqueda);
+        } catch (Exception e){
+            this.ShowAlerta("El Id tiene que ser un valor numerico!");
+            e.printStackTrace();
+        }
+        try {
+            consulta = this.controlador.ConsultadeVenta(consulta);
+            this.jDateChooser1.setDate(consulta.getFecha_HS_Venta());
+            this.comboBoxFormaDePagoModificarVenta.setSelectedItem(consulta.getFormadePago());
+            if(consulta.getFormadePago().equals("Tarjeta de Credito")){
+                this.comboBoxCuotasModificarVenta.setSelectedItem(consulta.getCuotas());
+                this.comboBoxCuotasModificarVenta.setVisible(true);
+                this.jLabel15.setVisible(true);
+            }
+            this.jTextField10.setText(consulta.getPrecio());
+        } catch (Exception e){
+            this.ShowAlerta("No se ha podido encontrar la venta, porfavor consulte la consola!");
+        }
+    }
+
+    //Handler de guardado.
+    private void HandleModificarVenta(Venta venta){
+        boolean valido = true;
+
+        venta.setFecha_HS_Venta(this.jDateChooser1.getDate());
+        if(venta.getFecha_HS_Venta() == null){
+            this.ShowAlerta("Se tiene que seleccionar una fecha para el vuelo!");
+            valido = false;
+        }
+
+        venta.setFormadePago(this.comboBoxFormaDePagoModificarVenta.getSelectedItem().toString());
+
+        if(venta.getFormadePago().equals("Tarjeta de Credito")){
+            venta.setCuotas(this.comboBoxCuotasModificarVenta.getSelectedItem().toString());
+        }
+
+        if(!this.jTextField10.getText().equals("")){
+            try{
+                int precio = Integer.parseInt(this.jTextField10.getText());
+                venta.setPrecio(String.valueOf(precio));
+            } catch (Exception e){
+                this.ShowAlerta("Error, el precio debe ser un valor numerico!");
+                valido = false;
+            }
+        } else{
+            this.ShowAlerta("El precio no se puede dejar vacio!");
+            valido = false;
+        }
+
+        if (valido) {
+            if ((this.controlador.ModificaciondeVenta(venta))) {
+                this.ShowAlerta("Se pudo modificar la venta de forma correcta!");
+            } else {
+                this.ShowAlerta("No se pudo modificar la venta!");
+            }
+        }
+
+    }
+
+    //Metodo para popular los tipos de pago!
+    private void PopulateTiposPago() {
+        this.comboBoxFormaDePagoModificarVenta.addItem(TipoPago.getPago("Efectivo"));
+        this.comboBoxFormaDePagoModificarVenta.addItem(TipoPago.getPago("Credito"));
+        this.comboBoxFormaDePagoModificarVenta.addItem(TipoPago.getPago("Debito"));
+    }
+
+    //Metodo para manejar la forma seleccionada de pago.
+    private void HandleSelectedFormaDepago(){
+        if(this.comboBoxFormaDePagoModificarVenta.getSelectedItem().toString().equals("Efectivo")){
+            this.comboBoxCuotasModificarVenta.setVisible(false);
+            this.jLabel15.setVisible(false);
+        }
+        if(this.comboBoxFormaDePagoModificarVenta.getSelectedItem().toString().equals("Tarjeta de Debito")){
+            this.comboBoxCuotasModificarVenta.setVisible(false);
+            this.jLabel15.setVisible(false);
+        }
+        if(this.comboBoxFormaDePagoModificarVenta.getSelectedItem().toString().equals("Tarjeta de Credito")){
+            this.comboBoxCuotasModificarVenta.setVisible(true);
+            this.jLabel15.setVisible(true);
+        }
+    }
+
+    //Metodo para manejar la cantidad de cuotas/El interes si es aplicable!
+    private void HandleCantidadDeCuotas(){
+        if(!this.jTextField10.getText().equals("")){
+            try{
+                int precio = Integer.parseInt(this.jTextField10.getText());
+                if(this.comboBoxCuotasModificarVenta.getSelectedItem().toString().equals("12") ||
+                        this.comboBoxCuotasModificarVenta.getSelectedItem().toString().equals("24")){
+                    precio = precio+(precio*10)/100;
+                    this.jTextField10.setText(Integer.toString(precio));
+                }
+            } catch (Exception e){
+                this.ShowAlerta("Error, el precio debe ser un valor numerico!");
+            }
+        } else{
+            this.comboBoxCuotasModificarVenta.setSelectedIndex(0);
+            this.ShowAlerta("El precio debe ser ingresado primero!");
+        }
+    }
 }

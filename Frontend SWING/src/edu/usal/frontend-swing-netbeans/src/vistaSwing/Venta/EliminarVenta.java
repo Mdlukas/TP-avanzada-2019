@@ -103,7 +103,11 @@ public class EliminarVenta extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        if (this.HandleVentaDelete()){
+            this.ShowAlerta("Se borro la venta de forma correcta!");
+        } else {
+            this.ShowAlerta("La venta no se pudo eliminar, porfavor consulte la consola!");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

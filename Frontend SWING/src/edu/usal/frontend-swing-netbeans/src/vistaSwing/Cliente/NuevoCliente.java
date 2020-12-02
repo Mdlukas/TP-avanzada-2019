@@ -610,15 +610,21 @@ public class NuevoCliente extends javax.swing.JInternalFrame {
 
     // Handlers
     private boolean HandleNewClient(Cliente alta){
-        boolean valido = false;
+        boolean valido = true;
         try {
             //Mapeo el cliente primero.
-            alta.setNombreCliente(this.textFNombreCliente.getText());
-            alta.setApellidoCliente(this.textFApellidoCliente.getText());
-            alta.setMail(this.textFMailCliente.getText());
-            alta.setRS(this.textFRSCliente.getText());
-            alta.setDni(this.textFDNI.getText());
-            alta.setFechaNacimiento(this.dateFechaNacimientoCliente.getDate());
+
+            if(this.DatosBaseCorrectos()){
+                alta.setNombreCliente(this.textFNombreCliente.getText());
+                alta.setApellidoCliente(this.textFApellidoCliente.getText());
+                alta.setMail(this.textFMailCliente.getText());
+                alta.setRS(this.textFRSCliente.getText());
+                alta.setDni(this.textFDNI.getText());
+                alta.setFechaNacimiento(this.dateFechaNacimientoCliente.getDate());
+            } else {
+                this.ShowAlerta("Todos los campos del formulario de cliente deben completarse!");
+                valido = false;
+            }
 
 
             //Direccion
@@ -627,9 +633,11 @@ public class NuevoCliente extends javax.swing.JInternalFrame {
             direccionAlta.setCalle(this.textFCalleDireccion.getText());
             direccionAlta.setCodigoPostal(this.textFCodigoPostalDireccion.getText());
             direccionAlta.setCiudad(this.textFCiudadDireccion.getText());
-            direccionAlta.setProvincia(this.HandleProvincias(this.comboBoxPais.getSelectedItem().toString()));
-            //Y el pais
-            Pais paisAlta = new Pais();
+            if(this.comboBoxProvinciaArg.isVisible()){
+                direccionAlta.setProvincia(this.HandleProvincias(this.comboBoxProvinciaArg.getSelectedItem().toString()));
+            } else {
+                direccionAlta.setProvincia(this.textFieldProvinciaOtro.getText());
+            }
 
             //Ahora el telefono
             Telefono telefonoAlta = new Telefono();
@@ -662,7 +670,6 @@ public class NuevoCliente extends javax.swing.JInternalFrame {
             alta.setPasajeroFrecuente(pasajeroAlta);
 
             //Y finalmente...
-            valido = true;
             return valido;
         } catch (Exception e){
             return valido;
@@ -670,6 +677,28 @@ public class NuevoCliente extends javax.swing.JInternalFrame {
 
     }
 
+    //Validacion campos base.
+    private boolean DatosBaseCorrectos() {
+        if (this.textFNombreCliente.getText().equals("")){
+            return false;
+        }
+        if (this.textFApellidoCliente.getText().equals("")){
+            return false;
+        }
+        if (this.textFMailCliente.getText().equals("")){
+            return false;
+        }
+        if (this.textFRSCliente.getText().equals("")){
+            return false;
+        }
+        if (this.textFDNI.getText().equals("")){
+            return false;
+        }
+        if (this.dateFechaNacimientoCliente.getDate() == null){
+            return false;
+        }
+        return true;
+    }
 
     //Handler para manejar la logica de cual de las barras se muestra.
     private void HandlePaises(String paisSeleccionado) {

@@ -72,7 +72,9 @@ public class VentaDAOImplSQL implements VentaDAO {
         try {
             Venta enBaseDeDatos = this.entityManager.find(Venta.class, modificar.getIDVenta());
             enBaseDeDatos.setFormadePago(modificar.getFormadePago());
-            //TODO aca es donde tendria que ir al set de Cliente/Vuelo y Aerolinea.
+            enBaseDeDatos.setPrecio(modificar.getPrecio());
+            enBaseDeDatos.setCuotas(modificar.getCuotas());
+            enBaseDeDatos.setFecha_HS_Venta(modificar.getFecha_HS_Venta());
             this.entityManager.getTransaction().commit();
             System.out.println("Se guardo actualizo la venta " + modificar.getIDVenta() + "  de forma correcta!");
             return true;

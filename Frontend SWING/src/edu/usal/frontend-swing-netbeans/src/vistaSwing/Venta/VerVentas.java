@@ -51,7 +51,7 @@ public class VerVentas extends javax.swing.JInternalFrame {
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {},
             new String [] {
-                "Cliente", "Vuelo", "Aerolinea", "Fecha y Hora Venta", "Forma de Pago"
+                "Id", "Cliente", "Vuelo", "Aerolinea", "Fecha y Hora Venta", "Forma de Pago"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -112,13 +112,14 @@ public class VerVentas extends javax.swing.JInternalFrame {
     //Y mis metodos de manejo.
     public void addRowToTable(List<Venta> ventas){
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        Object rowData[] = new Object[5];
+        Object rowData[] = new Object[6];
         for (int i = 0; i < ventas.size(); i++){
-            rowData[0] = ventas.get(i).getCliente().getNombreCliente() + " | " + ventas.get(i).getCliente().getApellidoCliente();
-            rowData[1] = ventas.get(i).getVuelo().getNumeroVuelo();
-            rowData[2] = ventas.get(i).getVuelo().getAerolinea().getNombreAereoLinea();
-            rowData[3] = ventas.get(i).getFecha_HS_Venta();
-            rowData[4] = ventas.get(i).getFormadePago();
+            rowData[0] = ventas.get(i).getIDVenta();
+            rowData[1] = ventas.get(i).getCliente().getNombreCliente() + " | " + ventas.get(i).getCliente().getApellidoCliente();
+            rowData[2] = ventas.get(i).getVuelo().getNumeroVuelo();
+            rowData[3] = ventas.get(i).getVuelo().getAerolinea().getNombreAereoLinea();
+            rowData[4] = ventas.get(i).getFecha_HS_Venta();
+            rowData[5] = ventas.get(i).getFormadePago();
             model.addRow(rowData);
         }
     }

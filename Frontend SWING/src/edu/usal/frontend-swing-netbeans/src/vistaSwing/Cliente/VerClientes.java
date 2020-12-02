@@ -110,10 +110,10 @@ public class VerClientes extends javax.swing.JInternalFrame {
         Object rowData[] = new Object[5];
         for (int i = 0; i < clientes.size(); i++){
             rowData[0] = clientes.get(i).getIDCliente();
-            rowData[4] = clientes.get(i).getNombreCliente();
-            rowData[1] = clientes.get(i).getApellidoCliente();
-            rowData[2] = clientes.get(i).getDni();
-            rowData[3] = clientes.get(i).getMail();
+            rowData[1] = clientes.get(i).getNombreCliente();
+            rowData[2] = clientes.get(i).getApellidoCliente();
+            rowData[3] = clientes.get(i).getDni();
+            rowData[4] = clientes.get(i).getMail();
             model.addRow(rowData);
         }
     }

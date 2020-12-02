@@ -489,14 +489,18 @@ public class ModificarCliente extends javax.swing.JInternalFrame {
 
 
         if (consulta != null) {
+            boolean valido = true;
             //Mapeo el cliente primero.
+            if(this.DatosBaseCorrectos()){
             consulta.setNombreCliente(this.textFNombreCliente.getText());
             consulta.setApellidoCliente(this.textFApellidoCliente.getText());
             consulta.setMail(this.textFMailCliente.getText());
             consulta.setRS(this.textFRSCliente.getText());
             consulta.setDni(this.textFDNI.getText());
             consulta.setFechaNacimiento(this.dateFechaNacimientoCliente.getDate());
-
+            } else {
+                valido = false;
+            }
             //Direccion
             Direccion direccionAlta = new Direccion();
             direccionAlta.setIDDireccion(consulta.getDireccion().getIDDireccion());
@@ -531,10 +535,14 @@ public class ModificarCliente extends javax.swing.JInternalFrame {
             consulta.setPasaporte(pasaporteAlta);
             consulta.setDireccion(direccionAlta);
             consulta.setPasajeroFrecuente(pasajeroAlta);
-            if (this.controlador.ModificaciondeCliente(consulta)) {
-                this.ShowAlerta("Se pudo modificar el cliente de forma correcta!");
+            if(valido){
+                if (this.controlador.ModificaciondeCliente(consulta)) {
+                    this.ShowAlerta("Se pudo modificar el cliente de forma correcta!");
+                } else {
+                    this.ShowAlerta("No se pudo modificar el cliente, porfavor revise la consola!");
+                }
             } else {
-                this.ShowAlerta("No se pudo modificar el cliente, porfavor revise la consola!");
+                this.ShowAlerta("No se pueden dejar campos vacios en este formulario!");
             }
         } else {
             this.ShowAlerta("Se debe consultar un cliente primero antes de modificarlo!");
@@ -615,5 +623,28 @@ public class ModificarCliente extends javax.swing.JInternalFrame {
         alerta.add(mensaje);
         this.jPanel1.add(alerta);
         alerta.show(jPanel1,0,0);
+    }
+
+    //Validacion campos base.
+    private boolean DatosBaseCorrectos() {
+        if (this.textFNombreCliente.getText().equals("")){
+            return false;
+        }
+        if (this.textFApellidoCliente.getText().equals("")){
+            return false;
+        }
+        if (this.textFMailCliente.getText().equals("")){
+            return false;
+        }
+        if (this.textFRSCliente.getText().equals("")){
+            return false;
+        }
+        if (this.textFDNI.getText().equals("")){
+            return false;
+        }
+        if (this.dateFechaNacimientoCliente.getDate() == null){
+            return false;
+        }
+        return true;
     }
 }
